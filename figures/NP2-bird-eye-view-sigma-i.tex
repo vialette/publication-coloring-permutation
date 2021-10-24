@@ -1,0 +1,56 @@
+\begin{figure}[htbp!]
+  \centering
+  \begin{tikzpicture}
+  [
+    scale=.65,
+    box/.style={
+      shade,
+      blur shadow={shadow blur steps=5,shadow blur extra rounding=1.3pt},
+      top color=black!5,
+      bottom color=black!50
+    },
+    gadget/.style={
+      box,
+      rounded corners
+    },
+    r/.style={
+      box,
+      draw,
+      ultra thick,
+    }
+  ]
+    \draw [help lines,step=2cm,black!30,fill=black!10] (0,0) grid (8,8);
+    \draw [gadget] (0,6) rectangle ++(2,2);
+    \node [] at (1,7) {$\sigma_i\left(V\right)$};
+    \draw [gadget] (2,2) rectangle ++(2,2);
+    \node [] at (3,3) {$\sigma_i\left(\text{Sep}_1\right)$};
+    \draw [gadget] (4,0) rectangle ++(2,2);
+    \node [] at (5,1) {$\sigma_i\left(E\right)$};
+    \draw [gadget] (6,4) rectangle ++(2,2);
+    \node [] at (7,5) {$\sigma_i\left(\text{Sep}_2\right)$};
+    \draw [gadget] (4,6) rectangle ++(2,2);
+    \node [] at (5,7) {$\sigma_i\left(E\right)$};
+    % labels
+    % x-labels
+    \node [label={[text depth=1.75ex,label distance=0.2cm,rotate=-90]right:{$1$}}] at (0,0) {};
+    % \node [label={[text depth=1.75ex,label distance=0.2cm,rotate=-90]right:{$2n$}}] at (1.5,0) {};
+    \node [label={[text depth=1.75ex,label distance=0.2cm,rotate=-90]right:{$2n_i+1$}}] at (2,0) {};
+    % \node [label={[text depth=1.75ex,label distance=0.2cm,rotate=-90]right:{$2n+kN$}}] at (3.5,0) {};
+    \node [label={[text depth=1.75ex,label distance=0.2cm,rotate=-90]right:{$2n_i+N+1$}}] at (4,0) {};
+    % \node [label={[text depth=1.75ex,label distance=0.2cm,rotate=-90]right:{$2n+kN+4m$}}] at (5.5,0) {};
+    \node [label={[text depth=1.75ex,label distance=0.2cm,rotate=-90]right:{$2n_i+N+4m_i+1$}}] at (6,0) {};
+    \node [label={[text depth=1.75ex,label distance=0.2cm,rotate=-90]right:{$2n_i+2N+4m_i$}}] at (7.5,0) {};
+    % y-labels
+    \node [label={[text depth=1.75ex,label distance=0.2cm]left:{$1$}}] at (0,0.1) {};
+    % \node [label={[text depth=1.75ex,label distance=0.2cm]left:{$2m2$}}] at (0,1.6) {};
+    \node [label={[text depth=1.75ex,label distance=0.2cm]left:{$2m_i+1$}}] at (0,2.1) {};
+    % \node [label={[text depth=1.75ex,label distance=0.2cm]left:{$2m+kN$}}] at (0,3.6) {};
+    \node [label={[text depth=1.75ex,label distance=0.2cm]left:{$2m_i+N+1$}}] at (0,4.1) {};
+    % \node [label={[text depth=1.75ex,label distance=0.2cm]left:{$2m+2kN$}}] at (0,5.6) {};
+    \node [label={[text depth=1.75ex,label distance=0.2cm]left:{$2m_i+2N+1$}}] at (0,6.1) {};
+    \node [label={[text depth=1.75ex,label distance=0.2cm]left:{$2n_i+2N+4m_i$}}] at (0,7.6) {};
+  \end{tikzpicture}
+  \caption{\label{fig:NP2:bird eye view sigma_i}%
+    Bird's-eye view of the permutation $\sigma_i$.
+  }% end caption
+\end{figure}

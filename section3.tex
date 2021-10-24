@@ -1,0 +1,675 @@
+\subsubsection{Linear Graph Coloring}
+\label{section:Linear Graph Coloring}
+
+This section is devoted to proving that the
+\textsc{$3$-Linear Graph Coloring} is \NP-complete.
+
+\begin{proposition}
+  \label{proposition:3-Linear Graph Coloring is NP-complete}
+  \textsc{$3$-Linear Graph Coloring} is \NP-complete.
+\end{proposition}
+
+\begin{proof}
+  We reduce from the \textsc{$3$-Sat} problem, which is known to
+  \NP-complete \cite{DBLP:conf/coco/Karp72}.
+  Let $\phi = c_1 \wedge c_2 \wedge \cdots \wedge c_m$ be a CNF formula
+  defined over the boolean variables $X =\{x_1, x_2, \dots, x_n\}$.
+  For every variable $x_{i} \in X$,
+  we let $\OCCURRENCE_1(x_{i})$ (resp. $\OCCURRENCE_2(x_{i})$ and $\OCCURRENCE_3(x_{i})$)
+  stand for the number of occurrences of the variable $x_{i}$ as the first (resp. second and third)
+  literal of a clause.
+  Furthermore, we let $\OCCURRENCE(x_{i})$ stand for
+  $\OCCURRENCE_1(x_{i}) + 2\,\OCCURRENCE_2(x_{i}) + \OCCURRENCE_3(x_{i})$.
+  For any clause $c$, we let $c[i]$ stand for
+  $i$-th literal of $c$.
+
+  We define an instance of the \textsc{$3$-Linear Graph Coloring} problem by defining a
+  target linear graph $G^{0} = (V^{0}, E^{0})$
+  and three linear graphs
+  $G^{1} = (V^{1}, E^{1})$, $G^{2} = (V^{2}, E^{2})$ and $G^{3} = (V^{3}, E^{3})$.
+  All linear graphs $G^{0}$, $G^{1}$, $G^{2}$ and $G^{3}$ are actually composed
+  of independent edges so that any connected component is composed of two vertices only.
+  The general idea of the reduction is as follows:
+  the target linear graph $G^{0}$ encodes the whole instance
+  and $G^{1}$ encodes an assignment of the variable that satisfies all clauses of $\phi$;
+  both $G^{2}$ and $G^{3}$ act as garbage collectors by focusing of those edges of $G^{0}$
+  that are not part of the satisfying assignment or are structure edges.
+
+  Set $N=m^2$.
+  We have divided the presentation of the linear graphs $G^{0}, G^{1}, G^{2}$ and $G^{3}$.
+
+  % linear graph G^0
+  \medskip
+  \textbf{Defining the target linear graph $G^{0} = (V^{0}, E^{0})$}
+  \medskip
+
+  \begin{mdframed}
+    Define
+    \begin{alignat*} {2}
+      V^{0} &= \texttt{Var}^{0} \cup \texttt{Cls}^{0}
+      &\quad&\text{with $\texttt{Var}^{0} < \texttt{Cls}^{0}$,}
+      \\
+      \texttt{Var}^{0} &= \bigcup_{i=1}^{n} \texttt{Var}^{0}_{i}
+      &&\text{with $\texttt{Var}^{0}_1 < \texttt{Var}^{0}_2 < \cdots < \texttt{Var}^{0}_n$,}
+      \\
+      \texttt{Cls}^{0} &= \bigcup_{j=1}^{m} \texttt{Cls}^{0}_{j}
+      &&\text{with $\texttt{Cls}^{0}_1 < \texttt{Cls}^{0}_2 < \cdots < \texttt{Cls}^{0}_m$.}
+    \end{alignat*}
+
+    Let us first define the vertices of $\texttt{Var}^{0}$ that correspond
+    to the variables $X$.
+    Quite naturally, the vertices of $\texttt{Var}^{0}_{i}$, $1 \leq i \leq n$,
+    are associated to the boolean variable $x_{i} \in X$.
+    For $1 \leq i \leq n$, define
+    \begin{alignat*}{2}
+      \texttt{Var}^{0}_{i} &=
+      &&
+      \texttt{T}^{0}_{i,\LEFT} \cup \texttt{T}^{0}_{i,\RIGHT} \cup
+      \texttt{F}^{0}_{i,\LEFT} \cup \texttt{F}^{0}_{i,\RIGHT} \cup
+      \texttt{Y}^{0}_{i,\LEFT} \cup \texttt{Y}^{0}_{i,\RIGHT} \cup
+      \texttt{X}^{0}_{i} \cup \neg\texttt{X}^{0}_{i}
+      \\
+      \intertext{
+      with $$\texttt{T}^{0}_{i,\LEFT} <
+      \texttt{Y}^{0}_{i,\LEFT} <
+      \texttt{X}^{0}_{i} <
+      \texttt{F}^{0}_{i,\LEFT} <
+      \texttt{T}^{0}_{i,\RIGHT} <
+      \neg\texttt{X}^{0}_{i} <
+      \texttt{Y}^{0}_{i,\RIGHT} <
+      \texttt{F}^{0}_{i,\RIGHT},$$
+      and}
+      \texttt{T}^{0}_{i,\LEFT}
+      &=
+      &&\{\texttt{t}^{0}_{i,j,\LEFT} : 1 \leq j \leq N\}
+      \\
+      \texttt{Y}^{0}_{i,\LEFT}
+      &=
+      &&\{\texttt{y}^{0}_{i,j,\LEFT} : 1 \leq j \leq N\}
+      \\
+      \texttt{X}^{0}_{i}
+      &=
+      &&\texttt{X}^{0}_{i,1} \cup \texttt{X}^{0}_{i,2} \cup \texttt{X}^{0}_{i,3}
+      \\
+      \texttt{X}^{0}_{i,1}
+      &=
+      &&\{\texttt{x}^{0}_{i,1,j} :
+      \text{$c_{j}[1] = x_{i}$ or $c_{j}[1] = \overline{x_{i}}$}\}
+      \\
+      \texttt{X}^{0}_{i,2}
+      &=
+      &&\{\texttt{x}^{0}_{i,2,j,\FST}, \texttt{x}^{0}_{i,2,j,\SND} :
+      \text{$c_{j}[2] = x_{i}$ or $c_{j}[2] = \overline{x_{i}}$}\}
+      \\
+      \texttt{X}^{0}_{i,3}
+      &=
+      &&\{\texttt{x}^{0}_{i,3,j} : \text{$c_{j}[3] = x_{i}$ or $c_{j}[3] = \overline{x_{i}}$}\}
+      \\
+      \texttt{F}^{0}_{i,\LEFT}
+      &=
+      &&\{\texttt{f}^{0}_{i,j,\LEFT} : 1 \leq j \leq N\}
+      \\
+      \texttt{T}^{0}_{i,\RIGHT}
+      &=
+      &&\{\texttt{t}^{0}_{i,j,\RIGHT} : 1 \leq j \leq N\}
+      \\
+      \neg\texttt{X}^{0}_{i}
+      &=
+      &&\neg\texttt{X}^{0}_{i,1} \cup \neg\texttt{X}^{0}_{i,2} \cup \neg\texttt{X}^{0}_{i,3}
+      \\
+      \neg\texttt{X}^{0}_{i,1}
+      &=
+      &&\{\neg\texttt{x}^{0}_{i,1,j} :
+      \text{$c_{j}[1] = x_{i}$ or $c_{j}[1] = \overline{x_{i}}$}\}
+      \\
+      \neg\texttt{X}^{0}_{i,2}
+      &=
+      &&\{\neg\texttt{x}^{0}_{i,2,j,\FST}, \texttt{x}^{0}_{i,2,j,\SND} :
+      \text{$c_{j}[2] = x_{i}$ or $c_{j}[2] = \overline{x_{i}}$}\}
+      \\
+      \neg\texttt{X}^{0}_{i,3}
+      &=
+      &&\{\neg\texttt{x}^{0}_{i,3,j} :
+      \text{$c_{j}[3] = x_{i}$ or $c_{j}[3] = \overline{x_{i}}$}\}
+      \\
+      \texttt{Y}^{0}_{i,\RIGHT}
+      &=
+      &&\{\texttt{y}^{0}_{i,j,\RIGHT} : 1 \leq j \leq N\}
+      \\
+      \texttt{F}^{0}_{i,\RIGHT}
+      &=
+      &&\{\texttt{f}^{0}_{i,j,\RIGHT} : 1 \leq j \leq N\}\text{.}
+    \end{alignat*}
+    All vertices within subsets
+    $\texttt{T}^{0}_{i,\LEFT}, \texttt{t}^{0}_{i,\RIGHT},
+    \texttt{F}^{0}_{i,\LEFT}, \texttt{F}^{0}_{i,\RIGHT},
+    \texttt{Y}^{0}_{i,\LEFT}, \texttt{Y}^{0}_{i,\RIGHT},
+    \texttt{X}^{0}_{i}$ and $\neg\texttt{X}^{0}_{i}$
+    are ordered according to their $j$-coordinate.
+    Furthermore,
+    $\texttt{x}^{0}_{i,2,j,\FST} < \texttt{x}^{0}_{i,2,j,\SND}$
+    for $\texttt{x}^{0}_{i,2,j,\FST}, \texttt{x}^{0}_{i,2,j,\SND} \in \texttt{X}^{0}_{i,2}$
+    and
+    $\neg\texttt{x}^{0}_{i,2,j,\FST} < \neg\texttt{x}^{0}_{i,2,j,\SND}$
+    for $\neg\texttt{x}^{0}_{i,2,j,\FST}, \neg\texttt{x}^{0}_{i,2,j,\SND} \in \neg\texttt{X}^{0}_{i,2}$.
+
+    As for the vertices of $\texttt{Cls}^{0}$, for every $1 \leq j \leq m$, define
+    \begin{align*}
+      \texttt{Cls}^{0}_{j} &=
+      \texttt{L}^{0}_{j} \cup
+      \texttt{A}^{0}_{j} \cup
+      \texttt{B}^{0}_{j} \cup
+      \texttt{C}^{0}_{j} \cup
+      \texttt{D}^{0}_{j}
+      \\
+      \texttt{L}^{0}_{j} &= \{
+      \texttt{l}^{0}_{j,1,\TRUE},
+      \texttt{l}^{0}_{j,1,\FALSE},
+      \texttt{l}^{0}_{j,2,\FALSE,\FST},
+      \texttt{l}^{0}_{j,2,\TRUE},
+      \texttt{l}^{0}_{j,2,\FALSE,\SND},
+      \texttt{l}^{0}_{j,3,\FALSE},
+      \texttt{l}^{0}_{j,3,\TRUE}
+      \}
+      \\
+      \texttt{A}^{0}_{j} &= \{\texttt{a}^{0}_{j,\LEFT}, \texttt{a}^{0}_{j,\RIGHT}\}
+      \\
+      \texttt{B}^{0}_{j} &= \{\texttt{b}^{0}_{j,\LEFT}, \texttt{b}^{0}_{j,\RIGHT}\}
+      \\
+      \texttt{C}^{0}_{j} &= \{\texttt{c}^{0}_{j,\LEFT}, \texttt{c}^{0}_{j,\RIGHT}\}
+      \\
+      \texttt{D}^{0}_{j} &= \{\texttt{d}^{0}_{j,\LEFT}, \texttt{d}^{0}_{j,\RIGHT}\}
+    \end{align*}
+    with
+    $
+    \texttt{l}^{0}_{j,1,\TRUE} <
+    \texttt{a}^{0}_{j,\LEFT} <
+    \texttt{l}^{0}_{j,1,\FALSE} <
+    \texttt{b}^{0}_{j,\LEFT} <
+    \texttt{a}^{0}_{j,\RIGHT} <
+    \texttt{l}^{0}_{j,2,\FALSE,\FST} <
+    \texttt{b}^{0}_{j,\RIGHT} <
+    \texttt{l}^{0}_{j,2,\TRUE} <
+    \texttt{c}^{0}_{j,\LEFT} <
+    \texttt{l}^{0}_{j,2,\FALSE,\SND} <
+    \texttt{d}^{0}_{j,\LEFT} <
+    \texttt{c}^{0}_{j,\RIGHT} <
+    \texttt{l}^{0}_{j,3,\FALSE} <
+    \texttt{d}^{0}_{j,\RIGHT} <
+    \texttt{l}^{0}_{j,3,\TRUE}
+    $.
+
+    We now turn to defining the edges $E^{0}$ of the linear graph $G^{0}$.
+    Define
+    \begin{alignat*}{2}
+      E^{0} &=&& E^{0}_{\texttt{Var}} \cup E^{0}_{\texttt{Var},\texttt{Cls}} \cup E^{0}_{\texttt{Cls}},
+      \\
+      E^{0}_{\texttt{Var}} &=&& \bigcup_{i=1}^{n} E^{0}_{\texttt{Var}, i},
+      \\
+      \forall 1\leq i \leq n,\;
+      E^{0}_{\texttt{Var}, i} &=&&
+      \bigcup_{k=1}^{N} (\texttt{t}^{0}_{i,k,\LEFT}, \texttt{t}^{0}_{i,N-k+1,\RIGHT})
+      \;\cup\;
+      \bigcup_{k=1}^{N} (\texttt{f}^{0}_{i,k,\LEFT}, \texttt{f}^{0}_{i,N-k+1,\RIGHT}) \;\cup
+      \\
+      &&&
+      \bigcup_{k=1}^{N} (\texttt{y}^{0}_{i,k,\LEFT}, \texttt{y}^{0}_{i,N-k+1,\RIGHT}),
+      \\
+      E^{0}_{\texttt{Cls}} &=&& \bigcup_{j=1}^{m} E^{0}_{\texttt{Cls}, j},
+      \\
+      \forall 1\leq j \leq m,\;
+      E^{0}_{\texttt{Cls}, j} &=&&
+      \{(\texttt{a}^{0}_{j,\LEFT}, \texttt{a}^{0}_{j,\RIGHT}),
+      (\texttt{b}^{0}_{j,\LEFT}, \texttt{b}^{0}_{j,\RIGHT}),
+      (\texttt{c}^{0}_{j,\LEFT}, \texttt{c}^{0}_{j,\RIGHT}),
+      (\texttt{d}^{0}_{j,\LEFT}, \texttt{d}^{0}_{j,\RIGHT})\}\text{.}
+    \end{alignat*}
+    For $1 \leq i \leq n$, the edges of $E^{0}_{\texttt{Var}, i}$ connect
+    vertices of $\texttt{Var}^{0}_{i}$ only, and
+    for $1 \leq j \leq m$, the edges of $E^{0}_{\texttt{Cls}, j}$ connect
+    vertices of $\texttt{Cls}^{0}_{j}$ only.
+    These edges of $E^{0}_{\texttt{Var}} \cup E^{0}_{\texttt{Cls}}$ are thus called
+    \emph{intra-gadget} edges (they live inside gadgets).
+    What is left is thus to define the \emph{inter-gadget} edges of
+    $E^{0}_{\texttt{Var},\texttt{Cls}}$.
+    \begin{itemize}
+      \item
+      For every $\texttt{l}^{0}_{j, 1, \TRUE} \in V^{0}_{\texttt{Cls}}$,
+      we add
+      the edge $(\texttt{x}^{0}_{i,1,j}, \texttt{l}^{0}_{j, 1, \TRUE})$
+      to $E^{0}_{\texttt{Var},\texttt{Cls}}$
+      if $c_{j}[1] = x_{i}$, or
+      the edge $(\neg\texttt{x}^{0}_{i,1,j}, \texttt{l}^{0}_{j, 1, \TRUE})$
+      to $E^{0}_{\texttt{Var},\texttt{Cls}}$
+      if $c_{j}[1] = \overline{x_{i}}$.
+
+      \item
+      For every $\texttt{l}^{0}_{j, 1, \FALSE} \in V^{0}_{\texttt{Cls}}$,
+      we add
+      the edge $(\neg\texttt{x}^{0}_{i,1,j}, \texttt{l}^{0}_{j, 1, \TRUE})$
+      to $E^{0}_{\texttt{Var},\texttt{Cls}}$
+      $c_{j}[1] = x_{i}$, or
+      the edge $(\texttt{x}^{0}_{i,1,j}, \texttt{l}^{0}_{j, 1, \TRUE})$
+      to $E^{0}_{\texttt{Var},\texttt{Cls}}$
+      $c_{j}[1] = \overline{x_{i}}$.
+
+      \item
+      For every $\texttt{l}^{0}_{j, 2, \FALSE, \FST} \in V^{0}_{\texttt{Cls}}$, we add
+      the edge $(\neg\texttt{x}^{0}_{i,2,j,\FST}, \texttt{l}^{0}_{j, 2, \FALSE, \FST})$
+      to $E^{0}_{\texttt{Var},\texttt{Cls}}$
+      $c_{j}[2] = x_{i}$, or
+      the edge $(\texttt{x}^{0}_{i,2,j,\FST}, \texttt{l}^{0}_{j, 2, \FALSE, \FST})$
+      to $E^{0}_{\texttt{Var},\texttt{Cls}}$
+      $c_{j}[2] = \overline{x_{i}}$.
+
+      \item
+      For every $\texttt{l}^{0}_{j, 2, \FALSE, \SND} \in V^{0}_{\texttt{Cls}}$, we add
+      the edge $(\neg\texttt{x}^{0}_{i,2,j,\SND}, \texttt{l}^{0}_{j, 2, \FALSE, \SND})$
+      to $E^{0}_{\texttt{Var},\texttt{Cls}}$
+      $c_{j}[2] = x_{i}$, or
+      the edge $(\texttt{x}^{0}_{i,2,j,\SND}, \texttt{l}^{0}_{j, 2, \FALSE, \SND})$
+      to $E^{0}_{\texttt{Var},\texttt{Cls}}$
+      $c_{j}[2] = \overline{x_{i}}$.
+
+      \item
+      For every $\texttt{l}^{0}_{j, 3, \TRUE} \in V^{0}_{\texttt{Cls}}$,
+      we add
+      the edge $(\texttt{x}^{0}_{i,3,j}, \texttt{l}^{0}_{j, 3, \TRUE})$
+      to $E^{0}_{\texttt{Var},\texttt{Cls}}$
+      $c_{j}[3] = x_{i}$, or
+      the edge $(\neg\texttt{x}^{0}_{i,1,j}, \texttt{l}^{0}_{j, 3, \TRUE})$
+      to $E^{0}_{\texttt{Var},\texttt{Cls}}$
+      $c_{j}[3] = \overline{x_{i}}$.
+
+      \item
+      For every $\texttt{l}^{0}_{j, 3, \FALSE} \in V^{0}_{\texttt{Cls}}$,
+      we add
+      the edge $(\neg\texttt{x}^{0}_{i,3,j}, \texttt{l}^{0}_{j, 3, \TRUE})$
+      to $E^{0}_{\texttt{Var},\texttt{Cls}}$
+      $c_{j}[3] = x_{i}$, or
+      the edge $(\texttt{x}^{0}_{i,3,j}, \texttt{l}^{0}_{j, 3, \TRUE})$
+      to $E^{0}_{\texttt{Var},\texttt{Cls}}$
+      $c_{j}[3] = \overline{x_{i}}$.
+    \end{itemize}
+  \end{mdframed}
+
+  \medskip
+
+  The construction of the linear Graph $G^{0}$ is illustrated
+  in Figure~\ref{fig-3-linear-graph-splitting-variable-gadget-0} and
+  Figure~\ref{fig-3-linear-graph-splitting-clause-gadget-0}.
+
+  \input{figures/3-linear-graph-splitting-variable-gadget-0}
+
+  \input{figures/3-linear-graph-splitting-clause-gadget-0}
+
+  % linear graph G^1
+  \medskip
+  \textbf{Defining the target linear graph $G^{1} = (V^{1}, E^{1})$}
+  \medskip
+  \begin{mdframed}
+    Define
+    \begin{alignat*} {2}
+      V^{1} &= \texttt{Var}^{1} \cup \texttt{Cls}^{1}
+      &\quad&\text{with $\texttt{Var}^{1} < \texttt{C}^{1}$}
+      \\
+      \texttt{Var}^{1} &= \bigcup_{i=1}^{n} \texttt{Var}^{1}_{i}
+      &&\text{with $\texttt{Var}^{1}_1 < \texttt{Var}^{1}_2 < \cdots < \texttt{Var}^{1}_n$}
+      \\
+      \texttt{Cls}^{1} &= \bigcup_{j=1}^{m} \texttt{Cls}^{1}_{j}
+      &&\text{with $\texttt{Cls}^{1}_1 < \texttt{Cls}^{1}_2 < \cdots < \texttt{Cls}^{1}_m$.}
+    \end{alignat*}
+    For $1 \leq i \leq n$, define
+    \begin{alignat*}{2}
+      \texttt{Var}^{1}_{i} &=
+      \texttt{TF}^{1}_{i,\LEFT} \cup \texttt{X}^{1}_{i} \cup \texttt{TF}^{1}_{i,\RIGHT}
+      &&\text{with $\texttt{TF}^{1}_{i,\LEFT} < \texttt{X}^{1}_{i} < \texttt{TF}^{1}_{i,\RIGHT}$},
+      \\
+      \texttt{TF}^{1}_{i,\LEFT}
+      &=
+      \{\texttt{tf}^{1}_{i,j,\LEFT} : 1 \leq j \leq N\},
+      &&
+      \\
+      \texttt{X}^{1}_{i}
+      &=
+      \{\texttt{x}^{1}_{i,j} : \text{$x_{i}$ or $\overline{x_{i}}$ occurs in clause $c_{j}$}\},
+      &&
+      \\
+      \texttt{TF}^{1}_{i,\RIGHT}
+      &=
+      \{\texttt{tf}^{1}_{i,j,\RIGHT} : 1 \leq j \leq N\},
+      &&
+      \\
+      \texttt{Cls}^{0}_{j}
+      &=
+      \{
+      \texttt{l}^{1}_{j,1},
+      \texttt{l}^{1}_{j,2},
+      \texttt{l}^{1}_{j,3},
+      \texttt{ab}^{1}_{j,\LEFT},
+      \texttt{cd}^{1}_{j,\LEFT},
+      \texttt{ab}^{1}_{j,\RIGHT},
+      \texttt{cd}^{1}_{j,\RIGHT}
+      \}
+      &&
+    \end{alignat*}
+    with
+    $
+    \texttt{l}^{1}_{j,1} <
+    \texttt{ab}^{1}_{j,\LEFT} <
+    \texttt{ab}^{1}_{j,\RIGHT} <
+    \texttt{l}^{1}_{j,2} <
+    \texttt{cd}^{1}_{j,\LEFT} <
+    \texttt{cd}^{1}_{j,\RIGHT} <
+    \texttt{l}^{1}_{j,3}
+    $.
+    The vertices in $\texttt{Var}^{1}_{i}$ are ordered according to their second coordinate
+    (always written $j$ in the above definitions).
+
+    We now turn to defining the edges $E^{1}$ of the linear graph $G^{1}$.
+    Define
+    \begin{align*}
+      E^{1} &= E^{1}_{\texttt{Var}} \cup E^{1}_{\texttt{Var},\texttt{Cls}} \cup E^{1}_{\texttt{Cls}},
+      \\
+      E^{1}_{\texttt{Var}} &= \bigcup_{i=1}^{n} E^{1}_{\texttt{Var}, i},
+      \\
+      \forall 1\leq i \leq n,\quad
+      E^{1}_{\texttt{Var}, i} &= \bigcup_{k=1}^{N} (\texttt{TF}^{1}_{i,k}, \texttt{TF}^{1}_{i,N-k+1}),
+      \\
+      E^{1}_{\texttt{Cls}} &= \bigcup_{j=1}^{m} E^{1}_{\texttt{Cls}, j},
+      \\
+      \forall 1\leq j \leq m,\quad
+      E^{1}_{\texttt{Cls}, j} &=
+      \{
+      (\texttt{ab}^{1}_{j,\LEFT}, \texttt{ab}^{1}_{j,\RIGHT}),
+      (\texttt{cd}^{1}_{j,\LEFT}, \texttt{cd}^{1}_{j,\RIGHT})
+      \}\text{.}
+    \end{align*}
+    What is left is to define $E^{1}_{\texttt{Var},\texttt{Cls}}$.
+    For every $\texttt{l}^{1}_{j, 1} \in V^{1}_{\texttt{Cls}}$
+    (resp. $\texttt{l}^{1}_{j, 2} \in V^{1}_{\texttt{Cls}}$ and
+    $\texttt{l}^{1}_{j, 3} \in V^{1}_{\texttt{Cls}}$)
+    we add
+    the edge $(\texttt{x}^{1}_{i,j}, \texttt{l}^{1}_{j, 1})$
+    (resp. $(\texttt{x}^{2}_{i,j}, \texttt{l}^{1}_{j, 1})$ and
+    $(\texttt{x}^{3}_{i,j}, \texttt{l}^{1}_{j, 1})$)
+    to $E^{1}_{\texttt{Var},\texttt{Cls}}$
+    if the first (resp. second and third) literal of the clause $c_{j}$
+    is the positive or the negative literal $x_{i}$.
+  \end{mdframed}
+
+  The construction of the linear Graph $G^{0}$ is illustrated
+  in Figure~\ref{fig-3-linear-graph-splitting-variable-gadget-1} and
+  Figure~\ref{fig-3-linear-graph-splitting-clause-gadget-1}.
+
+  \input{figures/3-linear-graph-splitting-variable-gadget-1}
+
+  \input{figures/3-linear-graph-splitting-clause-gadget-1}
+
+  % linear graph G^2
+  \medskip
+  \textbf{Defining the target linear graph $G^{2} = (V^{2}, E^{2})$}
+  \medskip
+
+  \begin{mdframed}
+    The linear graph $G^{2}$ is identical to $G^{1}$ except that it does not
+    contain any edge in $E^{2}_{\texttt{Cls}}$.
+    More formally,
+    define
+    \begin{alignat*} {2}
+      V^{2} &= \texttt{Var}^{2} \cup \texttt{Cls}^{2}
+      &\quad&\text{with $\texttt{Var}^{2} < \texttt{Cls}^{2}$}
+      \\
+      \texttt{Var}^{2} &= \bigcup_{i=1}^{n} \texttt{Var}^{2}_{i}
+      &&\text{with $\texttt{Var}^{2}_1 < \texttt{Var}^{2}_2 < \dots < \texttt{Var}^{2}_n$}
+      \\
+      \texttt{Cls}^{2} &= \bigcup_{j=1}^{m} \texttt{Cls}^{2}_{j}
+      &&\text{with $\texttt{Cls}^{2}_1 < \texttt{Cls}^{2}_2 < \dots < \texttt{Cls}^{2}_m$.}
+      \\
+      \forall, 1 \leq i \leq n,\;
+      \texttt{Var}^{2}_{i} &= \texttt{TF}^{2}_{i,\LEFT} \cup \texttt{X}^{2}_{i} \cup \texttt{TF}^{2}_{i,\RIGHT}
+      &&\text{with $\texttt{TF}^{2}_{i,\LEFT} < \texttt{X}^{2}_{i} < \texttt{TF}^{2}_{i,\RIGHT}$}
+      \\
+      \texttt{TF}^{2}_{i,\LEFT}
+      &=
+      \{\texttt{TF}^{2}_{i,j,\LEFT} : 1 \leq j \leq N\}
+      &&\\
+      \texttt{X}^{2}_{i}
+      &=
+      \{\texttt{x}^{2}_{i,j} : \text{$x_{i}$ or $\overline{x_{i}}$ occurs in $c_{j}$}\}
+      &&\\
+      \texttt{TF}^{2}_{i,\RIGHT}
+      &=
+      \{\texttt{TF}^{2}_{i,j,\RIGHT} : 1 \leq j \leq N\}
+      &&
+      \\
+      \texttt{Cls}^{2}_{j}
+      &=
+      \{
+      \texttt{l}^{2}_{j,1},
+      \texttt{l}^{2}_{j,2},
+      \texttt{l}^{2}_{j,3}
+      \}
+      &&\text{with $\texttt{l}^{2}_{j,1} < \texttt{l}^{2}_{j,2} < \texttt{l}^{2}_{j,3}$}
+      \\
+    \end{alignat*}
+    The vertices in $\texttt{Var}^{2}_{i}$ are ordered according to their second coordinate
+    (always written $j$ in the above definitions).
+
+    We now turn to defining the edges $E^{2}$ of the linear graph $G^{2}$.
+    Define
+    \begin{align*}
+      E^{2} &= E^{2}_{\texttt{Var}} \cup E^{2}_{\texttt{Var},\texttt{Cls}},
+      \\
+      E^{2}_{\texttt{Var}} &= \bigcup_{i=1}^{n} E^{2}_{\texttt{Var}, i},
+      \\
+      \forall 1\leq i \leq n,\quad
+      E^{2}_{\texttt{Var}, i} &= \bigcup_{k=1}^{N} (\texttt{TF}^{2}_{i,k}, \texttt{TF}^{2}_{i,N-k+1})\text{.}
+    \end{align*}
+    As for $E^{2}_{\texttt{Var},\texttt{Cls}}$,
+    \begin{itemize}
+      \item
+      for every $\texttt{l}^{2}_{j, 1} \in V^{2}_{\texttt{Cls}}$,
+      we add
+      the edge $(\texttt{x}^{2}_{i,j}, \texttt{l}^{2}_{j, 1})$
+      to $E^{2}_{\texttt{Var},\texttt{Cls}}$
+      if $c_{j}[1] = x_{i}$ or $c_{j}[1] = \overline{x_{i}}$.
+      \item
+      for every $\texttt{l}^{2}_{j, 2} \in V^{2}_{\texttt{Cls}}$,
+      we add
+      the edge $(\texttt{x}^{2}_{i,j}, \texttt{l}^{2}_{j, 1})$
+      to $E^{2}_{\texttt{Var},\texttt{Cls}}$
+      if $c_{j}[2] = x_{i}$ or $c_{j}[2] = \overline{x_{i}}$.
+      \item
+      for every $\texttt{l}^{2}_{j, 3} \in V^{2}_{\texttt{Cls}}$,
+      we add
+      the edge $(\texttt{x}^{3}_{i,j}, \texttt{l}^{2}_{j, 1})$
+      to $E^{2}_{\texttt{Var},\texttt{Cls}}$
+      if $c_{j}[3] = x_{i}$ or $c_{j}[3] = \overline{x_{i}}$.
+    \end{itemize}
+  \end{mdframed}
+
+  The construction of the linear graph $G^{2}$ is illustrated
+  in Figure~\ref{fig-3-linear-graph-splitting-variable-gadget-2}.
+
+  \input{figures/3-linear-graph-splitting-variable-gadget-2}
+
+  % linear graph G^3
+  \medskip
+  \textbf{Defining the target linear graph $G^{3} = (V^{3}, E^{3})$}
+  \medskip
+
+  \begin{mdframed}
+    Define
+    \begin{alignat*}{2}
+      V^{3} &= \texttt{Var}^{3} \cup \texttt{C}^{3},
+      &\quad&\text{$\texttt{Var}^{3} < \texttt{Cls}^{3}$,}
+      \\
+      \texttt{Var}^{3} &= \bigcup_{i=1}^{n} \texttt{Var}^{3}_{i},
+      &&\text{$\texttt{Var}^{3}_1 < \texttt{Var}^{3}_2 < \cdots < \texttt{Var}^{3}_n$,}
+      \\
+      \texttt{Cls}^{3} &= \bigcup_{j=1}^{m} \texttt{Cls}^{3}_{j},
+      &&\text{$\texttt{Cls}^{3}_1 < \texttt{Cls}^{3}_2 < \cdots < \texttt{Cls}^{3}_m$.}
+    \end{alignat*}
+    where
+    \begin{alignat*}{3}
+      &\forall \leq i \leq n,\;&
+      \texttt{Var}^{3}_{i} &= \texttt{Y}^{3}_{i,\LEFT} \cup \texttt{X}^{3}_{i} \cup \texttt{Y}^{3}_{i,\RIGHT},
+      &\quad&\text{$\texttt{Y}^{3}_{i,\LEFT} < \texttt{X}^{3}_{i} < \texttt{Y}^{3}_{i,\RIGHT}$},
+      \\
+      &\forall \leq i \leq n,\;&
+      \texttt{Y}^{3}_{i,\LEFT}
+      &=
+      \{\texttt{y}^{3}_{i,j,\LEFT} : 1 \leq j \leq N\},
+      &&
+      \\
+      &\forall \leq i \leq n,\;&
+      \texttt{X}^{3}_{i}
+      &=
+      \{\texttt{x}^{3}_{i,j,\FST}, \texttt{x}^{3}_{i,j,\SND} :
+      \text{$x_{i} = c_{j}[2]$ or $\overline{x_{i}} = c_{j}[2]$}\},
+      &&
+      \\
+      &\forall \leq i \leq n,\;&
+      \texttt{Y}^{3}_{i,\RIGHT}
+      &=
+      \{\texttt{y}^{3}_{i,j,\RIGHT} : 1 \leq j \leq N\},
+      &&
+      \\
+      &&\texttt{Cls}^{3}_{j}
+      &=
+      \{
+      \texttt{l}^{3}_{j},
+      \}
+      \cup
+      \{
+      \texttt{ab}^{3}_{j,\LEFT},
+      \texttt{cd}^{3}_{j,\LEFT},
+      \texttt{ab}^{3}_{j,\RIGHT},
+      \texttt{cd}^{3}_{j,\RIGHT}
+      \}
+      &&
+    \end{alignat*}
+    with
+    $
+    \texttt{ab}^{3}_{j,\LEFT} <
+    \texttt{ab}^{3}_{j,\RIGHT} <
+    \texttt{l}^{3}_{j} <
+    \texttt{cd}^{3}_{j,\LEFT} <
+    \texttt{cd}^{3}_{j,1,\RIGHT}
+    $.
+    All subsets
+    $\texttt{Y}^{3}_{i,\LEFT}$, $\texttt{X}^{3}_{i}$ and $\texttt{Y}^{3}_{i,\RIGHT}$,
+    are ordered according to the second coordinate index of the vertices
+    (always written $j$ in the above definitions).
+
+    For the edges $E^{3}$ of the linear graph $G^{3}$,
+    define
+    \begin{alignat*}{2}
+      &&
+      E^{3} &= E^{3}_{\texttt{Var}} \cup E^{3}_{\texttt{Var},\texttt{Cls}} \cup E^{3}_{\texttt{Cls}}
+      \\
+      &&
+      E^{3}_{\texttt{Var}} &= \bigcup_{i=1}^{n} E^{3}_{\texttt{Var}, i}
+      \\
+      &\forall 1\leq i \leq n,\quad&
+      E^{3}_{\texttt{Var}, 3} &= \bigcup_{k=1}^{N} (\texttt{y}^{3}_{i,k}, \texttt{y}^{3}_{i,N-k+1})
+      \\
+      &&
+      E^{3}_{\texttt{Cls}} &= \bigcup_{j=1}^{m} E^{3}_{\texttt{Cls}, j}
+      \\
+      &\forall 1\leq j \leq m,\quad&
+      E^{3}_{\texttt{Cls}, j} &=
+      \{
+      (\texttt{ab}^{3}_{j,\LEFT}, \texttt{ab}^{3}_{j,\RIGHT})
+      \}\text{.}
+    \end{alignat*}
+    As for $E^{3}_{\texttt{Var},\texttt{Cls}}$,
+    for every $\texttt{l}^{3}_{j} \in \texttt{Cls}^{3}_{j}$,
+    we add the edge
+    $(\texttt{x}^{3}_{i,j}, \texttt{l}^{3}_{j}) \in E^{3}_{\texttt{Var},\texttt{Cls}}$
+    if $x_{i} = c_{j}[2]$ or $\overline{x_{i}} = c_{j}[2]$.
+  \end{mdframed}
+
+  \bigskip
+
+  We now claim that the $3$-CNF formula $\phi$ is satisfiable
+  if and only if
+  $G^{0}$ is $(G^{1}, G^{2}, G^{3})$-colorable.
+
+  $(\Rightarrow)$
+  Suppose that the $3$-CNF formula $\phi$ is satisfiable, and
+  let $\gamma : X \to \{\FALSE, \TRUE\}$ be a satisfying assignment
+  for $\phi$.
+  Let $\COLOR_1$, $\COLOR_2$ and $\COLOR_3$ be three distinct colors.
+  We define a mapping
+  $\rho : V^{0} \to \{\COLOR_1, \COLOR_2, \COLOR_3\}$ as follows.
+
+  \paragraph*{Gadgets $\texttt{Var}^{0}_{i}$}
+
+  \begin{alignat*}{4}
+    &\forall 1 \leq i \leq n, \forall 1 \leq j \leq N\;,
+    &\quad
+    \rho(\texttt{t}^{0}_{i, j, \LEFT}) &= \rho(\texttt{t}^{0}_{i, j, \RIGHT}) &=&
+    \begin{cases}
+      \COLOR_1 & \text{if $\gamma(x_i) = \TRUE$}\\
+      \COLOR_2 & \text{if $\gamma(x_i) = \FALSE$}
+    \end{cases}
+    \\
+    &\forall 1 \leq i \leq n, \forall 1 \leq j \leq N\;,
+    &\quad
+    \rho(\texttt{f}^{0}_{i, j, \LEFT}) &= \rho(\texttt{f}^{0}_{i, j, \RIGHT}) &=&
+    \begin{cases}
+      \COLOR_1 & \text{if $\gamma(x_i) = \FALSE$}\\
+      \COLOR_2 & \text{if $\gamma(x_i) = \TRUE$}
+    \end{cases}
+    \\
+    &\forall 1 \leq i \leq n, \forall 1 \leq j \leq N\;,
+    &\quad
+    \rho(\texttt{y}^{0}_{i, j, \LEFT}) &= \rho(\texttt{y}^{0}_{i, j, \RIGHT}) &=&
+    \COLOR_3
+    \\
+    &\forall 1 \leq i \leq n, \forall 1 \leq j \leq \OCCURRENCE(x_i)\;,
+    &\quad
+    \rho(\texttt{x}^{0}_{i, 1, j}) &= \rho(\texttt{x}^{0}_{i, 3, j}) &=&
+    \begin{cases}
+      \COLOR_1 & \text{if $\gamma(x_i) = \TRUE$}\\
+      \COLOR_2 & \text{if $\gamma(x_i) = \FALSE$}
+    \end{cases}
+    \\
+    &\forall 1 \leq i \leq n, \forall 1 \leq j \leq \OCCURRENCE(x_i)\;,
+    &\quad
+    \rho(\neg\texttt{x}^{0}_{i, 1, j}) &= \rho(\neg\texttt{x}^{0}_{i, 3, j}) &=&
+    \begin{cases}
+      \COLOR_1 & \text{if $\gamma(x_i) = \FALSE$}\\
+      \COLOR_2 & \text{if $\gamma(x_i) = \TRUE$}
+    \end{cases}
+    \\
+  \end{alignat*}
+
+  \paragraph*{Gadgets $\texttt{Cls}^{0}_{j}$}
+
+  It can be checked that
+  \begin{itemize}
+    \item
+    every vertex of $G^{0}$ is assigned exactly one color,
+    \item
+    every edge of $G^{0}$ connect two vertices with the same color,
+    \item
+    the subgraph of $G^{0}$ induced by color $\COLOR_1$
+    (resp. $\COLOR_2$ and $\COLOR_3$) is isomorphic to $G^{1}$
+    (resp. $G^{2}$ and $G^{3}$).
+  \end{itemize}
+
+  $(\Leftarrow)$
+  Suppose now that $G^{0}$ is $(G^{1}, G^{2}, G^{3})$-colorable.
+  We show how to construct a satifsying assignment
+  $\gamma : X \to \{\FALSE, \TRUE\}$ for $\phi$.
+
+
+  \input{figures/3-linear-graph-splitting-variable-gadget-cases}
+
+  \input{figures/3-linear-graph-splitting-clause-gadget-cases}
+
+
+\end{proof}

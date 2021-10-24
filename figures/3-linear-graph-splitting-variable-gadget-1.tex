@@ -1,0 +1,101 @@
+\begin{figure}
+  \centering
+
+  \begin{tikzpicture}
+    [
+    scale=.375,
+    my vertex/.style={basic vertex,
+    minimum size=1pt,
+    inner sep=2pt,
+    ball color=black!80},
+    ]
+    % vertices
+
+    % TF left
+    \begin{scope}[]
+      \fill [rounded corners, black!15] (-0.6,-0.6) -- (-0.6,0.6) --
+      (3.6,0.6)   -- (3.6,-0.6) --
+      cycle;
+      \node [
+      my vertex,
+      label={[text depth=0ex,label distance=0.25cm,rotate=-90]right:{\scriptsize $\texttt{tf}^{1}_{i,1,\LEFT}$}}
+      ] (TF1l) at (0,0) {};
+      \node [
+      my vertex,
+      label={[text depth=0ex,label distance=0.25cm,rotate=-90]right:{\scriptsize $\texttt{tf}^{1}_{i,2,\LEFT}$}}
+      ] (TF2l) at (1,0) {};
+      \node [
+      my vertex,
+      label={[text depth=0ex,label distance=0.25cm,rotate=-90]right:{\scriptsize $\texttt{tf}^{1}_{i,N,\LEFT}$}}
+      ] (TFNl) at (3,0) {};
+      \path [draw,dotted] (TF2l) -- (TFNl);
+    \end{scope}
+
+    % x
+    \begin{scope}[xshift=4.5cm]
+      \fill [rounded corners, black!15] (-0.6,-0.6) -- (-0.6,0.6) --
+      (3.6,0.6)   -- (3.6,-0.6) --
+      cycle;
+      \node [
+      my vertex,
+      label={[text depth=2.5ex,label distance=0.25cm,rotate=-90]left:{\scriptsize $\texttt{x}^{1}_{i,1}$}}
+      ] (X1) at (0,0) {};
+      \node [
+      my vertex,
+      label={[text depth=2.5ex,label distance=0.25cm,rotate=-90]left:{\scriptsize $\texttt{x}^{1}_{i,2}$}}
+      ] (X2) at (1,0) {};
+      \node [
+      my vertex,
+      label={[text depth=2.5ex,label distance=0.25cm,rotate=-90]left:{\scriptsize $\texttt{x}^{1}_{i,k}$}}
+      ] (Xk) at (3,0) {};
+      \path [draw,dotted] (X2) -- (Xk);
+    \end{scope}
+
+    % p right
+    \begin{scope}[xshift=9cm]
+      \fill [rounded corners, black!15] (-0.6,-0.6) -- (-0.6,0.6) --
+      (3.6,0.6)   -- (3.6,-0.6) --
+      cycle;
+      \node [
+      my vertex,
+      label={[text depth=0ex,label distance=0.25cm,rotate=-90]right:{\scriptsize $\texttt{tf}^{1}_{i,1,\RIGHT}$}}
+      ] (TF1r) at (0,0) {};
+      \node [
+      my vertex,
+      label={[text depth=0ex,label distance=0.25cm,rotate=-90]right:{\scriptsize $\texttt{tf}^{1}_{i,2,\RIGHT}$}}
+      ] (TF2r) at (1,0) {};
+      \node [
+      my vertex,
+      label={[text depth=0ex,label distance=0.25cm,rotate=-90]right:{\scriptsize $\texttt{tf}^{1}_{i,N,\RIGHT}$}}
+      ] (TFNr) at (3,0) {};
+      \path [draw,dotted] (TF2r) -- (TFNr);
+    \end{scope}
+
+    % edges
+    \path [edge]
+    (TF1l.north) -- ++(0,5.5) -- ($(TFNr.north)+(0,5.5)$) -- (TFNr.north);
+    \path [edge,path fading=east]
+    (TF2l.north) -- ++(0,5) --  ($(TF2r.north)+(0,5)$);
+    \path [edge,path fading=west]
+    (TF2r.north) -- ++(0,4) -- ($(TFNl.north)+(0,4)$);
+    \path [edge]
+    (TFNl.north) -- ($(PNl.north)+(0,3.5)$) -- ($(TF1r.north)+(0,3.5)$) -- (TF1r.north);
+
+    \path [edge,path fading=east] (X1.south) -- ++(0,-5) -- ++(13,0);
+    \path [edge,path fading=east] (X2.south) -- ++(0,-5.5) -- ++(13,0);
+    \path [edge,path fading=east] (Xk.south) -- ++(0,-6.5) -- ++(12,0);
+
+    %\node [text width=2cm,anchor=west] at (19,-6) {\scriptsize Towards the clause gadgets};
+  \end{tikzpicture}
+
+  \caption{\label{fig-3-linear-graph-splitting-variable-gadget-1}%
+  A variable gadget $\texttt{Var}^{1}_{i}$ where
+  $\texttt{x}^{1}_{i,1}, \texttt{x}^{1}_{i,2}, \dots, \texttt{x}^{1}_{i,k}$
+  represent the vertices of $\texttt{X}^{1}_{i}$ with
+  $k = \OCCURRENCE(x_i) = \OCCURRENCE_1(x_i) + 2\,\OCCURRENCE_2(x_i) + \OCCURRENCE_3(x_i)$.
+  The intra-gadget edges of $E^{1}_{\texttt{Var}, i} =
+  E^{1}_{\texttt{Var}, i, \texttt{tf}} $ are shown together
+  with the left endpoint parts of the associated inter-gadget edges of
+  $E^{1}_{\texttt{Var},\texttt{Cls}}$.
+  }% end caption
+\end{figure}

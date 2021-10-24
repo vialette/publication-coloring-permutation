@@ -1,0 +1,63 @@
+\begin{figure}
+  \centering
+
+  \begin{tikzpicture}
+  [
+    scale=.2,
+    my vertex/.style={basic vertex,
+                      minimum size=1pt,
+                      inner sep=2pt,
+                      ball color=black!80},
+  ]
+    % vertices
+    \foreach \i/\l [evaluate=\i as \x using \i*3.5] in
+      {
+        2/\texttt{ab}^{1}_{j,\LEFT},
+        3/\texttt{ab}^{1}_{j,\RIGHT},
+        5/\texttt{cd}^{1}_{j,\LEFT},
+        6/\texttt{cd}^{1}_{j,\RIGHT}
+      }
+    {
+    \node [
+      my vertex,
+      label={[text depth=0ex,anchor=center,label distance=0.15cm,rotate=-90]right:{\scriptsize $\l$}}
+    ] (V\i) at (\x,0) {};
+    }
+
+    % vertices
+    \foreach \i/\l [evaluate=\i as \x using \i*3.5] in
+      {
+        1/\texttt{l}^{1}_{j,1},
+        4/\texttt{l}^{1}_{j,2},
+        7/\texttt{l}^{1}_{j,3}
+      }
+    {
+    \node [
+      my vertex,
+      label={[text depth=2.5ex,anchor=center,label distance=0.15cm,rotate=-90]left:{\scriptsize $\l$}}
+    ] (V\i) at (\x,0) {};    }
+
+    % edges
+    \path [edge] (V2.north) -- ++ (0,4) -- ($(V3.north)+(0,4)$) -- (V3.north);
+    \path [edge] (V5.north) -- ++ (0,4) -- ($(V6.north)+(0,4)$) -- (V6.north);
+
+    % incoming edges
+    \draw [edge,path fading=west] (V1) -- ++(0,-5) -- +(-3,0) node {};
+    \draw [edge,path fading=west] (V4) -- ++(0,-6) -- +(-14,0) node {};
+    \draw [edge,path fading=west] (V7)  -- ++(0,-7)  -- +(-25,0) node {};
+
+    \node [text width=2.5cm,anchor=west] at (-15.5,-8.5) {\scriptsize Towards the variable gadgets};
+
+  \end{tikzpicture}
+
+  \caption{\label{fig-3-linear-graph-splitting-clause-gadget-1}%
+    A clause gadget $\texttt{Cls}^{1}_{j}$.
+    The two intra-gadget edges of
+    $E^{1}_{\texttt{Cls}, j} =
+    \{(\texttt{ab}^{1}_{j, \LEFT}, \texttt{ab}^{1}_{j, \RIGHT}),
+    (\texttt{cd}^{1}_{j, \LEFT}, \texttt{cd}^{1}_{j, \RIGHT})\}$
+    are shown together
+    with the right endpoint parts of the associated inter-gadget edges of
+    $E^{1}_{\texttt{Var},\texttt{Cls}}$.
+  }% end caption
+\end{figure}

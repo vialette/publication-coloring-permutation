@@ -1,0 +1,267 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[a4paper,UKenglish]{lipics-v2016}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{stmaryrd}
+\usepackage{babel}
+\usepackage{mathtools}
+\usepackage{mathabx}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage{shuffle}
+\DeclareFontFamily{U}{shuffle}{}
+\DeclareFontShape{U}{shuffle}{m}{n}{ <-8>shuffle7 <8->shuffle10}{}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{graphicx}
+\usepackage{complexity}
+\usepackage{todonotes}
+% \usepackage{subfigure}
+\usepackage[%
+    linewidth=1pt,
+    middlelinecolor= black,
+    middlelinewidth=0.4pt,
+    roundcorner=1pt,
+    topline = false,
+    rightline = false,
+    bottomline = false,
+    rightmargin=0pt,
+    skipabove=0pt,
+    skipbelow=0pt,
+    leftmargin=-1cm,
+    innerleftmargin=1cm,
+    innerrightmargin=0pt,
+    innertopmargin=0pt,
+    innerbottommargin=0pt,
+]{mdframed}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{tikz}
+\usetikzlibrary{arrows}
+\usetikzlibrary{backgrounds}
+\usetikzlibrary{positioning}
+\usetikzlibrary{calc}
+\usetikzlibrary{shapes.arrows}
+\usetikzlibrary{arrows.meta}
+\usetikzlibrary{matrix}
+\usetikzlibrary{decorations.markings}
+\usetikzlibrary{decorations.pathreplacing}
+\usetikzlibrary{decorations.pathmorphing} % noisy shapes
+\usetikzlibrary{fit} % fitting shapes to coordinates
+\usetikzlibrary{backgrounds} % drawing the background after the foreground
+\usetikzlibrary{fadings}
+\usetikzlibrary{shadows.blur}
+\usetikzlibrary{shapes.symbols}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% INCREASING
+\newcommand{\INCREASING}[1]{%
+  \begin{tikzpicture}
+    [
+      scale=.45,
+      anchor=base, baseline,
+      increasing/.style={very thick,->,>=latex',black!75,line cap=round}
+      % increasing/.style={decorate, decoration={snake,segment length=1.5mm,amplitude=.5mm,post length=2mm},thick,->,>=latex'}
+    ]
+    \draw [increasing] (0,0) -- (1,1);
+    \node at (.7,-.25) {\text{$#1$}};
+  \end{tikzpicture}
+}% end new command
+
+% faded edge
+\tikzset{fadededge/.style n args={3}{
+    postaction={
+    decorate,
+    decoration={
+    markings,
+    mark=between positions 0 and \pgfdecoratedpathlength step 0.5pt with {
+    \pgfmathsetmacro\myval{multiply(
+        divide(
+        \pgfkeysvalueof{/pgf/decoration/mark info/distance from start}, \pgfdecoratedpathlength
+        ),
+        100
+    )};
+    \pgfsetfillcolor{#3!\myval!#2};
+    \pgfpathcircle{\pgfpointorigin}{#1};
+    \pgfusepath{fill};}
+}}}}
+
+% vertex
+\tikzset{basic vertex/.style={draw,circle}}
+
+\tikzset{vertex/.style={basic vertex,minimum size=2pt}}
+
+\tikzset{bvertex/.style={vertex,fill=black,minimum size=6pt}}
+%\tikzset{bvertex/.style={vertex,ball color=black,minimum size=6pt}}
+
+\tikzset{wvertex/.style={vertex,fill=white,minimum size=6pt}}
+%\tikzset{wvertex/.style={vertex,ball color=white,minimum size=6pt}}
+
+\tikzset{gvertex/.style={vertex,fill=black!50,minimum size=6pt}}
+%\tikzset{gvertex/.style={vertex,ball color=black!50,minimum size=6pt}}
+
+% edge
+\tikzset{edge/.style={draw,
+                      very thick,
+                      rounded corners}}
+
+\tikzset{inedge/.style={draw,rounded corners,<-,>=stealth}}
+\tikzset{outedge/.style={draw,rounded corners,->,>=stealth}}
+
+%
+\tikzset{
+    side by side/.style 2 args={
+        line width=2pt,
+        #1,
+        postaction={
+            clip,postaction={draw,#2}
+        }
+    }
+}
+
+% big arrow
+\tikzset{bigarrow/.style={draw,rounded corners=3mm,-{Latex[length=6mm]},line width=8,color=black!20}}
+\tikzset{bigarrowlabel/.style={text depth=-1.75ex,text height=-20pt,rotate=-90,color=black}}
+
+% big arrow 2
+\tikzset{bigarrow2/.style={draw,
+                           rounded corners=3mm,
+                           -{Latex[length=6mm]},
+                           line width=8,
+                           color=black!50}}
+\tikzset{smallarrow2/.style={draw,
+                          rounded corners=3mm,
+                          -{Latex[length=3mm]},
+                          line width=2,
+                          color=black!50}}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\theoremstyle{plain}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{observation}[theorem]{Observation}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\DeclareMathOperator{\RANK}{rank}
+\DeclareMathOperator{\RED}{\texttt{red}}
+
+\newcommand{\FST}{\text{fst}}
+\newcommand{\SND}{\text{snd}}
+
+\newcommand{\LEFT}{\texttt{fst}}
+\newcommand{\RIGHT}{\texttt{snd}}
+
+\newcommand{\TRUE}{\texttt{T}}
+\newcommand{\FALSE}{\texttt{F}}
+
+\newcommand{\COLOR}{col}
+
+\DeclareMathOperator{\OCCURRENCE}{\texttt{\#occ}}
+
+\DeclareMathOperator{\issnd}{snd?}
+
+\newcommand{\TARGET}{\text{target}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%if unwanted, comment out or use option "draft"
+\usepackage{microtype}
+
+%helpful if your graphic files are in another directory
+%\graphicspath{{./graphics/}}
+
+% the recommended bibstyle
+\bibliographystyle{plainurl}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\title{On coloring permutations\footnote{This work was partially supported by LabEx Bézout.}}
+% the top page column
+\titlerunning{On coloring permutations}
+
+\author[1]{Laurent Bulteau}
+\author[2]{Danny Hermelin}
+\author[3]{Romeo Rizzi}
+\author[1]{St\'ephane Vialette}
+\affil[1]{Universit\'e Paris-Est, LIGM (UMR 8049), CNRS, UPEM, ESIEE Paris, ENPC,
+F-77454, Marne-la-Vallée, France\\
+  \texttt{\{laurent.bulteau, stephane.vialette\}@univ-eiffel.fr}}
+\affil[2]{Ben-Gurion University of the Negev, Israely\\
+  \texttt{hermelin@bgu.ac.il}}
+\affil[3]{Computer Science Department, University of Verona, Verona, Italy\\
+  \texttt{romeo.rizzi@univr.it}}
+
+%mandatory. First: Use abbreviated first/middle names. Second (only in severe cases): Use first author plus 'et. al.'
+\authorrunning{L.~Bulteau et. al.}
+
+%mandatory, please use full first names. LIPIcs license is "CC-BY";
+%http://creativecommons.org/licenses/by/3.0/
+\Copyright{Laurent Bulteau, Danny Hermelin, Romeo Rizzi and St\'ephane Vialette}
+
+\subjclass{Dummy classification -- please refer to \url{http://www.acm.org/about/class/ccs98-html}}% mandatory: Please choose ACM 1998 classifications from http://www.acm.org/about/class/ccs98-html . E.g., cite as "F.1.1 Models of Computation".
+\keywords{Dummy keyword -- please provide 1--5 keywords}% mandatory: Please provide 1-5 keywords
+% Author macros::end %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%Editor-only macros:: begin (do not touch as author)%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\EventEditors{John Q. Open and Joan R. Acces}
+\EventNoEds{2}
+\EventLongTitle{42nd Conference on Very Important Topics (CVIT 2016)}
+\EventShortTitle{CVIT 2016}
+\EventAcronym{CVIT}
+\EventYear{2016}
+\EventDate{December 24--27, 2016}
+\EventLocation{Little Whinging, United Kingdom}
+\EventLogo{}
+\SeriesVolume{42}
+\ArticleNo{23}
+% Editor-only macros::end %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\maketitle
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Introduction
+\input{section1}
+
+% Definitions
+\input{section2}
+
+% Linear graph coloring
+\input{section3}
+
+% Permutation coloring
+\input{section4}
+
+% Monotonic patterns
+\input{section5}
+
+% Conclusion
+\input{section6}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%\bibliographystyle{amsplain}
+\bibliography{biblio}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\end{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

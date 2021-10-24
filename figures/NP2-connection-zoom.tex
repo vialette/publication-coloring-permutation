@@ -1,0 +1,151 @@
+\begin{figure}
+  \centering
+  \begin{tikzpicture}
+  [
+    scale=.425,
+    box/.style={
+      shade,
+      blur shadow={shadow blur steps=5,shadow blur extra rounding=1.3pt},
+      top color=black!5,
+      bottom color=black!50
+    },
+    gadget/.style={
+      box,
+      rounded corners
+    },
+    r/.style={
+      box,
+      draw,
+      ultra thick,
+    }
+  ]
+    % V gadget
+    \fill [gadget] (-0.25,9.75) rectangle (7.25,29.25);
+    \node at (0.5,27.5) {$\mathcal{V}$};
+    % vertex 1
+    \path [r] (0,10) -- ++(1,0) -- ++(0,2) -- ++(-1,0) -- cycle;
+    \foreach \x/\y in {0.25/11.75,0.75/10.25}
+      \draw [fill=black] (\x,\y) circle (0.13);
+    \node at (2,11) {$u_1$};
+    % again and again
+    \draw [thick,loosely dotted,thick,shorten >=4pt,shorten <=4pt] (1,12) -- (2,14);
+    % vertex i
+    \path [r] (2,14) -- ++(1,0) -- ++(0,4) -- ++(-1,0) -- cycle;
+    \draw [thick,step=0.5cm] (2,14) grid (3,18);
+    \path [draw,ultra thick] (2,14) -- ++(1,0) -- ++(0,4) -- ++(-1,0) -- cycle;
+    \foreach \x/\y in {2.25/17.75,2.75/14.25}
+      \draw [fill=black] (\x,\y) circle (0.13);
+    \node at (1,16) {$u_i$};
+    % again and again
+    \draw [thick,loosely dotted,thick,shorten >=4pt,shorten <=4pt] (3,18) -- (4,20);
+    % vertex j
+    \path [r] (4,20) -- ++(1,0) -- ++(0,5) -- ++(-1,0) -- cycle;
+    \draw [thick,step=0.5cm] (4,20) grid (5,25);
+    \path [draw,ultra thick] (4,20) -- ++(1,0) -- ++(0,5) -- ++(-1,0) -- cycle;
+    \foreach \x/\y in {4.25/24.75,4.75/20.25}
+      \draw [fill=black] (\x,\y) circle (0.13);
+    \node at (3,22.5) {$u_j$};
+    % again and again
+    \draw [thick,loosely dotted,thick,shorten >=4pt,shorten <=4pt] (5,25) -- (6,27);
+    % vertex n
+    \path [r] (6,27) -- ++(1,0) -- ++(0,2) -- ++(-1,0) -- cycle;
+    \foreach \x/\y in {6.25/28.75,6.75/27.25}
+      \draw [fill=black] (\x,\y) circle (0.13);
+    \node at (5,28) {$u_n$};
+
+    % E gadget
+    \fill [gadget] (8.75,2.75) rectangle (19.25,8.25);
+    \node at (9.5,7.5) {$\mathcal{E}$};
+    % first edge
+    \path [r] (9,3) -- ++(2,0) -- ++(0,1) -- ++(-2,0) -- cycle;
+    \draw [thick,step=0.5cm] (9,3) grid (11,4);
+    \path [draw,ultra thick] (9,3) -- ++(2,0) -- ++(0,1) -- ++(-2,0) -- cycle;
+    \foreach \x/\y in {9.25/3.75,10.75/3.25}
+      \draw [fill=black] (\x,\y) circle (0.13);
+    \node at (10,4.75) {$e_1$};
+    % again and again
+    \draw [thick,loosely dotted,thick,shorten >=4pt,shorten <=4pt] (11,4) -- (13,5);
+    % edge (i,j))
+    \path [r] (13,5) -- ++(2,0) -- ++(0,1) -- ++(-2,0) -- cycle;
+    \draw [thick,step=0.5cm] (13,5) grid (15,6);
+    \path [draw,ultra thick] (13,5) -- ++(2,0) -- ++(0,1) -- ++(-2,0) -- cycle;
+    \foreach \x/\y in {13.25/5.75,14.75/5.25}
+      \draw [fill=black] (\x,\y) circle (0.13);
+    \node at (14,4.25) {$e_\ell = \{i,j\}$};
+    % again and again
+    \draw [thick,loosely dotted,thick,shorten >=4pt,shorten <=4pt] (15,6) -- (17,7);
+    % last edge
+    \path [r] (17,7) -- ++(2,0) -- ++(0,1) -- ++(-2,0) -- cycle;
+    \draw [thick,step=0.5cm] (17,7) grid (19,8);
+    \path [draw,ultra thick] (17,7) -- ++(2,0) -- ++(0,1) -- ++(-2,0) -- cycle;
+    \foreach \x/\y in {17.25/7.75,18.75/7.25}
+      \draw [fill=black] (\x,\y) circle (0.13);
+    \node at (18,6.25) {$e_m$};
+
+    % Connection gadget
+    \fill [gadget] (8.75,9.75) rectangle (19.25,29.25);
+    \node at (9.5,27.5) {$\mathcal{G}$};
+    \fill [r] (13-0.001,14-0.001) rectangle (15,18);
+    \draw [thick,step=0.5cm,black] (13-0.001,14-0.001) grid (15,18);
+    \draw [fill=black] (13.75,15.25) circle (0.13);
+    \fill [r] (13-0.001,20-0.001) rectangle (15,25);
+    \draw [thick,step=0.5cm,black] (13-0.001,20-0.001) grid (15,25);
+    \draw [fill=black] (14.25,23.25) circle (0.13);
+
+    %  alignments
+    % vertical
+    \draw [black!75,dash pattern={on 4pt off 2pt},shorten >=1pt,shorten <=1pt] (13,6) -- (13,14);
+    \draw [black!75,dash pattern={on 4pt off 2pt},shorten >=1pt,shorten <=1pt] (13,18) -- (13,20);
+    \draw [black!75,dash pattern={on 4pt off 2pt},shorten >=1pt,shorten <=1pt] (15,6) -- (15,14);
+    \draw [black!75,dash pattern={on 4pt off 2pt},shorten >=1pt,shorten <=1pt] (15,18) -- (15,20);
+    %
+    \draw [black!75,dash pattern={on 4pt off 2pt},shorten >=1pt,shorten <=1pt] (13.5,6) -- (13.5,14);
+    \draw [black!75,dash pattern={on 4pt off 2pt},shorten >=1pt,shorten <=1pt] (13.5,18) -- (13.5,20);
+    \draw [black!75,dash pattern={on 4pt off 2pt},shorten >=1pt,shorten <=1pt] (14.5,6) -- (14.5,14);
+    \draw [black!75,dash pattern={on 4pt off 2pt},shorten >=1pt,shorten <=1pt] (14.5,18) -- (14.5,20);
+    % horizontal
+    \draw [black!75,dash pattern={on 4pt off 2pt},shorten >=1pt,shorten <=1pt] (3,14) -- (13,14);
+    \draw [black!75,dash pattern={on 4pt off 2pt},shorten >=1pt,shorten <=1pt] (3,14.5) -- (13,14.5);
+    \draw [black!75,dash pattern={on 4pt off 2pt},shorten >=1pt,shorten <=1pt] (3,17.5) -- (13,17.5);
+    \draw [black!75,dash pattern={on 4pt off 2pt},shorten >=1pt,shorten <=1pt] (3,18) -- (13,18);
+    \draw [black,line width=1pt,<->,>=latex'] (4,14.5) -- (4,17.5);
+    \node [rotate=-90] at (4.75,16) {$d(u_i)$};
+    \draw [black!75,dash pattern={on 4pt off 2pt},shorten >=1pt,shorten <=1pt] (5,20) -- (13,20);
+    \draw [black!75,dash pattern={on 4pt off 2pt},shorten >=1pt,shorten <=1pt] (5,20.5) -- (13,20.5);
+    \draw [black!75,dash pattern={on 4pt off 2pt},shorten >=1pt,shorten <=1pt] (5,24.5) -- (13,24.5);
+    \draw [black!75,dash pattern={on 4pt off 2pt},shorten >=1pt,shorten <=1pt] (5,25) -- (13,25);
+    \draw [black,line width=1pt,<->,>=latex'] (6,20.5) -- (6,24.5);
+    \node [rotate=-90] at (7.25,22) {$d(u_j)$};
+
+    % labels
+    % vertex gadget
+    % x-labels
+    \node [anchor=east,rotate=-90] at (0.25,29.25) {$1$};
+    \node [anchor=east,rotate=-90] at (2.25,29.25) {$1 + \sum_{x=1}^{i-1}2d(u_x)$};
+    \node [anchor=east,rotate=-90] at (4.25,29.25) {$1 + \sum_{x=1}^{i-1}2d(u_x)$};
+    \node [anchor=east,rotate=-90] at (6.25,29.25) {$2n-1$};
+    % y-labels
+    \node [anchor=east] at (-0.5,10.25) {$2m+2kN+1$};
+    \node [anchor=east] at (-0.5,28.75) {$2n+4m+2kN$};
+    % edge gadget
+    % x-labels
+    \node [rotate=-90,anchor=west] at (9.25,2.5) {$2n+kN+1$};
+    \node [rotate=-90,anchor=west] at (13.25,2.5) {$2n+kN+4(\ell-1)+1$};
+    \node [rotate=-90,anchor=west] at (17.25,2.5) {$2n+kN+4(m-1)+1$};
+    % y-labels
+    \node [anchor=east] at (8.75,3.25) {$1$};
+    \node [anchor=east] at (8.75,5.25) {$2(\ell-1)+1)$};
+    \node [anchor=east] at (8.75,7.75) {$2m$};
+    % connection labels
+    % y-labels
+    \node [anchor=east,rotate=-90] at (17,10.5) {$2m+2kN+\sum_{x=1}^{i-1}(d(u_x)+2)+1$};
+    \draw [black,line width=1pt,->,>=latex',rounded corners=1.5pt]
+      (17,10.5) -- (17,10) -- (16,10) -- (16,14.25) -- (15,14.25);
+    \node [anchor=west,rotate=-90] at (18.5,28) {$2m+2kN+\sum_{x=1}^{j-1}(d(u_x)+2)+1$};
+    \draw [black,line width=1pt,->,>=latex',rounded corners=1.5pt]
+      (18.5,28) -- (18.5,28.5) -- (16,28.5) -- (16,20.25) -- (15,20.25);
+  \end{tikzpicture}
+  \caption{\label{fig:NP2:connection zoom}%
+  $\RANK(u_i, u_j) = 2$ and $\RANK(u_j, u_i) = 6 = d(u_j)$.
+  }% end caption
+\end{figure}

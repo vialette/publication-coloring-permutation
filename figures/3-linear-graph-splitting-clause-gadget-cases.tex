@@ -1,0 +1,574 @@
+
+\begin{figure}
+  \centering
+
+  \begin{subfigure}[b]{\textwidth}
+    \centering
+    \begin{tikzpicture}
+      [
+      scale=.22,,,
+      my vertex/.style={basic vertex,
+      minimum size=1pt,
+      inner sep=2pt,
+      ball color=black!80},
+      ]
+
+      % vertices
+      \foreach \i/\o/\l [evaluate=\i as \x using \i*3.5] in
+      {
+      1/above/\large\texttt{l}^0_{j,1,\TRUE},
+      2/below/\texttt{a}^0_{j,\LEFT},
+      3/above/\texttt{l}^0_{j,1,\FALSE},
+      4/below/\texttt{b}^0_{j,\LEFT},
+      5/below/\texttt{a}^0_{j,\RIGHT},
+      6/above/\texttt{l}^0_{j,2,\FALSE,\FST},
+      7/below/\texttt{b}^0_{j,\RIGHT},
+      8/above/\texttt{l}^0_{j,2,\TRUE},
+      9/below/\texttt{c}^0_{j,\LEFT},
+      10/above/\texttt{l}^0_{j,2,\FALSE,\SND},
+      11/below/\texttt{d}^0_{j,\LEFT},
+      12/below/\texttt{c}^0_{j,\RIGHT},
+      13/above/\texttt{l}^0_{j,3,\FALSE},
+      14/below/\texttt{d}^0_{j,\RIGHT},
+      15/above/\texttt{l}^0_{j,3,\TRUE}
+      }
+      {
+      \node [my vertex,label=\o:{\scriptsize $\l$}] (V\i) at (\x,0) {};
+      }
+
+      % edges
+      \path [edge,color=blue] (V2.north) -- ++ (0,4) --
+      ($(V5.north)+(0,4)$) node [pos=0.4,above] {$\COLOR_1$} -- (V5.north);
+
+      \path [edge,color=red] (V4.north) -- ++ (0,5) --
+      ($(V7.north)+(0,5)$) node [pos=0.6,above] {$\COLOR_3$} -- (V7.north);
+
+      \path [edge,color=blue] (V9.north) -- ++ (0,5) --
+      ($(V12.north)+(0,5)$) node [pos=0.4,above] {$\COLOR_1$} -- (V12.north);
+
+      \path [edge,color=red] (V11.north) -- ++ (0,4) --
+      ($(V14.north)+(0,4)$) node [pos=0.6,above] {$\COLOR_3$} -- (V14.north);
+
+      % incoming edges
+
+
+      \draw [edge,color=green,path fading=west] (V3) -- node [pos=0.75,anchor=west] {$\COLOR_2$}
+      ++(0,-6) -- +(-10.5,0);
+
+      \draw [edge,color=blue,path fading=west] (V6) -- node [pos=0.75,anchor=west] {$\COLOR_1$}
+      ++(0,-7) -- +(-21.5,0);
+
+      \draw [edge,color=green,path fading=west] (V8) -- node [pos=0.75,anchor=west] {$\COLOR_2$}
+      ++(0,-8)  -- +(-29,0);
+
+      \draw [edge,color=red,path fading=west] (V10) -- node [pos=0.75,anchor=west] {$\COLOR_3$}
+      ++(0,-9) -- +(-36.5,0);
+
+      \draw [edge,color=blue,path fading=west] (V13) -- node [pos=0.75,anchor=west] {$\COLOR_1$}
+      ++(0,-10) -- +(-47.5,0);
+
+      \draw [edge,color=green,path fading=west] (V15) -- node [pos=0.75,anchor=west] {$\COLOR_2$}
+      ++(0,-11) -- +(-55,0);
+
+      \draw [edge,color=blue,path fading=west] (V1) -- node [pos=0.75,anchor=west] {$\COLOR_1$}
+      ++(0,-5) -- +(-3,0);
+      %\node [text width=2.5cm,anchor=west] at (-15.5,-8.5) {\scriptsize Towards the variable gadgets};
+
+    \end{tikzpicture}
+    \caption{%
+    Clause gadget $\texttt{Cls}^{0}_{j}$ for clause $(\ell_{j,1} \vee \ell_{j,2} \vee \ell_{j,3})$
+    in case the literals $\ell_{j,1}$, $\ell_{j,2}$ and $\ell_{j,3}$ evaluate to true, false and false,
+    respectivelly, according to the satisfying assignment $f$.
+    }% end caption  \end{subfigure}
+  \end{subfigure}
+
+  \vspace{.5cm}
+
+  \begin{subfigure}[b]{\textwidth}
+    \centering
+    \begin{tikzpicture}
+      [
+      scale=.22,,,
+      my vertex/.style={basic vertex,
+      minimum size=1pt,
+      inner sep=2pt,
+      ball color=black!80},
+      ]
+
+      % vertices
+      \foreach \i/\o/\l [evaluate=\i as \x using \i*3.5] in
+      {
+      1/above/\texttt{l}^0_{j,1,\TRUE},
+      2/below/\texttt{a}^0_{j,\LEFT},
+      3/above/\texttt{l}^0_{j,1,\FALSE},
+      4/below/\texttt{b}^0_{j,\LEFT},
+      5/below/\texttt{a}^0_{j,\RIGHT},
+      6/above/\texttt{l}^0_{j,2,\FALSE,\FST},
+      7/below/\texttt{b}^0_{j,\RIGHT},
+      8/above/\texttt{l}^0_{j,2,\TRUE},
+      9/below/\texttt{c}^0_{j,\LEFT},
+      10/above/\texttt{l}^0_{j,2,\FALSE,\SND},
+      11/below/\texttt{d}^0_{j,\LEFT},
+      12/below/\texttt{c}^0_{j,\RIGHT},
+      13/above/\texttt{l}^0_{j,3,\FALSE},
+      14/below/\texttt{d}^0_{j,\RIGHT},
+      15/above/\texttt{l}^0_{j,3,\TRUE}
+      }
+      {
+      \node [my vertex,label=\o:{\scriptsize $\l$}] (V\i) at (\x,0) {};
+      }
+
+      % edges
+      \path [edge,color=red] (V2.north) -- ++ (0,4) --
+      ($(V5.north)+(0,4)$) node [pos=0.4,above] {$\COLOR_3$}  -- (V5.north);
+
+      \path [edge,color=blue] (V4.north) -- ++ (0,5) --
+      ($(V7.north)+(0,5)$) node [pos=0.6,above] {$\COLOR_1$} -- (V7.north);
+
+      \path [edge,color=blue] (V9.north) -- ++ (0,5) --
+      ($(V12.north)+(0,5)$) node [pos=0.4,above] {$\COLOR_1$} -- (V12.north);
+
+      \path [edge,color=red] (V11.north) -- ++ (0,4) --
+      ($(V14.north)+(0,4)$) node [pos=0.6,above] {$\COLOR_3$} -- (V14.north);
+
+      % incoming edges
+      \draw [edge,color=green,path fading=west] (V1) -- node [pos=0.75,anchor=west] {$\COLOR_2$}
+      ++(0,-5) -- +(-3,0) node {};
+
+      \draw [edge,color=blue,path fading=west] (V3) -- node [pos=0.75,anchor=west] {$\COLOR_1$}
+      ++(0,-6) -- +(-10.5,0) node {};
+
+      \draw [edge,color=green,path fading=west] (V6)  -- node [pos=0.75,anchor=west] {$\COLOR_2$}
+      ++(0,-7)  -- +(-21.5,0) node {};
+
+      \draw [edge,color=blue,path fading=west] (V8)  -- node [pos=0.75,anchor=west] {$\COLOR_1$}
+      ++(0,-8)  -- +(-29,0) node {};
+
+      \draw [edge,color=red,path fading=west] (V10) -- node [pos=0.75,anchor=west] {$\COLOR_3$}
+      ++(0,-9) -- +(-36.5,0) node {};
+
+      \draw [edge,color=blue,path fading=west] (V13) -- node [pos=0.75,anchor=west] {$\COLOR_1$}
+      ++(0,-10) -- +(-47.5,0) node {};
+
+      \draw [edge,color=green,path fading=west] (V15) -- node [pos=0.75,anchor=west] {$\COLOR_2$}
+      ++(0,-11) -- +(-55,0) node {};
+
+      %\node [text width=2.5cm,anchor=west] at (-15.5,-8.5) {\scriptsize Towards the variable gadgets};
+
+    \end{tikzpicture}
+    \caption{%
+    Clause gadget $\texttt{Cls}^{0}_{j}$ for clause $(\ell_{j,1} \vee \ell_{j,2} \vee \ell_{j,3})$
+    in case the literals $\ell_{j,1}$, $\ell_{j,2}$ and $\ell_{j,3}$ evaluate to false, true and false,
+    respectivelly, according to the satisfying assignment $f$.
+    }% end caption  \end{subfigure}
+  \end{subfigure}
+
+  \vspace{.5cm}
+
+  \begin{subfigure}[b]{\textwidth}
+    \centering
+    \begin{tikzpicture}
+      [
+      scale=.22,,,
+      my vertex/.style={basic vertex,
+      minimum size=1pt,
+      inner sep=2pt,
+      ball color=black!80},
+      ]
+
+      % vertices
+      \foreach \i/\o/\l [evaluate=\i as \x using \i*3.5] in
+      {
+      1/above/\texttt{l}^0_{j,1,\TRUE},
+      2/below/\texttt{a}^0_{j,\LEFT},
+      3/above/\texttt{l}^0_{j,1,\FALSE},
+      4/below/\texttt{b}^0_{j,\LEFT},
+      5/below/\texttt{a}^0_{j,\RIGHT},
+      6/above/\texttt{l}^0_{j,2,\FALSE,\FST},
+      7/below/\texttt{b}^0_{j,\RIGHT},
+      8/above/\texttt{l}^0_{j,2,\TRUE},
+      9/below/\texttt{c}^0_{j,\LEFT},
+      10/above/\texttt{l}^0_{j,2,\FALSE,\SND},
+      11/below/\texttt{d}^0_{j,\LEFT},
+      12/below/\texttt{c}^0_{j,\RIGHT},
+      13/above/\texttt{l}^0_{j,3,\FALSE},
+      14/below/\texttt{d}^0_{j,\RIGHT},
+      15/above/\texttt{l}^0_{j,3,\TRUE}
+      }
+      {
+      \node [my vertex,label=\o:{\scriptsize $\l$}] (V\i) at (\x,0) {};
+      }
+
+      % edges
+      \path [edge,color=red] (V2.north) -- ++ (0,4) --
+      ($(V5.north)+(0,4)$) node [pos=0.4,above] {$\COLOR_3$}   -- (V5.north);
+
+      \path [edge,color=blue] (V4.north) -- ++ (0,5) --
+      ($(V7.north)+(0,5)$) node [pos=0.6,above] {$\COLOR_1$} -- (V7.north);
+
+      \path [edge,color=red] (V9.north) -- ++ (0,5) --
+      ($(V12.north)+(0,5)$) node [pos=0.4,above] {$\COLOR_3$} -- (V12.north);
+
+      \path [edge,color=blue] (V11.north) -- ++ (0,4) --
+      ($(V14.north)+(0,4)$) node [pos=0.6,above] {$\COLOR_1$} -- (V14.north);
+
+      % incoming edges
+      \draw [edge,color=green,path fading=west] (V1) -- node [pos=0.75,anchor=west] {$\COLOR_2$}
+      ++(0,-5) -- +(-3,0) node {};
+
+      \draw [edge,color=blue,path fading=west] (V3) -- node [pos=0.75,anchor=west] {$\COLOR_1$}
+      ++(0,-6) -- +(-10.5,0) node {};
+
+      \draw [edge,color=red,path fading=west] (V6)  -- node [pos=0.75,anchor=west] {$\COLOR_3$}
+      ++(0,-7)  -- +(-21.5,0) node {};
+
+      \draw [edge,color=green,path fading=west] (V8)  -- node [pos=0.75,anchor=west] {$\COLOR_2$}
+      ++(0,-8)  -- +(-29,0) node {};
+
+      \draw [edge,color=blue,path fading=west] (V10) -- node [pos=0.75,anchor=west] {$\COLOR_1$}
+      ++(0,-9) -- +(-36.5,0) node {};
+
+      \draw [edge,color=green,path fading=west] (V13) -- node [pos=0.75,anchor=west] {$\COLOR_2$}
+      ++(0,-10) -- +(-47.5,0) node {};
+
+      \draw [edge,color=blue,path fading=west] (V15) -- node [pos=0.75,anchor=west] {$\COLOR_1$}
+      ++(0,-11) -- +(-55,0) node {};
+
+      %\node [text width=2.5cm,anchor=west] at (-15.5,-8.5) {\scriptsize Towards the variable gadgets};
+
+    \end{tikzpicture}
+    \caption{%
+    Clause gadget $\texttt{Cls}^{0}_{j}$ for clause $(\ell_{j,1} \vee \ell_{j,2} \vee \ell_{j,3})$
+    in case the literals $\ell_{j,1}$, $\ell_{j,2}$ and $\ell_{j,3}$ evaluate to false, false and true,
+    respectivelly, according to the satisfying assignment $f$.
+    }% end caption  \end{subfigure}
+  \end{subfigure}
+
+  \vspace{.5cm}
+
+  \begin{subfigure}[b]{\textwidth}
+    \centering
+    \begin{tikzpicture}
+      [
+      scale=.22,,,
+      my vertex/.style={basic vertex,
+      minimum size=1pt,
+      inner sep=2pt,
+      ball color=black!80},
+      ]
+
+      % vertices
+      \foreach \i/\o/\l [evaluate=\i as \x using \i*3.5] in
+      {
+      1/above/\texttt{l}^0_{j,1,\TRUE},
+      2/below/\texttt{a}^0_{j,\LEFT},
+      3/above/\texttt{l}^0_{j,1,\FALSE},
+      4/below/\texttt{b}^0_{j,\LEFT},
+      5/below/\texttt{a}^0_{j,\RIGHT},
+      6/above/\texttt{l}^0_{j,2,\FALSE,\FST},
+      7/below/\texttt{b}^0_{j,\RIGHT},
+      8/above/\texttt{l}^0_{j,2,\TRUE},
+      9/below/\texttt{c}^0_{j,\LEFT},
+      10/above/\texttt{l}^0_{j,2,\FALSE,\SND},
+      11/below/\texttt{d}^0_{j,\LEFT},
+      12/below/\texttt{c}^0_{j,\RIGHT},
+      13/above/\texttt{l}^0_{j,3,\FALSE},
+      14/below/\texttt{d}^0_{j,\RIGHT},
+      15/above/\texttt{l}^0_{j,3,\TRUE}
+      }
+      {
+      \node [my vertex,label=\o:{\scriptsize $\l$}] (V\i) at (\x,0) {};
+      }
+
+      % edges
+      \path [edge,color=red] (V2.north) -- ++ (0,4) --
+      ($(V5.north)+(0,4)$) node [pos=0.4,above] {$\COLOR_3$} -- (V5.north);
+
+      \path [edge,color=blue] (V4.north) -- ++ (0,5) --
+      ($(V7.north)+(0,5)$) node [pos=0.6,above] {$\COLOR_1$} -- (V7.north);
+
+      \path [edge,color=blue] (V9.north) -- ++ (0,5) --
+      ($(V12.north)+(0,5)$) node [pos=0.4,above] {$\COLOR_1$} -- (V12.north);
+
+      \path [edge,color=red] (V11.north) -- ++ (0,4) --
+      ($(V14.north)+(0,4)$) node [pos=0.6,above] {$\COLOR_3$} -- (V14.north);
+
+      % incoming edges
+      \draw [edge,color=blue,path fading=west] (V1) -- node [pos=0.75,anchor=west] {$\COLOR_1$}
+      ++(0,-5) -- +(-3,0) node {};
+
+      \draw [edge,color=green,path fading=west] (V3) -- node [pos=0.75,anchor=west] {$\COLOR_2$}
+      ++(0,-6) -- +(-10.5,0) node {};
+
+      \draw [edge,color=green,path fading=west] (V6)  -- node [pos=0.75,anchor=west] {$\COLOR_2$}
+      ++(0,-7)  -- +(-21.5,0) node {};
+
+      \draw [edge,color=blue,path fading=west] (V8)  -- node [pos=0.75,anchor=west] {$\COLOR_1$}
+      ++(0,-8)  -- +(-29,0) node {};
+
+      \draw [edge,color=red,path fading=west] (V10) --  node [pos=0.75,anchor=west] {$\COLOR_3$}
+      ++(0,-9) -- +(-36.5,0) node {};
+
+      \draw [edge,color=blue,path fading=west] (V13) -- node [pos=0.75,anchor=west] {$\COLOR_1$}
+      ++(0,-10) -- +(-47.5,0) node {};
+
+      \draw [edge,color=green,path fading=west] (V15) -- node [pos=0.75,anchor=west] {$\COLOR_2$}
+      ++(0,-11) -- +(-55,0) node {};
+
+      %\node [text width=2.5cm,anchor=west] at (-15.5,-8.5) {\scriptsize Towards the variable gadgets};
+
+    \end{tikzpicture}
+    \caption{%
+    Clause gadget $\texttt{Cls}^{0}_{j}$ for clause $(\ell_{j,1} \vee \ell_{j,2} \vee \ell_{j,3})$
+    in case the literals $\ell_{j,1}$, $\ell_{j,2}$ and $\ell_{j,3}$ evaluate to true, true and false,
+    respectivelly, according to the satisfying assignment $f$.
+    }% end caption  \end{subfigure}
+  \end{subfigure}
+
+\end{figure}
+
+\begin{figure}\ContinuedFloat
+
+  \begin{subfigure}[b]{\textwidth}
+    \centering
+    \begin{tikzpicture}
+      [
+      scale=.22,,,
+      my vertex/.style={basic vertex,
+      minimum size=1pt,
+      inner sep=2pt,
+      ball color=black!80},
+      ]
+
+      % vertices
+      \foreach \i/\o/\l [evaluate=\i as \x using \i*3.5] in
+      {
+      1/above/\texttt{l}^0_{j,1,\TRUE},
+      2/below/\texttt{a}^0_{j,\LEFT},
+      3/above/\texttt{l}^0_{j,1,\FALSE},
+      4/below/\texttt{b}^0_{j,\LEFT},
+      5/below/\texttt{a}^0_{j,\RIGHT},
+      6/above/\texttt{l}^0_{j,2,\FALSE,\FST},
+      7/below/\texttt{b}^0_{j,\RIGHT},
+      8/above/\texttt{l}^0_{j,2,\TRUE},
+      9/below/\texttt{c}^0_{j,\LEFT},
+      10/above/\texttt{l}^0_{j,2,\FALSE,\SND},
+      11/below/\texttt{d}^0_{j,\LEFT},
+      12/below/\texttt{c}^0_{j,\RIGHT},
+      13/above/\texttt{l}^0_{j,3,\FALSE},
+      14/below/\texttt{d}^0_{j,\RIGHT},
+      15/above/\texttt{l}^0_{j,3,\TRUE}
+      }
+      {
+      \node [my vertex,label=\o:{\scriptsize $\l$}] (V\i) at (\x,0) {};
+      }
+
+      % edges
+      \path [edge,color=blue] (V2.north) -- ++ (0,4) --
+      ($(V5.north)+(0,4)$) node [pos=0.4,above] {$\COLOR_1$} -- (V5.north);
+
+      \path [edge,color=red] (V4.north) -- ++ (0,5) --
+      ($(V7.north)+(0,5)$) node [pos=0.6,above] {$\COLOR_3$} -- (V7.north);
+
+      \path [edge,color=blue] (V9.north) -- ++ (0,5) --
+      ($(V12.north)+(0,5)$) node [pos=0.4,above] {$\COLOR_1$} -- (V12.north);
+
+      \path [edge,color=red] (V11.north) -- ++ (0,4) --
+      ($(V14.north)+(0,4)$) node [pos=0.6,above] {$\COLOR_3$} -- (V14.north);
+
+      % incoming edges
+      \draw [edge,color=blue,path fading=west] (V1) -- node [pos=0.75,anchor=west] {$\COLOR_1$}
+      ++(0,-5) -- +(-3,0) node {};
+
+      \draw [edge,color=green,path fading=west] (V3) -- node [pos=0.75,anchor=west] {$\COLOR_2$}
+      ++(0,-6) -- +(-10.5,0) node {};
+
+      \draw [edge,color=blue,path fading=west] (V6)  -- node [pos=0.75,anchor=west] {$\COLOR_1$}
+      ++(0,-7)  -- +(-21.5,0) node {};
+
+      \draw [edge,color=green,path fading=west] (V8)  -- node [pos=0.75,anchor=west] {$\COLOR_2$}
+      ++(0,-8)  -- +(-29,0) node {};
+
+      \draw [edge,color=red,path fading=west] (V10) -- node [pos=0.75,anchor=west] {$\COLOR_3$}
+      ++(0,-9) -- +(-36.5,0) node {};
+
+      \draw [edge,color=green,path fading=west] (V13) -- node [pos=0.75,anchor=west] {$\COLOR_2$}
+      ++(0,-10) -- +(-47.5,0) node {};
+
+      \draw [edge,color=blue,path fading=west] (V15) -- node [pos=0.75,anchor=west] {$\COLOR_1$}
+      ++(0,-11) -- +(-55,0) node {};
+
+      %\node [text width=2.5cm,anchor=west] at (-15.5,-8.5) {\scriptsize Towards the variable gadgets};
+
+    \end{tikzpicture}
+    \caption{%
+    Clause gadget $\texttt{Cls}^{0}_{j}$ for clause $(\ell_{j,1} \vee \ell_{j,2} \vee \ell_{j,3})$
+    in case the literals $\ell_{j,1}$, $\ell_{j,2}$ and $\ell_{j,3}$ evaluate to true, false and true,
+    respectivelly, according to the satisfying assignment $f$.
+    }% end caption
+  \end{subfigure}
+
+  \vspace{.5cm}
+
+  \centering
+  \begin{subfigure}[b]{\textwidth}
+    \centering
+    \begin{tikzpicture}
+      [
+      scale=.22,,,
+      my vertex/.style={basic vertex,
+      minimum size=1pt,
+      inner sep=2pt,
+      ball color=black!80},
+      ]
+
+      % vertices
+      \foreach \i/\o/\l [evaluate=\i as \x using \i*3.5] in
+      {
+      1/above/\texttt{l}^0_{j,1,\TRUE},
+      2/below/\texttt{a}^0_{j,\LEFT},
+      3/above/\texttt{l}^0_{j,1,\FALSE},
+      4/below/\texttt{b}^0_{j,\LEFT},
+      5/below/\texttt{a}^0_{j,\RIGHT},
+      6/above/\texttt{l}^0_{j,2,\FALSE,\FST},
+      7/below/\texttt{b}^0_{j,\RIGHT},
+      8/above/\texttt{l}^0_{j,2,\TRUE},
+      9/below/\texttt{c}^0_{j,\LEFT},
+      10/above/\texttt{l}^0_{j,2,\FALSE,\SND},
+      11/below/\texttt{d}^0_{j,\LEFT},
+      12/below/\texttt{c}^0_{j,\RIGHT},
+      13/above/\texttt{l}^0_{j,3,\FALSE},
+      14/below/\texttt{d}^0_{j,\RIGHT},
+      15/above/\texttt{l}^0_{j,3,\TRUE}
+      }
+      {
+      \node [my vertex,label=\o:{\scriptsize $\l$}] (V\i) at (\x,0) {};
+      }
+
+      % edges
+      \path [edge,color=red] (V2.north) -- ++ (0,4) --
+      ($(V5.north)+(0,4)$) node [pos=0.4,above] {$\COLOR_3$} -- (V5.north);
+
+      \path [edge,color=blue] (V4.north) -- ++ (0,5) --
+      ($(V7.north)+(0,5)$) node [pos=0.6,above] {$\COLOR_1$} -- (V7.north);
+
+      \path [edge,color=red] (V9.north) -- ++ (0,5) --
+      ($(V12.north)+(0,5)$) node [pos=0.4,above] {$\COLOR_3$} -- (V12.north);
+
+      \path [edge,color=blue] (V11.north) -- ++ (0,4) --
+      ($(V14.north)+(0,4)$) node [pos=0.6,above] {$\COLOR_1$} -- (V14.north);
+
+      % incoming edges
+      \draw [edge,color=green,path fading=west] (V1) -- node [pos=0.75,anchor=west] {$\COLOR_2$}
+      ++(0,-5) -- +(-3,0) node {};
+
+      \draw [edge,color=blue,path fading=west] (V3) -- node [pos=0.75,anchor=west] {$\COLOR_1$}
+      ++(0,-6) -- +(-10.5,0) node {};
+
+      \draw [edge,color=red,path fading=west] (V6)  -- node [pos=0.75,anchor=west] {$\COLOR_3$}
+      ++(0,-7)  -- +(-21.5,0) node {};
+
+      \draw [edge,color=blue,path fading=west] (V8)  -- node [pos=0.75,anchor=west] {$\COLOR_1$}
+      ++(0,-8)  -- +(-29,0) node {};
+
+      \draw [edge,color=green,path fading=west] (V10) -- node [pos=0.75,anchor=west] {$\COLOR_2$}
+      ++(0,-9) -- +(-36.5,0) node {};
+
+      \draw [edge,color=green,path fading=west] (V13) -- node [pos=0.75,anchor=west] {$\COLOR_2$}
+      ++(0,-10) -- +(-47.5,0) node {};
+
+      \draw [edge,color=blue,path fading=west] (V15) -- node [pos=0.75,anchor=west] {$\COLOR_1$}
+      ++(0,-11) -- +(-55,0) node {};
+
+      %\node [text width=2.5cm,anchor=west] at (-15.5,-8.5) {\scriptsize Towards the variable gadgets};
+
+    \end{tikzpicture}
+    \caption{%
+    Clause gadget $\texttt{Cls}^{0}_{j}$ for clause $(\ell_{j,1} \vee \ell_{j,2} \vee \ell_{j,3})$
+    in case the literals $\ell_{j,1}$, $\ell_{j,2}$ and $\ell_{j,3}$ evaluate to false, true and true,
+    respectivelly, according to the satisfying assignment $f$.
+    }% end caption
+  \end{subfigure}
+
+  \vspace{.5cm}
+
+  \begin{subfigure}[b]{\textwidth}
+    \centering
+    \begin{tikzpicture}
+      [
+      scale=.22,,,
+      my vertex/.style={basic vertex,
+      minimum size=1pt,
+      inner sep=2pt,
+      ball color=black!80},
+      ]
+
+      % vertices
+      \foreach \i/\o/\l [evaluate=\i as \x using \i*3.5] in
+      {
+      1/above/\texttt{l}^0_{j,1,\TRUE},
+      2/below/\texttt{a}^0_{j,\LEFT},
+      3/above/\texttt{l}^0_{j,1,\FALSE},
+      4/below/\texttt{b}^0_{j,\LEFT},
+      5/below/\texttt{a}^0_{j,\RIGHT},
+      6/above/\texttt{l}^0_{j,2,\FALSE,\FST},
+      7/below/\texttt{b}^0_{j,\RIGHT},
+      8/above/\texttt{l}^0_{j,2,\TRUE},
+      9/below/\texttt{c}^0_{j,\LEFT},
+      10/above/\texttt{l}^0_{j,2,\FALSE,\SND},
+      11/below/\texttt{d}^0_{j,\LEFT},
+      12/below/\texttt{c}^0_{j,\RIGHT},
+      13/above/\texttt{l}^0_{j,3,\FALSE},
+      14/below/\texttt{d}^0_{j,\RIGHT},
+      15/above/\texttt{l}^0_{j,3,\TRUE}
+      }
+      {
+      \node [my vertex,label=\o:{\scriptsize $\l$}] (V\i) at (\x,0) {};
+      }
+
+      % edges
+      \path [edge,color=blue] (V2.north) -- ++ (0,4) --
+      ($(V5.north)+(0,4)$) node [pos=0.4,above] {$\COLOR_1$} -- (V5.north);
+
+      \path [edge,color=red] (V4.north) -- ++ (0,5) --
+      ($(V7.north)+(0,5)$) node [pos=0.6,above] {$\COLOR_3$} -- (V7.north);
+
+      \path [edge,color=blue] (V9.north) -- ++ (0,5) --
+      ($(V12.north)+(0,5)$) node [pos=0.4,above] {$\COLOR_1$} -- (V12.north);
+
+      \path [edge,color=red] (V11.north) -- ++ (0,4) --
+      ($(V14.north)+(0,4)$) node [pos=0.6,above] {$\COLOR_3$} -- (V14.north);
+
+      % incoming edges
+      \draw [edge,color=blue,path fading=west] (V1) -- node [pos=0.75,anchor=west] {$\COLOR_1$}
+      ++(0,-5) -- +(-3,0) node {};
+
+      \draw [edge,color=green,path fading=west] (V3) -- node [pos=0.75,anchor=west] {$\COLOR_2$}
+      ++(0,-6) -- +(-10.5,0) node {};
+
+      \draw [edge,color=green,path fading=west] (V6)  -- node [pos=0.75,anchor=west] {$\COLOR_2$}
+      ++(0,-7)  -- +(-21.5,0) node {};
+
+      \draw [edge,color=blue,path fading=west] (V8)  -- node [pos=0.75,anchor=west] {$\COLOR_1$}
+       ++(0,-8)  -- +(-29,0) node {};
+
+      \draw [edge,color=red,path fading=west] (V10) -- node [pos=0.75,anchor=west] {$\COLOR_3$}
+      ++(0,-9) -- +(-36.5,0) node {};
+
+      \draw [edge,color=green,path fading=west] (V13) -- node [pos=0.75,anchor=west] {$\COLOR_2$}
+      ++(0,-10) -- +(-47.5,0) node {};
+
+      \draw [edge,color=blue,path fading=west] (V15) -- node [pos=0.75,anchor=west] {$\COLOR_1$}
+      ++(0,-11) -- +(-55,0) node {};
+
+      %\node [text width=2.5cm,anchor=west] at (-15.5,-8.5) {\scriptsize Towards the variable gadgets};
+
+    \end{tikzpicture}
+    \caption{%
+    Clause gadget $\texttt{Cls}^{0}_{j}$ for clause $(\ell_{j,1} \vee \ell_{j,2} \vee \ell_{j,3})$
+    in case the literals $\ell_{j,1}$, $\ell_{j,2}$ and $\ell_{j,3}$ evaluate to true, true and true,
+    respectivelly, according to the satisfying assignment $f$.
+    }% end caption
+  \end{subfigure}
+  \caption{The general caption.}
+\end{figure}

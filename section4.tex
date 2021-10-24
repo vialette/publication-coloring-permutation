@@ -1,0 +1,276 @@
+\section{Permutation coloring}
+\label{section:Permutation coloring}
+
+We are back to coloring permutations. We show how to transform
+linear graph colorings to permutation colorings.
+We need a new definition.
+Let $G = (V, E)$ be a linear graph. For any two connected vertices
+$v_i, v_j \in V$, $i < j$ or $j < i$,
+we define
+$$
+\RANK(v_i, v_j) = \left|\left\{v_k \in V : \{v_i, v_k\} \in E \text{ and } k \leq j\right\}\right|.
+$$
+In other words, $\RANK(v_i, v_j) = k+1$ if there exist exactly $k$ vertices
+$v_{i_1}, v_{i_2}, \dots, v_{i_k} \in N(v_i)$
+with $\max \{i_1, i_2, \dots, i_k\} < j$.
+
+\begin{proposition}
+  \label{proposition:3-permutation coloring is NP-complete}
+  \textsc{$3$-permutation coloring} is \NP-complete.
+\end{proposition}
+
+\begin{proof}
+  We reduce from \textsc{$k$-Linear Graph Coloring} (Proposition~\ref{proposition:3-Linear Graph Coloring is NP-complete}).
+  Let $(G^{0} \,|\, G^{1}, G^{2}, \dots, G^{k})$ be an arbitrary instance of \textsc{$k$-Linear Graph Coloring}.
+  Write $G^{i} = (V^i, E^i)$,
+  $n_i = |V^i|$ $m_i = |E^i|$ for $0 \leq i \leq k$.
+  We show how to construct an instance
+  $(\pi | \sigma_1, \sigma_2, \dots, \sigma_k)$ of
+  \textsc{$k$-permutation coloring}.
+
+  Define $N_i = 2n_i + 4m_i + 1$ for $0 \leq i \leq k$.
+  We first associate the permutation $\pi$ to the linear graph $G^{0}$.
+  Write $V^0 = \{v^0_i : 1 \leq i \leq n_0\}$ and
+  $E^0 = \{e^0_i : 1 \leq i \leq m_0\}$.
+  Define the permutations
+  \begin{align*}
+    \pi(V)
+    &=
+    \left(\bigoplus_{i=1}^{n_0} (d(v^0_i)+2) \; 1\right) [2m_0+2kN_0]
+    \\
+    \pi(E)
+    &=
+    \bigoplus_{j=1}^{m_0} 2 \; f^0(e^0_j) \; g^0(e^0_j) \; 1
+    \\
+    \pi(\text{Sep}_1)
+    &=
+    \left(\bigominus_{i=1}^{k} \mathbf{\nearrow}_{N_0}\right) [2n]
+    \\
+    \pi(\text{Sep}_2)
+    &=
+    \left(\bigominus_{i=1}^{k} \mathbf{\nearrow}_{N_0}\right) [2n+kN]
+    \\
+    \intertext{where $f : E^0 \to \mathbb{N}$ and $g : E^0 \to \mathbb{N}$
+    are defined as follows}
+    \forall e^0_j = (v^0_p, v^0_q) \in E_0,\quad f^0(e^0_j)
+    &=
+    2m_0 + 2kN_0 + \sum_{j=1}^{p-1}\left(2+d(v^0_j)\right) + \RANK\left(v^0_p, v^0_q\right)
+    \\
+    \forall e^0_j = (v^0_p, v^0_q) \in E_0,\quad g^0(e^0_j)
+    &=
+    2m_0 + 2kN_0 + \sum_{j=1}^{q-1}\left(2+d(v^0_j)\right) + \RANK\left(v^0_q, v^0_p\right)\text{.}
+    \end{align*}
+
+    In other words,
+    $\pi(V)$ is the direct sum of $n_0$ decreasing permutations
+    that are all order-isomorphic to $21$,
+    $\pi(E)$ is the direct sum of $m_0$ permutations that are all
+    order-isomorphic to $2341$ (since $2 < f(e^0_i) < g(e^0_i)$
+    for $1 \leq i \leq m_0$), and
+    both $\pi(\text{Sep}_1)$ and $\pi(\text{Sep}_2)$ are the skew sums
+    of $k$ permutations that are all order isomorphic to $12 \dots k$.
+    Finally, we obtain the target permutation $\pi$ by gathering the parts
+    $\pi(V)$, $\pi(\text{Sep}_1)$, $\pi(E)$ and $\pi(\text{Sep}_2)$:
+    $$
+      \pi =
+      \pi(V)   \;
+      \pi(\text{Sep}_1) \;
+      \pi(E)   \;
+      \pi(\text{Sep}_2)\text{.}
+    $$
+
+
+  \input{figures/NP2-bird-eye-view-pi}
+  \input{figures/NP2-separators}
+  \input{figures/NP2-connection-zoom}
+
+  A simplified representation of the permutation $\pi$ is given in
+  Figure~\ref{fig:NP2:bird eye view pi}.
+  A schematic representation of $\pi(\text{Sep}_1)$ and $\pi(\text{Sep}_2)$
+  is given in Figure~\ref{fig:NP2:separators}, where the offset is $O=2n$ for
+  $\pi(\text{Sep}_1)$ and $O=2n+kN$ for $\pi(\text{Sep}_2)$.
+  A zoom of $\pi(E)$ is given in Figure~\ref{fig:NP2:connection zoom}.
+
+  For example, referring Figure~\ref{fig:3-Linear-Graph Coloring} ($k=3$), we
+  obtain from the linear graph $G^0$:
+  $N_0 = 26 + 44 + 1 = 71$, $2m0+2kN_0= 22 + 426 = 448$, and hence
+  $\pi(V) = \left(3 1 \oplus 3 1 \oplus 4 1 \oplus 4 1 \oplus 4 1 \oplus
+  4 1 \oplus 4 1 \oplus 4 1 \oplus 4 1 \oplus 3 1 \oplus 3 1 \oplus 4 1 \oplus 3 1\right) [448]$,
+  $\pi(E) = 2\;449\;479\;1 \oplus \dots$
+
+  We now turn to associating the permutation $\sigma_i$, $1 \leq i \leq k$,
+  to the linear graph $G^i = (V^i, E^i)$.
+  The construction, as a whole, follows the same line as of $\pi$,
+  the main difference being the \emph{separators}
+  $\sigma_i\left(\text{Sep}_1\right)$ and
+  $\sigma_i\left(\text{Sep}_2\right)$ that are both simplified.
+  Define
+  \begin{align*}
+    \sigma_i(V)
+    &=
+    \left(\bigoplus_{j=1}^{n_i} (d(v^i_j)+2) \; 1\right) [2m_i+2N_i]
+    \\
+    \sigma_i(E)
+    &=
+    \bigoplus_{j=1}^{m_i} 2 \; f^i(e^0_j) \; g^i(e^0_j) \; 1
+    \\
+    \sigma_i\left(\text{Sep}_1\right)
+    &=
+    \mathbf{\nearrow}_{N_0} [2n_i]
+    \\
+    \sigma_i\left(\text{Sep}_2\right)
+    &=
+    \mathbf{\nearrow}_{N_0} [2n_i+N]
+    \\
+    \intertext{where $f^i : E^i \to \mathbb{N}$ and $g^i : E^i \to \mathbb{N}$
+    are defined as follows}
+    \forall e^i_j = (v^i_p, v^i_q) \in E_i,\quad f^i(e^0_j)
+    &=
+    2m_0 + 2kN_0 + \sum_{j=1}^{p-1}\left(2+d(v^0_j)\right) + \RANK\left(v^0_p, v^0_q\right)
+    \\
+    \forall e^i_j = (v^i_p, v^0_q) \in E_i,\quad g^i(e^0_j)
+    &=
+    2m_0 + 2kN_0 + \sum_{j=1}^{q-1}\left(2+d(v^0_j)\right) + \RANK\left(v^0_q, v^0_p\right)\text{.}
+    \end{align*}
+  %
+  %   \intertext{where (assuming edge $e_{i,\ell} = (u_i, u_j)$)}
+  %   x^1_{i,\ell}
+  %   &=
+  %   2m + 2kN + \sum_{\ell'=1}^{i-1}\left(2+d(u_{\ell'})\right) + \RANK\left(u_i, u_j\right)
+  %   \\
+  %   x^2_{i,\ell}
+  %   &=
+  %   2m + 2kN + \sum_{\ell'=1}^{j-1}\left(2+d(u_{\ell'})\right) + \RANK\left(u_j, u_i\right),
+  %   \\
+  %   \intertext{and set}
+  %   \sigma_i
+  %   &=
+  %   \sigma_i(V)   \;
+  %   \sigma_i\left(\text{Sep}_1\right) \;
+  %   \sigma_i\left(E\right)   \;
+  %   \sigma_i\left(\text{Sep}_1\right)\text{.}
+  % \end{align*}
+
+  \input{figures/NP2-bird-eye-view-sigma-i}
+
+  A schematic representation of the permutation $\sigma_i$ is given in
+  Figure~\ref{fig:NP2:bird eye view sigma_i}.
+
+  Clearly our construction can be carried on in polynomial time.
+  Indeed, we have
+  $|\pi| = 2n + 4m + 2kN = 2n + 4m + 2k(2n+4m+1)$
+  and
+  $|\sigma_i| = 2n_i + 4m_i + 2N = 2n_i + 4m_i + 2(2n+4m+1)$,
+  $1 \leq i \leq k$.
+  We claim that the linear graph $G^0$ is
+  $(G^1, G^2, \dots, G^k)$-colorable
+  if and only if the permutation
+  $\pi$ is $(\sigma_1, \sigma_2, \dots, \sigma_k)$-colorable.
+
+  Suppose first that $G^0$ is $(G^1, G^2, \dots, G^k)$-colorable.
+  Therefore, there exists a $k$-coloring such that
+  every connected component of $G^0$ is monochromatic and,
+  for every $1 \leq i \leq k$, colour $i$ induces a linear graph that is
+  isomorphic to $G^i$.
+  For every $1 \leq i \leq k$,
+  let $v_{i_1}< v_{i_2} < \dots < v_{i_{n_i}}$ be the vertices of $G^0$ with color $i$.
+  Let us now define a $k$-colouring $\varphi: [|\pi|] \to [k]$ of $\pi$ as follows.
+  \begin{itemize}
+    \item \textbf{Gadget $\pi(V)$}.
+    For every $1 \leq j \leq n_i$,
+    $\varphi(2i_j-2) = \varphi(2i_j-1) = i$
+    \item \textbf{Gadget $\pi(\text{Sep}_1)$}.
+    Colour the $i$-th increasing sequence $\nearrow_{N_0}$ with colour $i$.
+    More formally,
+    for every $2n + N_0(i-1) + 1 \leq j \leq 2n + iN_0$,
+    $\varphi(j) = i$.
+    \item \textbf{Gadget $\pi(E)$}.
+    Let $e_{i_1} < e_{i_2} < \ldots < ae{i_{m_i}}$ be the edges of $G^0$ that connect
+    vertices coloured with colour $i$.
+    For every $1 \leq j \leq m_i$,
+    $\varphi(2n + kN_0 + 4(i_j-1) + 1) = \varphi(2n + kN_0 + 4(i_j-1) + 2) =
+    \varphi(2n + kN_0 + 4(i_j-1) + 3) = \varphi(2n + kN_0 + 4(i_j-1) + 4) = i$.
+    \item \textbf{Gadget $\pi(\text{Sep}_2)$}.
+    Colour the $i$-th increasing sequence $\nearrow_{N_0}$ with colour $i$.
+    More formally,
+    for every $2n + kN_0 + 4m + N_0(i-1) + 1 \leq j \leq 2n + kN_0 + 4m + iN_0$,
+    $\varphi(j) = i$.
+  \end{itemize}
+  The reader is invited to check that, for every $1 \leq i \leq k$,
+  the $i$-coloured pattern of $\pi$ is order-isomorphic to $\sigma_i$.
+
+  Conversely, suppose that $\pi$ is $(\sigma_1, \sigma_2, \dots, \sigma_k)$-colorable.
+  Therefore, there exists a $k$-coloring $\varphi: [2n_0 + 4m_0 + 2kN_0] \to [k]$
+  such that, for every $1 \leq i \leq k$,
+  the $i$-coloured pattern of $\pi$ is order-isomorphic to $\sigma_i$.
+  Let us focus on $\sigma_i$ for some $1 \leq i \leq k$.
+  Recall that
+  $\sigma_i =
+  \sigma_i(V)   \;
+  \sigma_i\left(\text{Sep}_1\right) \;
+  \sigma_i\left(E\right)   \;
+  \sigma_i\left(\text{Sep}_1\right)$,
+  where both
+  $\sigma_i\left(\text{Sep}_1\right)$ and $\sigma_i\left(\text{Sep}_2\right)$
+  are increasing sequence of length $N_0$.
+  We now oberve that
+  $N_0 > |\pi(V)| + |\pi(E)|$.
+  Then it follows that
+  (i) at least one element of $\pi(\text{Sep}_1)$ is coloured with
+  colour $i$,
+  and
+  (ii) at least of element of $\pi(\text{Sep}_2)$ is coloured with
+  colour $i$.
+  But
+  $\pi(\text{Sep}_1) \; \pi(\text{Sep}_2)$ and
+  $\sigma_i\left(\text{Sep}_1\right) \; \sigma_i\left(\text{Sep}_2\right)$
+  are both order-isomorphic to
+  $\left(\bigominus_{\ell=1}^{k} \nearrow_N\right) \oplus \left(\bigominus_{\ell=1}^{k} \nearrow_N\right)$,
+  and hence
+  (i) $N$ vertices of $\pi(\text{Sep}_1)$ are coloured with
+  colour $i$,
+  and
+  (ii) $N$ vertices of $\pi(\text{Sep}_1)$ are coloured with
+  colour $i$.
+  Therefore,
+  (i) $|\sigma_i(V)| = 2n_i$ elements of
+  $\pi(V)$ are coloured with colour $i$ and the induced
+  $i$-coloured pattern is order-isomorphic to $\sigma_i(V)$,
+  and
+  (ii) $|\sigma_i\left(E\right)| = 4m_i$ elements of
+  $\pi(E)$ are coloured with colour $i$ and the induced
+  $i$-coloured pattern is order-isomorphic to $\sigma_i\left(E\right)$.
+  But $\pi(V)$ is order-isomorphic to $\bigoplus_{\ell=1}^{n} 21$
+  and
+  $\sigma_i(V)$ is order-isomorphic to $\bigoplus_{\ell=1}^{n_i} 21$.
+  Therefore, $n_i$ patterns $21$ are coloured with colour $i$ thereby identifying
+  $n_i$ vertices of $G$.
+  Finally,
+  combining
+  $\pi(E) = \bigoplus_{\ell=1}^{m} 2 \; x_\ell^1 \; x_\ell^2 \; 1$ and
+  $\sigma_i\left(E\right) = \bigoplus_{\ell=1}^{m_i} 2 \; x_{i,\ell^1} \; x_{i,\ell^2} \; 1$,
+  together with the fact that $x_{i,\ell^1}$ and $x_{i,\ell^2}$ have to be sandwiched in
+  $i$-coloured pattern $21$ of $\pi(V)$,
+  we conclude that $m_i$ consecutive patterns $2 \; x_{i,\ell^1} \; x_{i,\ell^2} \; 1$
+  of $\pi(E)$ are coloured with colour $i$.
+  Hence, \todo{Ok I'm lazy (or tired), this is not formal!}referring to
+  Figure~\ref{fig:NP2:connection zoom} and considering every $1 \leq i \leq k$,
+  we conclude that $G$ can be splitted by linear graphs $H_1, H_2, \ldots, H_k$.
+  \qed
+\end{proof}
+
+\begin{corollary}
+  \label{corollary:5-permutation coloring is NP-complete}
+  \textsc{$3$-permutation coloring} is \NPC.
+\end{corollary}
+
+\begin{proof}
+  Combine Proposition~\ref{proposition:3-Linear Graph Coloring}
+  with Proposition~\ref{proposition:k-linear-graph coloring < k-permutation coloring}.
+  \qed
+\end{proof}
+
+It is worth noticing that, according to
+Proposition~\ref{proposition:k-linear-graph coloring < k-permutation coloring},
+any improvement on Proposition~\ref{proposition:5-linear-graph coloring is NP-complete}
+would immediately propagate to \textsc{$k$-permutation coloring}.

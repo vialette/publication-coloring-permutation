@@ -1,0 +1,228 @@
+\begin{figure}
+  \centering
+
+  \begin{tikzpicture}
+    [
+    scale=.375,
+    my vertex/.style={basic vertex,
+    minimum size=1pt,
+    inner sep=2pt,
+    ball color=black!80},
+    ]
+    % vertices
+
+    % p left
+    \begin{scope}[]
+      \fill [rounded corners, black!15] (-0.6,-0.6) -- (-0.6,0.6) --
+      (3.6,0.6)   -- (3.6,-0.6) --
+      cycle;
+      \node [
+      my vertex,
+      label={[text depth=0ex,label distance=0.25cm,rotate=-90]right:{\scriptsize $\texttt{t}^{0}_{i,1,\LEFT}$}}
+      ] (P1l) at (0,0) {};
+      \node [
+      my vertex,
+      label={[text depth=0ex,label distance=0.25cm,rotate=-90]right:{\scriptsize $\texttt{t}^{0}_{i,2,\LEFT}$}}
+      ] (P2l) at (1,0) {};
+      \node [
+      my vertex,
+      label={[text depth=0ex,label distance=0.25cm,rotate=-90]right:{\scriptsize $\texttt{t}^{0}_{i,N,\LEFT}$}}
+      ] (PNl) at (3,0) {};
+      \path [draw,dotted] (P2l) -- (PNl);
+    \end{scope}
+
+    % r left
+    \begin{scope}[xshift=4.5cm]
+      \fill [rounded corners, black!15] (-0.6,-0.6) -- (-0.6,0.6) --
+      (3.6,0.6)   -- (3.6,-0.6) --
+      cycle;
+      \node [
+      my vertex,
+      label={[text depth=0ex,label distance=0.25cm,rotate=-90]right:{\scriptsize $\texttt{y}^{0}_{i,1,\LEFT}$}}
+      ] (R1l) at (0,0) {};
+      \node [
+      my vertex,
+      label={[text depth=0ex,label distance=0.25cm,rotate=-90]right:{\scriptsize $\texttt{y}^{0}_{i,2,\LEFT}$}}
+      ] (R2l) at (1,0) {};
+      \node [
+      my vertex,
+      label={[text depth=0ex,label distance=0.25cm,rotate=-90]right:{\scriptsize $\texttt{y}^{0}_{i,N,\LEFT}$}}
+      ] (RNl) at (3,0) {};
+      \path [draw,dotted] (R2l) -- (RNl);
+    \end{scope}
+
+    % x
+    \begin{scope}[xshift=9cm]
+      \fill [rounded corners, black!15] (-0.6,-0.6) -- (-0.6,0.6) --
+      (3.6,0.6)   -- (3.6,-0.6) --
+      cycle;
+      \node [
+      my vertex,
+      label={[text depth=2.5ex,label distance=0.25cm,rotate=-90]left:{\scriptsize $\texttt{x}^{0}_{i,1}$}}
+      ] (X1) at (0,0) {};
+      \node [
+      my vertex,
+      label={[text depth=2.5ex,label distance=0.25cm,rotate=-90]left:{\scriptsize $\texttt{x}^{0}_{i,2}$}}
+      ] (X2) at (1,0) {};
+      \node [
+      my vertex,
+      label={[text depth=2.5ex,label distance=0.25cm,rotate=-90]left:{\scriptsize $\texttt{x}^{0}_{i,k}$}}
+      ] (Xk) at (3,0) {};
+      \path [draw,dotted] (X2) -- (Xk);
+    \end{scope}
+
+    % q left
+    \begin{scope}[xshift=13.5cm]
+      \fill [rounded corners, black!15] (-0.6,-0.6) -- (-0.6,0.6) --
+      (3.6,0.6)   -- (3.6,-0.6) --
+      cycle;
+      \node [
+      my vertex,
+      label={[text depth=0ex,label distance=0.25cm,rotate=-90]right:{\scriptsize $\texttt{f}^{0}_{i,1,\LEFT}$}}
+      ] (Q1l) at (0,0) {};
+      \node [
+      my vertex,
+      label={[text depth=0ex,label distance=0.25cm,rotate=-90]right:{\scriptsize $\texttt{f}^{0}_{i,2,\LEFT}$}}
+      ] (Q2l) at (1,0) {};
+      \node [
+      my vertex,
+      label={[text depth=0ex,label distance=0.25cm,rotate=-90]right:{\scriptsize $\texttt{f}^{0}_{i,N,\LEFT}$}}
+      ] (QNl) at (3,0) {};
+      \path [draw,dotted] (Q2l) -- (QNl);
+    \end{scope}
+
+    % p right
+    \begin{scope}[xshift=18cm]
+      \fill [rounded corners, black!15] (-0.6,-0.6) -- (-0.6,0.6) --
+      (3.6,0.6)   -- (3.6,-0.6) --
+      cycle;
+      \node [
+      my vertex,
+      label={[text depth=0ex,label distance=0.25cm,rotate=-90]right:{\scriptsize $\texttt{t}^{0}_{i,1,\RIGHT}$}}
+      ] (P1r) at (0,0) {};
+      \node [
+      my vertex,
+      label={[text depth=0ex,label distance=0.25cm,rotate=-90]right:{\scriptsize $\texttt{t}^{0}_{i,2,\RIGHT}$}}
+      ] (P2r) at (1,0) {};
+      \node [
+      my vertex,
+      label={[text depth=0ex,label distance=0.25cm,rotate=-90]right:{\scriptsize $\texttt{t}^{0}_{i,N,\RIGHT}$}}
+      ] (PNr) at (3,0) {};
+      \path [draw,dotted] (P2r) -- (PNr);
+    \end{scope}
+
+    % neg x
+    \begin{scope}[xshift=22.5cm]
+      \fill [rounded corners, black!15] (-0.6,-0.6) -- (-0.6,0.6) --
+      (3.6,0.6)   -- (3.6,-0.6) --
+      cycle;
+      \node [
+      my vertex,
+      label={[text depth=2.5ex,label distance=0.25cm,rotate=-90]left:{\scriptsize $\neg\texttt{x}^{0}_{i,1}$}}
+      ] (nX1) at (0,0) {};
+      \node [
+      my vertex,
+      label={[text depth=2.5ex,label distance=0.25cm,rotate=-90]left:{\scriptsize $\neg\texttt{x}^{0}_{i,2}$}}
+      ] (nX2) at (1,0) {};
+      \node [
+      my vertex,
+      label={[text depth=2.5ex,label distance=0.25cm,rotate=-90]left:{\scriptsize $\neg\texttt{x}^{0}_{i,k}$}}
+      ] (nXk) at (3,0) {};
+      \path [draw,dotted] (nX2) -- (nXk);
+    \end{scope}
+
+    % r right
+    \begin{scope}[xshift=27cm]
+      \fill [rounded corners, black!15] (-0.6,-0.6) -- (-0.6,0.6) --
+      (3.6,0.6)   -- (3.6,-0.6) --
+      cycle;
+      \node [
+      my vertex,
+      label={[text depth=0ex,label distance=0.25cm,rotate=-90]right:{\scriptsize $\texttt{y}^{0}_{i,1,\RIGHT}$}}
+      ] (R1r) at (0,0) {};
+      \node [
+      my vertex,
+      label={[text depth=0ex,label distance=0.25cm,rotate=-90]right:{\scriptsize $\texttt{y}^{0}_{i,2,\RIGHT}$}}
+      ] (R2r) at (1,0) {};
+      \node [
+      my vertex,
+      label={[text depth=0ex,label distance=0.25cm,rotate=-90]right:{\scriptsize $\texttt{y}^{0}_{i,N,\RIGHT}$}}
+      ] (RNr) at (3,0) {};
+      \path [draw,dotted] (R2r) -- (RNr);
+    \end{scope}
+
+    % q right
+    \begin{scope}[xshift=31.5cm]
+      \fill [rounded corners, black!15] (-0.6,-0.6) -- (-0.6,0.6) --
+      (3.6,0.6)   -- (3.6,-0.6) --
+      cycle;
+      \node [
+      my vertex,
+      label={[text depth=0ex,label distance=0.25cm,rotate=-90]right:{\scriptsize $\texttt{f}^{0}_{i,1,\RIGHT}$}}
+      ] (Q1r) at (0,0) {};
+      \node [
+      my vertex,
+      label={[text depth=0ex,label distance=0.25cm,rotate=-90]right:{\scriptsize $\texttt{f}^{0}_{i,2,\RIGHT}$}}
+      ] (Q2r) at (1,0) {};
+      \node [
+      my vertex,
+      label={[text depth=0ex,label distance=0.25cm,rotate=-90]right:{\scriptsize $\texttt{f}^{0}_{i,N,\RIGHT}$}}
+      ] (QNr) at (3,0) {};
+      \path [draw,dotted] (Q2r) -- (QNr);
+    \end{scope}
+
+    % edges
+    \path [edge]
+    (P1l.north) -- ++(0,5.5) -- ($(PNr.north)+(0,5.5)$) -- (PNr.north);
+    \path [edge,path fading=east]
+    (P2l.north) -- ++(0,5) --  ($(P2r.north)+(0,5)$);
+    \path [edge,path fading=west]
+    (P2r.north) -- ++(0,4) -- ($(PNl.north)+(0,4)$);
+    \path [edge]
+    (PNl.north) -- ($(PNl.north)+(0,3.5)$) -- ($(P1r.north)+(0,3.5)$) -- (P1r.north);
+
+    \path [edge]
+    (Q1l.north) -- ++(0,13) -- ($(QNr.north)+(0,13)$) -- (QNr.north);
+    \path [edge,path fading=east]
+    (Q2l.north) -- ++(0,12.5) --  ($(Q2r.north)+(0,12.5)$);
+    \path [edge,path fading=west]
+    (Q2r.north) -- ++(0,11.5) -- ($(QNl.north)+(0,11.5)$);
+    \path [edge]
+    (QNl.north) -- ($(QNl.north)+(0,10.5)$) -- ($(Q1r.north)+(0,10.5)$) -- (Q1r.north);
+
+    \path [edge]
+    (R1l.north) -- ++(0,9) -- ($(RNr.north)+(0,9)$) -- (RNr.north);
+    \path [edge,path fading=east]
+    (R2l.north) -- ++(0,8.5) --  ($(R2r.north)+(0,8.5)$);
+    \path [edge,path fading=west]
+    (R2r.north) -- ++(0,7.5) -- ($(RNl.north)+(0,7.5)$);
+    \path [edge]
+    (RNl.north) -- ($(RNl.north)+(0,7)$) -- ($(R1r.north)+(0,7)$) -- (R1r.north);
+
+    \path [edge,path fading=east] (X1.south) -- ++(0,-5) -- ++(18,0);
+    \path [edge,path fading=east] (X2.south) -- ++(0,-5.5) -- ++(18,0);
+    \path [edge,path fading=east] (Xk.south) -- ++(0,-6.5) -- ++(17,0);
+
+    \path [edge,path fading=east] (nX1.south) -- ++(0,-7) -- ++(7.5,0);
+    \path [edge,path fading=east] (nX2.south) -- ++(0,-7.5) -- ++(7.5,0);
+    \path [edge,path fading=east] (nXk.south) -- ++(0,-8.5) -- ++(6.5,0);
+
+    %\node [text width=2cm,anchor=west] at (31,-7) {\scriptsize Towards the clause gadgets};
+  \end{tikzpicture}
+
+  \caption{\label{fig-3-linear-graph-splitting-variable-gadget-0}%
+  A variable gadget $\texttt{Var}^{0}_{i}$ where
+  $\texttt{x}^{0}_{i,1}, \texttt{x}^{0}_{i,2}, \dots, \texttt{x}^{0}_{i,k}$
+  (resp.
+  $\neg\texttt{x}^{0}_{i,1}, \neg\texttt{x}^{0}_{i,2}, \dots, \neg\texttt{x}^{0}_{i,k}$
+  )
+  represent the vertices of $\texttt{X}^{0}_{i}$ (resp. $\neg\texttt{X}^{0}_{i}$) with
+  $k = \OCCURRENCE(x_i) = \OCCURRENCE_1(x_i) + 2\,\OCCURRENCE_2(x_i) + \OCCURRENCE_3(x_i)$.
+  The intra-gadget edges of $E^{0}_{\texttt{Var}, i} =
+  E^{0}_{\texttt{Var}, i, \texttt{t}} \cup
+  E^{0}_{\texttt{Var}, i, \texttt{f}} \cup
+  E^{0}_{\texttt{Var}, i, \texttt{y}}$ are shown together
+  with the left endpoint parts of the associated inter-gadget edges of
+  $E^{0}_{\texttt{Var},\texttt{Cls}}$.
+  }% end caption
+\end{figure}

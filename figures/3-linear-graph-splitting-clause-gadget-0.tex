@@ -1,0 +1,80 @@
+\begin{figure}
+  \centering
+
+  \begin{tikzpicture}
+    [
+      scale=.2,
+      my vertex/.style={basic vertex,
+      minimum size=1pt,
+      inner sep=2pt,
+      ball color=black!80},
+    ]
+    \path [draw,color=black!5] (0,0) -- (56,0);
+
+    % vertices
+    \foreach \i/\l [evaluate=\i as \x using \i*3.5] in
+    {
+      2/\texttt{a}^{0}_{j,\LEFT},
+      4/\texttt{b}^{0}_{j,\LEFT},
+      5/\texttt{a}^{0}_{j,\RIGHT},
+      7/\texttt{b}^{0}_{j,\RIGHT},
+      9/\texttt{c}^{0}_{j,\LEFT},
+      11/\texttt{d}^{0}_{j,\LEFT},
+      12/\texttt{c}^{0}_{j,\RIGHT},
+      14/\texttt{d}^{0}_{j,\RIGHT}
+    }
+    {
+    \node [
+    my vertex,
+    label={[text depth=0ex,anchor=center,label distance=0.15cm,rotate=-90]right:{\scriptsize $\l$}}
+    ] (V\i) at (\x,0) {};
+    }
+    \foreach \i/\l [evaluate=\i as \x using \i*3.5] in
+    {
+      1/\texttt{l}^{0}_{j,1,\TRUE},
+      3/\texttt{l}^{0}_{j,1,\FALSE},
+      6/\texttt{l}^{0}_{j,2,\FALSE,\FST},
+      8/\texttt{l}^{0}_{j,2,\TRUE},
+      10/\texttt{l}^{0}_{j,2,\FALSE,\SND},
+      13/\texttt{l}^{0}_{j,3,\FALSE},
+      15/\texttt{l}^{0}_{j,3,\TRUE}
+    }
+    {
+
+    \node [
+      my vertex,
+      label={[text depth=2.5ex,anchor=center,label distance=0.15cm,rotate=-90]left:{\scriptsize $\l$}}
+    ] (V\i) at (\x,0) {};
+    }
+
+    % edges
+    \path [edge] (V2.north) -- ++ (0,6) -- ($(V5.north)+(0,6)$) -- (V5.north);
+    \path [edge] (V4.north) -- ++ (0,7) -- ($(V7.north)+(0,7)$) -- (V7.north);
+    \path [edge] (V9.north) -- ++ (0,7) -- ($(V12.north)+(0,7)$) -- (V12.north);
+    \path [edge] (V11.north) -- ++ (0,6) -- ($(V14.north)+(0,6)$) -- (V14.north);
+
+    % incoming edges
+    \draw [edge,path fading=west] (V1) -- ++(0,-5) -- +(-3,0) node {};
+    \draw [edge,path fading=west] (V3) -- ++(0,-6) -- +(-10.5,0) node {};
+    \draw [edge,path fading=west] (V6)  -- ++(0,-7)  -- +(-21.5,0) node {};
+    \draw [edge,path fading=west] (V8)  -- ++(0,-8)  -- +(-29,0) node {};
+    \draw [edge,path fading=west] (V10) -- ++(0,-9) -- +(-36.5,0) node {};
+    \draw [edge,path fading=west] (V13) -- ++(0,-10) -- +(-47.5,0) node {};
+    \draw [edge,path fading=west] (V15) -- ++(0,-11) -- +(-55,0) node {};
+
+    \node [text width=2.5cm,anchor=west] at (-15.5,-8.5) {\scriptsize Towards the variable gadgets};
+
+  \end{tikzpicture}
+
+  \caption{\label{fig-3-linear-graph-splitting-clause-gadget-0}%
+  A clause gadget $\texttt{Cls}^{0}_{j}$.
+  The intra-gadget edges of
+  $E^{0}_{\texttt{Cls}, j} =
+  E^{0}_{\texttt{Cls}, j, \texttt{a}} \cup
+  E^{0}_{\texttt{Cls}, j, \texttt{b}} \cup
+  E^{0}_{\texttt{Cls}, j, \texttt{c}} \cup
+  E^{0}_{\texttt{Cls}, j, \texttt{d}}$ are shown together
+  with the right endpoint parts of the associated inter-gadget edges of
+  $E^{0}_{\texttt{Var},\texttt{Cls}}$.
+  }% end caption
+\end{figure}

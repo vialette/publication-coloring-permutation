@@ -1,0 +1,436 @@
+\begin{figure}
+  \centering
+
+  \begin{subfigure}[b]{\textwidth}
+    \centering
+    \begin{tikzpicture}
+      [
+      scale=.375,
+      my vertex/.style={basic vertex,
+      minimum size=1pt,
+      inner sep=2pt,
+      ball color=black!80},
+      ]
+      % vertices
+
+      % p left
+      \begin{scope}[]
+        \fill [rounded corners, black!15] (-0.6,-0.6) -- (-0.6,0.6) --
+        (3.6,0.6)   -- (3.6,-0.6) --
+        cycle;
+        \node [
+        my vertex,
+        label={[text depth=-1.75ex,label distance=0.25cm,rotate=-90]right:{\scriptsize $\texttt{f}^0_{i,1,\LEFT}$}}
+        ] (T1l) at (0,0) {};
+        \node [
+        my vertex,
+        label={[text depth=-1.75ex,label distance=0.25cm,rotate=-90]right:{\scriptsize $\texttt{f}^0_{i,2,\LEFT}$}}
+        ] (T2l) at (1,0) {};
+        \node [
+        my vertex,
+        label={[text depth=-1.75ex,label distance=0.25cm,rotate=-90]right:{\scriptsize $\texttt{f}^0_{i,N,\LEFT}$}}
+        ] (TNl) at (3,0) {};
+        \path [draw,dotted] (T2l) -- (TNl);
+      \end{scope}
+
+      % r left
+      \begin{scope}[xshift=4.5cm]
+        \fill [rounded corners, black!15] (-0.6,-0.6) -- (-0.6,0.6) --
+        (3.6,0.6)   -- (3.6,-0.6) --
+        cycle;
+        \node [
+        my vertex,
+        label={[text depth=-1.75ex,label distance=0.25cm,rotate=-90]right:{\scriptsize $\texttt{y}^0_{i,1,\LEFT}$}}
+        ] (Y1l) at (0,0) {};
+        \node [
+        my vertex,
+        label={[text depth=-1.75ex,label distance=0.25cm,rotate=-90]right:{\scriptsize $\texttt{y}^0_{i,2,\LEFT}$}}
+        ] (Y2l) at (1,0) {};
+        \node [
+        my vertex,
+        label={[text depth=-1.75ex,label distance=0.25cm,rotate=-90]right:{\scriptsize $\texttt{y}^0_{i,N,\LEFT}$}}
+        ] (YNl) at (3,0) {};
+        \path [draw,dotted] (Y2l) -- (YNl);
+      \end{scope}
+
+      % x
+      \begin{scope}[xshift=9cm]
+        \fill [rounded corners, black!15] (-0.6,-0.6) -- (-0.6,0.6) --
+        (3.6,0.6)   -- (3.6,-0.6) --
+        cycle;
+        \node [
+        my vertex,
+        label={[text depth=1.75ex,label distance=0.25cm,rotate=-90]left:{\scriptsize $\texttt{x}_{i,j_1}$}}
+        ] (X1) at (0,0) {};
+        \node [
+        my vertex,
+        label={[text depth=1.75ex,label distance=0.25cm,rotate=-90]left:{\scriptsize $\texttt{x}_{i,j_2}$}}
+        ] (X2) at (1,0) {};
+        \node [
+        my vertex,
+        label={[text depth=1.75ex,label distance=0.25cm,rotate=-90]left:{\scriptsize $\texttt{x}_{i,j_n}$}}
+        ] (Xk) at (3,0) {};
+        \path [draw,dotted] (X2) -- (Xk);
+      \end{scope}
+
+      % q left
+      \begin{scope}[xshift=13.5cm]
+        \fill [rounded corners, black!15] (-0.6,-0.6) -- (-0.6,0.6) --
+        (3.6,0.6)   -- (3.6,-0.6) --
+        cycle;
+        \node [
+        my vertex,
+        label={[text depth=-1.75ex,label distance=0.25cm,rotate=-90]right:{\scriptsize $\texttt{f}^0_{i,1,\LEFT}$}}
+        ] (F1l) at (0,0) {};
+        \node [
+        my vertex,
+        label={[text depth=-1.75ex,label distance=0.25cm,rotate=-90]right:{\scriptsize $\texttt{f}^0_{i,2,\LEFT}$}}
+        ] (F2l) at (1,0) {};
+        \node [
+        my vertex,
+        label={[text depth=-1.75ex,label distance=0.25cm,rotate=-90]right:{\scriptsize $\texttt{f}^0_{i,N,\LEFT}$}}
+        ] (FNl) at (3,0) {};
+        \path [draw,dotted] (F2l) -- (FNl);
+      \end{scope}
+
+      % p right
+      \begin{scope}[xshift=18cm]
+        \fill [rounded corners, black!15] (-0.6,-0.6) -- (-0.6,0.6) --
+        (3.6,0.6)   -- (3.6,-0.6) --
+        cycle;
+        \node [
+        my vertex,
+        label={[text depth=-1.75ex,label distance=0.25cm,rotate=-90]right:{\scriptsize $\texttt{f}^0_{i,1,\RIGHT}$}}
+        ] (T1r) at (0,0) {};
+        \node [
+        my vertex,
+        label={[text depth=-1.75ex,label distance=0.25cm,rotate=-90]right:{\scriptsize $\texttt{f}^0_{i,2,\RIGHT}$}}
+        ] (T2r) at (1,0) {};
+        \node [
+        my vertex,
+        label={[text depth=-1.75ex,label distance=0.25cm,rotate=-90]right:{\scriptsize $\texttt{f}^0_{i,N,\RIGHT}$}}
+        ] (TNr) at (3,0) {};
+        \path [draw,dotted] (T2r) -- (TNr);
+      \end{scope}
+
+      % neg x
+      \begin{scope}[xshift=22.5cm]
+        \fill [rounded corners, black!15] (-0.6,-0.6) -- (-0.6,0.6) --
+        (3.6,0.6)   -- (3.6,-0.6) --
+        cycle;
+        \node [
+        my vertex,
+        label={[text depth=1.75ex,label distance=0.25cm,rotate=-90]left:{\scriptsize $\neg\texttt{x}_{i,j_1}$}}
+        ] (nX1) at (0,0) {};
+        \node [
+        my vertex,
+        label={[text depth=1.75ex,label distance=0.25cm,rotate=-90]left:{\scriptsize $\neg\texttt{x}_{i,j_2}$}}
+        ] (nX2) at (1,0) {};
+        \node [
+        my vertex,
+        label={[text depth=1.75ex,label distance=0.25cm,rotate=-90]left:{\scriptsize $\neg\texttt{x}_{i,j_n}$}}
+        ] (nXk) at (3,0) {};
+        \path [draw,dotted] (nX2) -- (nXk);
+      \end{scope}
+
+      % r right
+      \begin{scope}[xshift=27cm]
+        \fill [rounded corners, black!15] (-0.6,-0.6) -- (-0.6,0.6) --
+        (3.6,0.6)   -- (3.6,-0.6) --
+        cycle;
+        \node [
+        my vertex,
+        label={[text depth=-1.75ex,label distance=0.25cm,rotate=-90]right:{\scriptsize $\texttt{y}^0_{i,1,\RIGHT}$}}
+        ] (Y1r) at (0,0) {};
+        \node [
+        my vertex,
+        label={[text depth=-1.75ex,label distance=0.25cm,rotate=-90]right:{\scriptsize $\texttt{y}^0_{i,2,\RIGHT}$}}
+        ] (Y2r) at (1,0) {};
+        \node [
+        my vertex,
+        label={[text depth=-1.75ex,label distance=0.25cm,rotate=-90]right:{\scriptsize $\texttt{y}^0_{i,N,\RIGHT}$}}
+        ] (YNr) at (3,0) {};
+        \path [draw,dotted] (Y2r) -- (YNr);
+      \end{scope}
+
+      % q right
+      \begin{scope}[xshift=31.5cm]
+        \fill [rounded corners, black!15] (-0.6,-0.6) -- (-0.6,0.6) --
+        (3.6,0.6)   -- (3.6,-0.6) --
+        cycle;
+        \node [
+        my vertex,
+        label={[text depth=-1.75ex,label distance=0.25cm,rotate=-90]right:{\scriptsize $\texttt{f}^0_{i,1,\RIGHT}$}}
+        ] (F1r) at (0,0) {};
+        \node [
+        my vertex,
+        label={[text depth=-1.75ex,label distance=0.25cm,rotate=-90]right:{\scriptsize $\texttt{f}^0_{i,2,\RIGHT}$}}
+        ] (F2r) at (1,0) {};
+        \node [
+        my vertex,
+        label={[text depth=-1.75ex,label distance=0.25cm,rotate=-90]right:{\scriptsize $\texttt{f}^0_{i,N,\RIGHT}$}}
+        ] (FNr) at (3,0) {};
+        \path [draw,dotted] (F2r) -- (FNr);
+      \end{scope}
+
+      % edges
+      \path [edge,color=blue]
+      (T1l.north) -- ++(0,5.5) -- ($(TNr.north)+(0,5.5)$) node [pos=0.1,above] {$\COLOR_1$} -- (TNr.north);
+      \path [edge,color=blue,path fading=east]
+      (T2l.north) -- ++(0,5) --  ($(T2r.north)+(0,5)$);
+      \path [edge,color=blue,path fading=west]
+      (T2r.north) -- ++(0,4) -- ($(TNl.north)+(0,4)$);
+      \path [edge,color=blue]
+      (TNl.north) -- ($(TNl.north)+(0,3.5)$) -- ($(T1r.north)+(0,3.5)$) -- (T1r.north);
+
+      \path [edge,color=green]
+      (F1l.north) -- ++(0,13) -- ($(FNr.north)+(0,13)$) node [pos=0.1,above] {$\COLOR_2$} -- (FNr.north);
+      \path [edge,color=green,path fading=east]
+      (F2l.north) -- ++(0,12.5) --  ($(F2r.north)+(0,12.5)$);
+      \path [edge,color=green,path fading=west]
+      (F2r.north) -- ++(0,11.5) -- ($(FNl.north)+(0,11.5)$);
+      \path [edge,color=green]
+      (FNl.north) -- ($(FNl.north)+(0,10.5)$) -- ($(F1r.north)+(0,10.5)$) -- (F1r.north);
+
+      \path [edge,color=red]
+      (Y1l.north) -- ++(0,9) -- ($(YNr.north)+(0,9)$) node [pos=0.1,above] {$\COLOR_3$} -- (YNr.north);
+      \path [edge,color=red,path fading=east]
+      (Y2l.north) -- ++(0,8.5) --  ($(Y2r.north)+(0,8.5)$);
+      \path [edge,color=red,path fading=west]
+      (Y2r.north) -- ++(0,7.5) -- ($(YNl.north)+(0,7.5)$);
+      \path [edge,color=red]
+      (YNl.north) -- ($(YNl.north)+(0,7)$) -- ($(Y1r.north)+(0,7)$) -- (Y1r.north);
+
+      \path [edge,side by side={red}{blue},path fading=east] (X1.south) -- ++(0,-5) -- ++(18,0);
+      \path [edge,side by side={red}{blue},path fading=east] (X2.south) -- ++(0,-5.5) -- ++(18,0);
+      \path [edge,side by side={red}{blue},path fading=east] (Xk.south) -- ++(0,-6.5) -- ++(17,0);
+      \node [text width=2cm] at ($(Xk.south)+(3,-4)$) {$\color{blue}{\COLOR_1} \color{black}{\vee} \color{red}{\COLOR_3}$};
+
+      \path [edge,side by side={red}{green},path fading=east] (nX1.south) -- ++(0,-7) -- ++(7.5,0);
+      \path [edge,side by side={red}{green},path fading=east] (nX2.south) -- ++(0,-7.5) -- ++(7.5,0);
+      \path [edge,side by side={red}{green},path fading=east] (nXk.south)  -- ++(0,-8.5) -- ++(6.5,0);
+      \node [text width=2cm] at ($(nXk.south)+(3,-4)$) {$\color{green}{\COLOR_2} \color{black}{\vee} \color{red}{\COLOR_3}$};
+
+      %\node [text width=2cm,anchor=west] at (31,-7) {\scriptsize Towards the clause gadgets};
+    \end{tikzpicture}
+    \caption{Setting $\rho(x_i) = \text{true}$ in variable gadget $\texttt{Var}^{0}_{i}$.}
+  \end{subfigure}
+
+  \vspace{.5cm}
+
+  \begin{subfigure}[b]{\textwidth}
+    \centering
+    \begin{tikzpicture}
+      [
+      scale=.375,
+      my vertex/.style={basic vertex,
+      minimum size=1pt,
+      inner sep=2pt,
+      ball color=black!80},
+      ]
+      % vertices
+
+      % p left
+      \begin{scope}[]
+        \fill [rounded corners, black!15] (-0.6,-0.6) -- (-0.6,0.6) --
+        (3.6,0.6)   -- (3.6,-0.6) --
+        cycle;
+        \node [
+        my vertex,
+        label={[text depth=-1.75ex,label distance=0.25cm,rotate=-90]right:{\scriptsize $\texttt{f}^0_{i,1,\LEFT}$}}
+        ] (T1l) at (0,0) {};
+        \node [
+        my vertex,
+        label={[text depth=-1.75ex,label distance=0.25cm,rotate=-90]right:{\scriptsize $\texttt{f}^0_{i,2,\LEFT}$}}
+        ] (T2l) at (1,0) {};
+        \node [
+        my vertex,
+        label={[text depth=-1.75ex,label distance=0.25cm,rotate=-90]right:{\scriptsize $\texttt{f}^0_{i,N,\LEFT}$}}
+        ] (TNl) at (3,0) {};
+        \path [draw,dotted] (T2l) -- (TNl);
+      \end{scope}
+
+      % r left
+      \begin{scope}[xshift=4.5cm]
+        \fill [rounded corners, black!15] (-0.6,-0.6) -- (-0.6,0.6) --
+        (3.6,0.6)   -- (3.6,-0.6) --
+        cycle;
+        \node [
+        my vertex,
+        label={[text depth=-1.75ex,label distance=0.25cm,rotate=-90]right:{\scriptsize $\texttt{y}^0_{i,1,\LEFT}$}}
+        ] (Y1l) at (0,0) {};
+        \node [
+        my vertex,
+        label={[text depth=-1.75ex,label distance=0.25cm,rotate=-90]right:{\scriptsize $\texttt{y}^0_{i,2,\LEFT}$}}
+        ] (Y2l) at (1,0) {};
+        \node [
+        my vertex,
+        label={[text depth=-1.75ex,label distance=0.25cm,rotate=-90]right:{\scriptsize $\texttt{y}^0_{i,N,\LEFT}$}}
+        ] (YNl) at (3,0) {};
+        \path [draw,dotted] (Y2l) -- (YNl);
+      \end{scope}
+
+      % x
+      \begin{scope}[xshift=9cm]
+        \fill [rounded corners, black!15] (-0.6,-0.6) -- (-0.6,0.6) --
+        (3.6,0.6)   -- (3.6,-0.6) --
+        cycle;
+        \node [
+        my vertex,
+        label={[text depth=1.75ex,label distance=0.25cm,rotate=-90]left:{\scriptsize $\texttt{x}_{i,j_1}$}}
+        ] (X1) at (0,0) {};
+        \node [
+        my vertex,
+        label={[text depth=1.75ex,label distance=0.25cm,rotate=-90]left:{\scriptsize $\texttt{x}_{i,j_2}$}}
+        ] (X2) at (1,0) {};
+        \node [
+        my vertex,
+        label={[text depth=1.75ex,label distance=0.25cm,rotate=-90]left:{\scriptsize $\texttt{x}_{i,j_n}$}}
+        ] (Xk) at (3,0) {};
+        \path [draw,dotted] (X2) -- (Xk);
+      \end{scope}
+
+      % q left
+      \begin{scope}[xshift=13.5cm]
+        \fill [rounded corners, black!15] (-0.6,-0.6) -- (-0.6,0.6) --
+        (3.6,0.6)   -- (3.6,-0.6) --
+        cycle;
+        \node [
+        my vertex,
+        label={[text depth=-1.75ex,label distance=0.25cm,rotate=-90]right:{\scriptsize $\texttt{f}^0_{i,1,\LEFT}$}}
+        ] (F1l) at (0,0) {};
+        \node [
+        my vertex,
+        label={[text depth=-1.75ex,label distance=0.25cm,rotate=-90]right:{\scriptsize $\texttt{f}^0_{i,2,\LEFT}$}}
+        ] (F2l) at (1,0) {};
+        \node [
+        my vertex,
+        label={[text depth=-1.75ex,label distance=0.25cm,rotate=-90]right:{\scriptsize $\texttt{f}^0_{i,N,\LEFT}$}}
+        ] (FNl) at (3,0) {};
+        \path [draw,dotted] (F2l) -- (FNl);
+      \end{scope}
+
+      % p right
+      \begin{scope}[xshift=18cm]
+        \fill [rounded corners, black!15] (-0.6,-0.6) -- (-0.6,0.6) --
+        (3.6,0.6)   -- (3.6,-0.6) --
+        cycle;
+        \node [
+        my vertex,
+        label={[text depth=-1.75ex,label distance=0.25cm,rotate=-90]right:{\scriptsize $\texttt{f}^0_{i,1,\RIGHT}$}}
+        ] (T1r) at (0,0) {};
+        \node [
+        my vertex,
+        label={[text depth=-1.75ex,label distance=0.25cm,rotate=-90]right:{\scriptsize $\texttt{f}^0_{i,2,\RIGHT}$}}
+        ] (T2r) at (1,0) {};
+        \node [
+        my vertex,
+        label={[text depth=-1.75ex,label distance=0.25cm,rotate=-90]right:{\scriptsize $\texttt{f}^0_{i,N,\RIGHT}$}}
+        ] (TNr) at (3,0) {};
+        \path [draw,dotted] (T2r) -- (TNr);
+      \end{scope}
+
+
+      % neg x
+      \begin{scope}[xshift=22.5cm]
+        \fill [rounded corners, black!15] (-0.6,-0.6) -- (-0.6,0.6) --
+        (3.6,0.6)   -- (3.6,-0.6) --
+        cycle;
+        \node [
+        my vertex,
+        label={[text depth=1.75ex,label distance=0.25cm,rotate=-90]left:{\scriptsize $\neg\texttt{x}_{i,j_1}$}}
+        ] (nX1) at (0,0) {};
+        \node [
+        my vertex,
+        label={[text depth=1.75ex,label distance=0.25cm,rotate=-90]left:{\scriptsize $\neg\texttt{x}_{i,j_2}$}}
+        ] (nX2) at (1,0) {};
+        \node [
+        my vertex,
+        label={[text depth=1.75ex,label distance=0.25cm,rotate=-90]left:{\scriptsize $\neg\texttt{x}_{i,j_n}$}}
+        ] (nXk) at (3,0) {};
+        \path [draw,dotted] (nX2) -- (nXk);
+      \end{scope}
+
+      % r right
+      \begin{scope}[xshift=27cm]
+        \fill [rounded corners, black!15] (-0.6,-0.6) -- (-0.6,0.6) --
+        (3.6,0.6)   -- (3.6,-0.6) --
+        cycle;
+        \node [
+        my vertex,
+        label={[text depth=-1.75ex,label distance=0.25cm,rotate=-90]right:{\scriptsize $\texttt{y}^0_{i,1,\RIGHT}$}}
+        ] (Y1r) at (0,0) {};
+        \node [
+        my vertex,
+        label={[text depth=-1.75ex,label distance=0.25cm,rotate=-90]right:{\scriptsize $\texttt{y}^0_{i,2,\RIGHT}$}}
+        ] (Y2r) at (1,0) {};
+        \node [
+        my vertex,
+        label={[text depth=-1.75ex,label distance=0.25cm,rotate=-90]right:{\scriptsize $\texttt{y}^0_{i,N,\RIGHT}$}}
+        ] (YNr) at (3,0) {};
+        \path [draw,dotted] (Y2r) -- (YNr);
+      \end{scope}
+
+      % q right
+      \begin{scope}[xshift=31.5cm]
+        \fill [rounded corners, black!15] (-0.6,-0.6) -- (-0.6,0.6) --
+        (3.6,0.6)   -- (3.6,-0.6) --
+        cycle;
+        \node [
+        my vertex,
+        label={[text depth=-1.75ex,label distance=0.25cm,rotate=-90]right:{\scriptsize $\texttt{f}^0_{i,1,\RIGHT}$}}
+        ] (F1r) at (0,0) {};
+        \node [
+        my vertex,
+        label={[text depth=-1.75ex,label distance=0.25cm,rotate=-90]right:{\scriptsize $\texttt{f}^0_{i,2,\RIGHT}$}}
+        ] (F2r) at (1,0) {};
+        \node [
+        my vertex,
+        label={[text depth=-1.75ex,label distance=0.25cm,rotate=-90]right:{\scriptsize $\texttt{f}^0_{i,N,\RIGHT}$}}
+        ] (FNr) at (3,0) {};
+        \path [draw,dotted] (F2r) -- (FNr);
+      \end{scope}
+
+      % edges
+      \path [edge,color=green]
+      (T1l.north) -- ++(0,5.5) -- ($(TNr.north)+(0,5.5)$) node [pos=0.1,above] {$\COLOR_2$} -- (TNr.north);
+      \path [edge,color=green,path fading=east]
+      (T2l.north) -- ++(0,5) --  ($(T2r.north)+(0,5)$);
+      \path [edge,color=green,path fading=west]
+      (T2r.north) -- ++(0,4) -- ($(TNl.north)+(0,4)$);
+      \path [edge,color=green]
+      (TNl.north) -- ($(TNl.north)+(0,3.5)$) -- ($(T1r.north)+(0,3.5)$) -- (T1r.north);
+
+      \path [edge,color=blue]
+      (F1l.north) -- ++(0,13) -- ($(FNr.north)+(0,13)$) node [pos=0.1,above] {$\COLOR_1$} -- (FNr.north);
+      \path [edge,color=blue,path fading=east]
+      (F2l.north) -- ++(0,12.5) --  ($(F2r.north)+(0,12.5)$);
+      \path [edge,color=blue,path fading=west]
+      (F2r.north) -- ++(0,11.5) -- ($(FNl.north)+(0,11.5)$);
+      \path [edge,color=blue]
+      (FNl.north) -- ($(FNl.north)+(0,10.5)$) -- ($(F1r.north)+(0,10.5)$) -- (F1r.north);
+
+      \path [edge,color=red]
+      (Y1l.north) -- ++(0,9) -- ($(YNr.north)+(0,9)$) node [pos=0.1,above] {$\COLOR_3$} -- (YNr.north);
+      \path [edge,color=red,path fading=east]
+      (Y2l.north) -- ++(0,8.5) --  ($(Y2r.north)+(0,8.5)$);
+      \path [edge,color=red,path fading=west]
+      (Y2r.north) -- ++(0,7.5) -- ($(YNl.north)+(0,7.5)$);
+      \path [edge,color=red]
+      (YNl.north) -- ($(YNl.north)+(0,7)$) -- ($(Y1r.north)+(0,7)$) -- (Y1r.north);
+
+      \path [edge,side by side={red}{green},path fading=east] (X1.south) -- ++(0,-5) -- ++(18,0);
+      \path [edge,side by side={red}{green},path fading=east] (X2.south) -- ++(0,-5.5) -- ++(18,0);
+      \path [edge,side by side={red}{green},path fading=east] (Xk.south) -- ++(0,-6.5) -- ++(17,0);
+      \node [text width=2cm] at ($(Xk.south)+(3,-4)$) {$\color{green}{\COLOR_2} \color{black}{\vee} \color{red}{\COLOR_3}$};
+
+      \path [edge,side by side={red}{blue},path fading=east] (nX1.south) -- ++(0,-7) -- ++(7.5,0);
+      \path [edge,side by side={red}{blue},path fading=east] (nX2.south) -- ++(0,-7.5) -- ++(7.5,0);
+      \path [edge,side by side={red}{blue},path fading=east] (nXk.south) -- ++(0,-8.5) -- ++(6.5,0);
+      \node [text width=2cm] at ($(nXk.south)+(3,-4)$) {$\color{blue}{\COLOR_1} \color{black}{\vee} \color{red}{\COLOR_3}$};
+
+      %\node [text width=2cm,anchor=west] at (31,-7) {\scriptsize Towards the clause gadgets};
+    \end{tikzpicture}
+    \caption{Setting $\rho(x_i) = \text{false}$ in variable gadget $\texttt{Var}^{0}_{i}$.}
+  \end{subfigure}
+\end{figure}

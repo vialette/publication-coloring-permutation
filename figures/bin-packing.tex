@@ -1,0 +1,52 @@
+\begin{figure}
+  \centering
+  \begin{tikzpicture}
+    [
+      scale=.7,
+      monotone/.style={>=stealth',->,thick,shorten >=5pt,shorten <=5pt},
+    ]
+    %
+    \draw [thin,rounded corners=2pt] (0,0) rectangle (14,14);
+    \draw [step=2cm,thin,rounded corners=2pt,fill=black!10] (0,0) grid (8,8);
+    \draw [step=2cm,thin,rounded corners=2pt,fill=black!10] (10,10) grid (14,14);
+
+    % 1
+    \draw [ultra thick,rounded corners=2pt,fill=black!10] (0,2) rectangle ++(2,2);
+    \node [fit={(0,2) (2,4)}, inner sep=0pt, label=center:{$\mathbf{\nearrow_{s_1+1}}$}] (A) {};
+
+    \draw [ultra thick,rounded corners=2pt,fill=black!10] (2,2) rectangle ++(2,-2);
+    \node [fit={(2,0) (4,2)}, inner sep=0pt, label=center:{$\mathbf{\searrow_{k-1}}$}] (A) {};
+
+    % 2
+    \draw [ultra thick,rounded corners=2pt,fill=black!10] (4,6) rectangle ++(2,2);
+    \node [fit={(4,6) (6,8)}, inner sep=0pt, label=center:{$\mathbf{\nearrow_{s_2+1}}$}] (A) {};
+    \draw [ultra thick,rounded corners=2pt,fill=black!10] (6,6) rectangle ++(2,-2);
+    \node [fit={(6,4) (8,6)}, inner sep=0pt, label=center:{$\mathbf{\searrow_{k-1}}$}] (A) {};
+
+    %
+    \draw [thick,shorten >=5pt,shorten <=5pt,dotted] (8,8) -- (10,10);
+    %
+    % k
+    \draw [ultra thick,rounded corners=2pt,fill=black!10] (10,12) rectangle ++(2,2);
+    \node [fit={(10,12) (12,14)}, inner sep=0pt, label=center:{$\mathbf{\nearrow_{s_n+1}}$}] (A) {};
+    \draw [ultra thick,rounded corners=2pt,fill=black!10] (12,12) rectangle ++(2,-2);
+    \node [fit={(12,10) (14,12)}, inner sep=0pt, label=center:{$\mathbf{\searrow_{k-1}}$}] (A) {};
+    %
+
+    %
+    \node [label={[text depth=1.75ex,label distance=0.0cm,rotate=-90]right:{$1$}}] at (0,0) {};
+    \node [label={[text depth=1.75ex,label distance=0.0cm,rotate=-90]right:{$s_1+2$}}] at (2,0) {};
+    \node [label={[text depth=1.75ex,label distance=0.0cm,rotate=-90]right:{$s_1+k+1$}}] at (4,0) {};
+    \node [label={[text depth=1.75ex,label distance=0.0cm,rotate=-90]right:{$s_1+s_2+k+1$}}] at (6,0) {};
+    \node [label={[text depth=1.75ex,label distance=0.0cm,rotate=-90]right:{$\sum_{i=1}^{n-1} s_i+k(n-1)$}}] at (10,0) {};
+    \node [label={[text depth=1.75ex,label distance=0.0cm,rotate=-90]right:{$\sum_{i=1}^{n} s_i+k(n-1)(k-1)+2$}}] at (12,0) {};
+    %
+    \node [label={[text depth=1.75ex,label distance=0.0cm,anchor=east]left:{$1$}}] at (0,0) {};
+    \node [label={[text depth=1.75ex,label distance=0.0cm,anchor=east]left:{$k$}}] at (0,2) {};
+    \node [label={[text depth=1.75ex,label distance=0.0cm,anchor=east]left:{$s_1+k+1$}}] at (0,4) {};
+    \node [label={[text depth=1.75ex,label distance=0.0cm,anchor=east]left:{$s_1+2k+1$}}] at (0,6) {};
+    \node [label={[text depth=1.75ex,label distance=0.0cm,anchor=east]left:{$\sum_{i=1}^{n-1}s_i+k(n-1)$}}] at (0,10) {};
+  \end{tikzpicture}
+  \caption{\label{fig:bin-packing}%
+  \textsc{Bin Packing}.}
+\end{figure}

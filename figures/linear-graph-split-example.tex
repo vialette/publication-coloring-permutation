@@ -1,0 +1,98 @@
+\begin{figure}
+  \centering
+  \begin{tikzpicture}
+    [
+      scale=1.,
+      vertex/.style = {circle, fill, minimum size=6pt,inner sep=0pt, outer sep=0pt},
+    ]
+    \draw[xstep=1,ystep=.5,black,ultra thin,black!5] (-0.5,-12.25) grid (12.5,3.25);
+
+    % graph G^0
+    \draw (-1,0) node {$G^0$};
+
+    % vertices
+    \foreach [evaluate=\x as \l using int(\x+1)] \x in {0,...,12}
+      \node [vertex,label=below:$v^{0}_{\l}$] (VG0\x) at (\x,0) {};
+
+    % black
+    \draw [edge]
+      (VG00) ..controls ($(VG00.north) + (0,3.75)$) and ($(VG011.north) + (0,3.75)$) .. node [above] {$e^{0}_{1}$} (VG011.north);
+    \draw [edge]
+      (VG09) ..controls ($(VG09.north) + (0,.75)$) and ($(VG011.north) + (0,.75)$) .. node [above] {$e^{0}_{11}$} (VG011.north);
+    \draw [edge]
+      (VG02) ..controls ($(VG02.north) + (0,.5)$) and ($(VG03.north) + (0,.5)$) .. node [above] {$e^{0}_{6}$} (VG03.north);
+    \draw [edge, rounded corners]
+      (VG03) ..controls ($(VG03.north) + (0,.75)$) and ($(VG05.north) + (0,.75)$) .. node [above] {$e^{0}_{7}$} (VG05.north);
+    \draw [edge, rounded corners]
+      (VG02) ..controls ($(VG02.north) + (0,1.75)$) and ($(VG05.north) + (0,1.75)$) .. node [above] {$e^{0}_{3}$} (VG05.north);
+    % white
+    \draw [edge]
+      (VG01) ..controls ($(VG01.north) + (0,2.75)$) and ($(VG08.north) + (0,2.75)$) .. node [above] {$e^{0}_{2}$} (VG08.north);
+    \draw [edge]
+      (VG08) ..controls ($(VG08.north) + (0,.75)$) and ($(VG010.north) + (0,.75)$) .. node [above] {$e^{0}_{10}$} (VG010.north);
+    % gray
+    \draw [edge]
+      (VG04) ..controls ($(VG04.north) + (0,.75)$) and ($(VG06.north) + (0,.75)$) .. node [above] {$e^{0}_{8}$} (VG06.north);
+    \draw [edge]
+      (VG04) ..controls ($(VG04.north) + (0,1.75)$) and ($(VG07.north) + (0,1.75)$) .. node [above] {$e^{0}_{4}$} (VG07.north);
+    \draw [edge]
+      (VG06) ..controls ($(VG06.north) + (0,.5)$) and ($(VG07.north) + (0,.5)$) .. node [above] {$e^{0}_{9}$} (VG07.north);
+    \draw [edge]
+      (VG07) ..controls ($(VG07.north) + (0,1.75)$) and ($(VG012.north) + (0,1.75)$) .. node [above] {$e^{0}_{5}$} (VG012.north);
+
+    % graph G_1
+    \begin{scope}[yshift=-5cm]
+      \draw (-1,0) node {$G^1$};
+
+      \foreach \x/\l in {0/1,2/2,3/3,5/4,9/5,11/6}
+        \node [vertex,fill=black,label=below:$v^{1}_{\l}$] (VG1\x) at (\x,0) {};
+
+    \draw [edge]
+      (VG10) ..controls ($(VG10.north) + (0,3.75)$) and ($(VG111.north) + (0,3.75)$) .. node [above] {$e^{1}_{1}$} (VG111.north);
+    \draw [edge]
+      (VG19) ..controls ($(VG19.north) + (0,.75)$) and ($(VG111.north) + (0,.75)$) .. node [above] {$e^{1}_{5}$} (VG111.north);
+    \draw [edge]
+      (VG12) ..controls ($(VG12.north) + (0,.5)$) and ($(VG13.north) + (0,.5)$) .. node [above] {$e^{1}_{3}$} (VG13.north);
+    \draw [edge, rounded corners]
+      (VG13) ..controls ($(VG13.north) + (0,.75)$) and ($(VG15.north) + (0,.75)$) .. node [above] {$e^{1}_{4}$} (VG15.north);
+    \draw [edge, rounded corners]
+      (VG12) ..controls ($(VG12.north) + (0,1.75)$) and ($(VG15.north) + (0,1.75)$) .. node [above] {$e^{1}_{2}$} (VG15.north);
+    \end{scope}
+
+    % graph G_2
+    \begin{scope}[yshift=-8.5cm]
+      % graph H
+      \draw (-1,0) node {$G^2$};
+
+      \foreach \x/\l in {1/1,8/2,10/3}
+        \node [vertex,fill=black,label=below:$v^{2}_{\l}$] (VG2\x) at (\x,0) {};
+
+    \draw [edge]
+        (VG21) ..controls ($(VG21.north) + (0,2.75)$) and ($(VG28.north) + (0,2.75)$) .. node [above] {$e^{2}_{1}$} (VG28.north);
+    \draw [edge]
+        (VG28) ..controls ($(VG28.north) + (0,.75)$) and ($(VG210.north) + (0,.75)$) .. node [above] {$e^{2}_{2}$} (VG210.north);
+    \end{scope}
+
+    % graph G_3
+    \begin{scope}[yshift=-12cm]
+      % graph H
+      \draw (-1,0) node {$G^3$};
+
+      \foreach \x/\l in {4/1,6/2,7/3,12/4}
+        \node [vertex,fill=black,label=below:$v^{3}_{\l}$] (VG3\x) at (\x,0) {};
+
+    \draw [edge]
+      (VG34) ..controls ($(VG34.north) + (0,.75)$) and ($(VG36.north) + (0,.75)$) .. node [above] {$e^{3}_{3}$} (VG36.north);
+    \draw [edge]
+      (VG34) ..controls ($(VG34.north) + (0,1.75)$) and ($(VG37.north) + (0,1.75)$) .. node [above] {$e^{3}_{1}$} (VG37.north);
+    \draw [edge]
+      (VG36) ..controls ($(VG36.north) + (0,.5)$) and ($(VG37.north) + (0,.5)$) .. node [above] {$e^{3}_{4}$} (VG37.north);
+    \draw [edge]
+      (VG37) ..controls ($(VG37.north) + (0,1.75)$) and ($(VG312.north) + (0,1.75)$) .. node [above] {$e^{3}_{2}$} (VG312.north);
+    \end{scope}
+
+  \end{tikzpicture}
+  \caption{\label{fig:3-Linear-Graph Coloring}%
+  A $(G^0 \,\mid\, G^1, G^2, G^3)$ instance of \textsc{$3$-Linear-Graph Coloring} together with an alignment
+  describing a solution.}
+\end{figure}

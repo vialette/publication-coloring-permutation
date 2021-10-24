@@ -1,0 +1,193 @@
+\section{Definitions}
+\label{section:Definitions}
+
+\subsection*{\textbf{Permutation}}
+
+For any non-negative integer $n$, we let $[n]$ stand for
+the set $\{1, 2, \dots, n\}$.
+% We follow the usual terminology on words~\cite{ChoffrutKarhumaki1997}.
+% Let us recall here the most important ones. Let $u$ be a word. The
+% length of $u$ is denoted by $|u|$. The {\em empty word}, the only word
+% of null length, is denoted by $\epsilon$. For any $i \in [|u|]$, the
+% $i$-th letter of $u$ is denoted by $u(i)$. If $I$ is a subset of
+% $[|u|]$, $u_{|I}$ is the subword of $u$ consisting in the letters of $u$
+% at the positions specified by the elements of $I$.
+% A \emph{permutation} of size $n$ is a word $\pi$ of length $n$ on the alphabet $[n]$ such
+% that each letter admits exactly one occurrence. The set of all
+% permutations of size $n$ is denoted by $S_n$.
+
+\begin{definition}[Direct sum and skew sum]
+  Given a permutation $\pi$ of length $m$ and the permutation $\sigma$
+  of length $n$, the \emph{skew sum} of $\pi$ and $\sigma$ is the permutation
+  of length $m+n$ defined by
+  \begin{align*}
+    (\pi \ominus \sigma )(i)
+    &=
+    \begin{cases}
+      \pi(i)+n & \text{for $1\leq i \leq m$},\\
+      \sigma(i-m) & \text{for $m+1 \leq i\leq m+n$,}
+    \end{cases}
+    \intertext{and the \emph{direct sum} of $\pi$ and $\sigma$ is the
+    permutation of length $m+n$ defined by}
+    (\pi \oplus \sigma )(i)
+    &=
+    \begin{cases}
+      \pi(i) & \text{for $1\leq i \leq m$},\\
+      \sigma(i-m) + m & \text{for $m+1 \leq i\leq m+n$.}
+    \end{cases}
+  \end{align*}
+\end{definition}
+
+\begin{definition}[Lifting]
+  Let $\pi = \pi_1 \pi_1 \dots \pi_n$ be a permutation of size $n$ and
+  $k$ be a positive integer.
+  The \emph{$k$-lifting} of $\pi$, denoted $\pi \;[k]$,
+  is the permutation
+  $(k+\pi_1) (k+\pi_2) \dots (k+\pi_n)$.
+\end{definition}
+
+\begin{definition}[Monotone]
+	For any positive integer $k$,
+  we let $\mathbf{\nearrow}_k$ stand for the
+  \emph{increasing permutation} $1 2 \dots k$
+  and $\mathbf{\searrow}_k$ stand for the \emph{decreasing permutation}
+  $k (k-1) \dots 1$.
+\end{definition}
+
+\begin{definition}[Reduced form]
+    If $\pi$ is a permutation on some set $X$,
+    the \emph{reduced form} of $\pi$, denoted $\RED(\pi)$, is the permutation
+    obtained from $\pi$ by replacing its $i$-th smallest entry
+    with $i$.
+    For instance, $\RED(31845) = 21534$.
+\end{definition}
+
+\begin{definition}[Order-isomorphism]
+    Two permutations $\sigma_1$ and $\sigma_2$ are \emph{order-isomorphic},
+    denoted $\sigma_1 \simeq \sigma_2$,
+    if $\RED(\sigma_1) = \RED(\sigma_2)$.
+\end{definition}
+
+\begin{definition}[Pattern containment]
+    A permutation $\sigma$ is said to be \emph{contained} in, or to be
+    a \emph{subpermutation} of, another permutation $\pi$, denoted
+    $\sigma \preceq \pi$, if $\pi$ has a (not necessarily contiguous)
+    subsequence whose terms are order-isomorphic to $\sigma$ (we also
+    say that $\pi$ \emph{admits an occurrence} of the \emph{pattern}
+    $\sigma$).
+    If such a subsequence does not exist, $\pi$ is said to \emph{avoid}
+    $\sigma$.
+\end{definition}
+
+\begin{definition}[permutation coloring]
+  Let $\pi$ be a permutation of $X$.
+  A \emph{$k$-coloring} of $\pi$ is a mapping $f : X \to [k]$.
+  For every $i \in [k]$, the \emph{pattern induced} by color $i$ in $\pi$
+  is the permutation obtained from $\pi$ by deleting all elements but
+  those colored with color $i$.
+\end{definition}
+
+Given permutations $\pi$ and $\sigma_1, \sigma_2, \dots, \sigma_k$,
+the permutation $\pi$ is said to be
+\emph{$(\sigma_1, \sigma_2, \ldots, \sigma_k)$-colorable}
+if there exists a
+$k$-coloring of $\pi$ such that, for every $1 \leq i \leq k$, the
+pattern of $\pi$ induced by color $i$ is order-isomorphic to $\sigma_i$.
+The \textsc{$k$-Permutation Coloring} problem is to decide the existence of
+such a $k$-coloring of $\pi$.
+
+\begin{example}
+The permutation $\pi = 483125679$ is $(123, 3214, 12)$-colorable
+as shown in
+$
+\raisebox{1.5pt}{$4$}
+\raisebox{0pt}{$8$}
+\raisebox{0pt}{$3$}
+\raisebox{-1.5pt}{$1$}
+\raisebox{0pt}{$2$}
+\raisebox{-1.5pt}{$5$}
+\raisebox{1.5pt}{$6$}
+\raisebox{1.5pt}{$7$}
+\raisebox{0pt}{$9$}
+$
+where
+$467 \simeq 123$,
+$8329 \simeq 3214$ and
+$15 \simeq 12$.
+\end{example}
+
+A \emph{separable permutation} is a permutation that has a \emph{separating tree}:
+a rooted binary tree in which the elements
+of the permutation appear (in permutation order) at the leaves of the tree,
+and in which the descendants of each tree node form a contiguous subset of
+these elements.
+Each interior node of the tree is either a positive node in which all
+descendants of the left child are smaller than all descendants of the right node,
+or a negative node in which all descendants of the left node are greater than all
+descendants of the right node.
+Separable permutations may be characterized by the forbidden permutation
+patterns $2413$ and $3142$.
+The separable permutations are enumerated by the Schröder numbers.
+
+\subsection*{\textbf{Linear graphs}}
+
+A \emph{graph} is an ordered pair $G = (V, E)$ comprising a set $V$ of
+vertices together with a set $E$ of edges which are 2-element subsets of $V$.
+The \emph{order} and the \emph{size} of the graph $G$ stand for
+$|V|$ and $|E|$, respectively.
+A \emph{linear graph} is a graph equipped with a total order $<_G$
+(or simply $<$ if the name of the graph is clear in the context).
+In case of linear graphs, we write an edge between vertices $i$ and $j$ of
+$G$, $i <_G j$, as the pair $(i, j)$.
+Two edges of a graph are \emph{disjoint} if they do not share a common
+vertex and a \emph{matching} is a set $\mathcal{M} \subseteq E$ of
+pairwise independent edges.
+A \emph{perfect matching} is a matching which matches all vertices of the
+graph.
+A \emph{connected component} of a graph is a subgraph in which any
+two vertices are connected to each other by paths, and which is connected
+to no additional vertices in the supergraph.
+Let $G = (V, E)$ be a graph and $S \subseteq V$ be any subset of
+vertices of $G$. Then the \emph{induced subgraph} $G[S]$ is the graph whose
+vertex set is $S$ and whose edge set consists of all of the edges in $E$
+that have both endpoints in $S$.
+The above definitions do apply to linear graphs.
+
+For a linear graph $G = (V,E)$, we shall usually write the vertices as a
+word $w_G$, where the order $<_G$ is understood to be the left-to-right order
+in $w_G$,
+so that $w_G = u_1 u_2 \dots u_n$ stands for
+$V = \{u_1, u_2, \dots, u_n\}$ with
+$u_1 <_G u_2 <_G \cdots <_G u_n$.
+This naturally extends to subsets $V' \subseteq V$ of $G$:
+if $V'$ and $V''$ are two disjoint subsets of $V$, we let $V' <_G V''$
+stand for $v' <_G v''$ for every $v' \in V'$ and every $v'' \in V''$.
+
+Two linear graphs $G$ and $H$ are isomorphic,
+denoted by $G \simeq H$,
+if there exists an one-to-one mapping
+$\varphi : V_G \to V_H$ such that
+(i)
+$i <_G j$ if and only if $\varphi(i) <_H \varphi(j)$ and
+(ii)
+$(i, j) \in E_G$ if and only if $(\varphi(i), \varphi(j)) \in E_H$.
+\todo{Do we really need this definition?}
+
+Given linear graphs $G^0$, and $G^1, G^2, \dots, G^k$,
+the linear graph $G^0$ is said to be
+\emph{$(G^1, G^2, \ldots, G^k)$-colorable}
+if there exists a $k$-coloring of the connected components of $H$ such that
+the linear subgraph $G^0[i]$ induced by the subset of all vertices with the
+same color $i$, $1 \leq i \leq k$, is isomorphic to $G^i$.
+Notice that the definition does not require the linear graphs
+$G^1, G^2, \ldots, G^k$ to be necessarily connected
+and hence that distinct connected components of $G^0$ may receive the
+same color in the $k$-vertex coloring.
+
+Given linear graphs $G^0$ and $G^1, G^2, \ldots, G^k$,
+the \textsc{$k$-Linear Graph Coloring} problem is to decide whether $G^0$
+is $(G^1, G^2, \ldots, G^k)$ -colorable.
+An illustration of this definition is given in
+Figure~\ref{fig:example decomposition}.
+
+\input{figures/linear-graph-split-example}
