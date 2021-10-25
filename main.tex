@@ -1,6 +1,6 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\documentclass[a4paper,UKenglish]{lipics-v2016}
+\documentclass[a4paper,UKenglish,cleveref,autoref,thm-restate]{lipics-v2021}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -19,24 +19,6 @@
 \usepackage{graphicx}
 \usepackage{complexity}
 \usepackage{todonotes}
-% \usepackage{subfigure}
-\usepackage[%
-    linewidth=1pt,
-    middlelinecolor= black,
-    middlelinewidth=0.4pt,
-    roundcorner=1pt,
-    topline = false,
-    rightline = false,
-    bottomline = false,
-    rightmargin=0pt,
-    skipabove=0pt,
-    skipbelow=0pt,
-    leftmargin=-1cm,
-    innerleftmargin=1cm,
-    innerrightmargin=0pt,
-    innertopmargin=0pt,
-    innerbottommargin=0pt,
-]{mdframed}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -140,15 +122,6 @@
                           line width=2,
                           color=black!50}}
 
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\theoremstyle{plain}
-\newtheorem{conjecture}[theorem]{Conjecture}
-\newtheorem{proposition}[theorem]{Proposition}
-\newtheorem{observation}[theorem]{Observation}
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \DeclareMathOperator{\RANK}{rank}
@@ -188,33 +161,30 @@
 % the top page column
 \titlerunning{On coloring permutations}
 
-\author[1]{Laurent Bulteau}
-\author[2]{Danny Hermelin}
-\author[3]{Romeo Rizzi}
-\author[1]{St\'ephane Vialette}
-\affil[1]{Universit\'e Paris-Est, LIGM (UMR 8049), CNRS, UPEM, ESIEE Paris, ENPC,
-F-77454, Marne-la-Vallée, France\\
-  \texttt{\{laurent.bulteau, stephane.vialette\}@univ-eiffel.fr}}
-\affil[2]{Ben-Gurion University of the Negev, Israely\\
-  \texttt{hermelin@bgu.ac.il}}
-\affil[3]{Computer Science Department, University of Verona, Verona, Italy\\
-  \texttt{romeo.rizzi@univr.it}}
+\author{Laurent Bulteau}{LIGM, Univ Gustave Eiffel, CNRS, 77454 Marne-la-Vallée, France}{laurent.bulteau@univ-eiffel.fr}{}{}
+\author{Danny Hermelin}{Ben-Gurion University of the Negev, Israel}{hermelin@bgu.ac.il}{}{}
+\author{Romeo Rizzi}{Computer Science Department, University of Verona, Verona, Italy}{romeo.rizzi@univr.it}{}{}
+\author{Stéphane Vialette}{LIGM, Univ Gustave Eiffel, CNRS, 77454 Marne-la-Vallée, France}{stephane.vialette@univ-eiffel.fr}{}{}
 
 %mandatory. First: Use abbreviated first/middle names. Second (only in severe cases): Use first author plus 'et. al.'
 \authorrunning{L.~Bulteau et. al.}
 
-%mandatory, please use full first names. LIPIcs license is "CC-BY";
-%http://creativecommons.org/licenses/by/3.0/
-\Copyright{Laurent Bulteau, Danny Hermelin, Romeo Rizzi and St\'ephane Vialette}
+\ccsdesc[500]{Theory of computation~Problems, reductions and completeness}
+\ccsdesc[500]{Mathematics of computing~Graph algorithms}
+\ccsdesc[300]{Mathematics of computing~Graphs and surfaces}%TODO mandatory: Please choose ACM 2012 classifications from https://dl.acm.org/ccs/ccs_flat.cfm
 
-\subjclass{Dummy classification -- please refer to \url{http://www.acm.org/about/class/ccs98-html}}% mandatory: Please choose ACM 1998 classifications from http://www.acm.org/about/class/ccs98-html . E.g., cite as "F.1.1 Models of Computation".
-\keywords{Dummy keyword -- please provide 1--5 keywords}% mandatory: Please provide 1-5 keywords
+\keywords{Stringology, shuffle.}
+
+\category{} %optional, e.g. invited paper
+
+\relatedversion{}
+
 % Author macros::end %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %Editor-only macros:: begin (do not touch as author)%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\EventEditors{John Q. Open and Joan R. Acces}
+\EventEditors{John Q. Open and Joan R. Access}
 \EventNoEds{2}
 \EventLongTitle{42nd Conference on Very Important Topics (CVIT 2016)}
 \EventShortTitle{CVIT 2016}
@@ -241,19 +211,19 @@ F-77454, Marne-la-Vallée, France\\
 \input{section1}
 
 % Definitions
-\input{section2}
+% \input{section2}
 
 % Linear graph coloring
-\input{section3}
+% \input{section3}
 
 % Permutation coloring
-\input{section4}
+% \input{section4}
 
 % Monotonic patterns
-\input{section5}
+% \input{section5}
 
 % Conclusion
-\input{section6}
+% \input{section6}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
