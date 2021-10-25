@@ -5,7 +5,7 @@
     scale=.425,
     box/.style={
       shade,
-      blur shadow={shadow blur steps=5,shadow blur extra rounding=1.3pt},
+      %blur shadow={shadow blur steps=5,shadow blur extra rounding=1.3pt},
       top color=black!5,
       bottom color=black!40
     },
@@ -20,21 +20,26 @@
     }
   ]
 
-  \draw [ultra thick] (0,0) rectangle (35,35);
-  \draw [very thin,step=0.5cm] (0,0) grid (35,35);
-
-  \draw [ultra thick] (0,11) -- (35,11);
-  \draw [ultra thick] (13,0) -- (13,35);
-
-  % edges
-  \foreach \e in {1,2,...,11} {
-      \draw [box] (11 + \e*2, -1 + \e) rectangle (13 + \e*2, \e);
-      \draw [very thin,step=0.5cm] (11 + \e*2, -1 + \e) grid (13 + \e*2, \e);
-      \draw [fill=black] (11.25 + \e*2, -.25 + \e) circle (0.15);
-      \draw [fill=black] (12.75 + \e*2, -.75 + \e) circle (0.15);
+  % vertices
+  \foreach \v in {1,2,...,16} {
+    \draw [box] (\v - 1, 7 + 1.5*\v - .5) rectangle (\v, 7 + 1.5*\v + 1);
+    \draw [very thin,step=0.5cm] (\v - 1, 7 + 1.5*\v - .5) grid (\v, 7 + 1.5*\v + 1);
+    \draw [fill=black] (\v - 1 + .25, 7 + 1.5*\v + .75) circle (0.15);
+    \draw [fill=black] (\v - .25, 7 + 1.5*\v - .25) circle (0.15);
   }
 
-  % vertices
+  % edges
+  \foreach \e in {1,2,...,8} {
+      %\draw [box] (16 + \e*2, -1 + \e) rectangle (16 + \e*2, \e);
+      %\draw [very thin,step=0.5cm] (16 + \e*2, -1 + \e) grid (17 + \e*2, \e);
+      \draw [fill=black] (14.25 + \e*2, -.25 + \e) circle (0.15);
+      \draw [fill=black] (15.75 + \e*2, -.75 + \e) circle (0.15);
+  }
 
+  \draw [ultra thick] (0,0) rectangle (32,32);
+  \draw [very thin,step=0.5cm] (0,0) grid (32,32);
+
+  \draw [ultra thick] (0,8) -- (32,8);
+  \draw [ultra thick] (16,0) -- (16,32);
   \end{tikzpicture}
 \end{figure}
