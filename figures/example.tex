@@ -28,7 +28,7 @@
 
   % edges
   \foreach \e in {1,2,...,11} {
-      \draw [ultra thick,box] (11 + \e*2, -1 + \e) rectangle (13 + \e*2, \e);
+      \draw [box] (11 + \e*2, -1 + \e) rectangle (13 + \e*2, \e);
       \draw [very thin,step=0.5cm] (11 + \e*2, -1 + \e) grid (13 + \e*2, \e);
       \draw [fill=black] (11.25 + \e*2, -.25 + \e) circle (0.15);
       \draw [fill=black] (12.75 + \e*2, -.75 + \e) circle (0.15);
