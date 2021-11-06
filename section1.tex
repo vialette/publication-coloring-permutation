@@ -9,15 +9,30 @@ if there exists a $k$-coloring of $\pi$ (\emph{i.e.}, assign one color
 among $k$ available colors to each element of $\pi$) such that the
 pattern induced by each color $i$, $1 \leq i \leq k$, is order-isomorphic
 to $\sigma_i$.
-For example, $\pi = 192854367$ is $(12, 312, 4213)$-colorable
-(\emph{i.e.}, $\pi \in 12 \bullet 312 \bullet 4213$) since
-the patterns $15$, $926$ and $8537$ are order-isomorphic to
-$12$, $312$ and $4213$, respectivelly.
+For example, $\pi = 192854367$ is 
+$({\color{red}12}, {\color{teal}312}, {\color{blue}4213})$-colorable
+as shown by 
+$\pi = 
+\raisebox{2pt}{{\color{red}1}}
+\raisebox{0pt}{{\color{teal}92}}
+\raisebox{-2pt}{{\color{blue}8}}
+\raisebox{2pt}{{\color{red}5}}
+\raisebox{-2pt}{{\color{blue}43}}
+\raisebox{0pt}{{\color{teal}6}}
+\raisebox{-2pt}{{\color{blue}7}}$,
+${\color{red}15} \simeq 12$,
+${\color{teal}926} \simeq 312$ and
+${\color{blue}8437} \simeq 4213$.
+Given permutations $\pi$ and $\sigma_1, \sigma_2, \ldots, \sigma_k$,
+the \textsc{$k$-Permutation Coloring} problem is to decide whether $\pi$
+is $(\sigma_1, \sigma_2, \ldots, \sigma_k)$ -colorable.
 
-The \textsc{$k$-Permutation Coloring} problem is defined as follows:
-Given permutations $\pi$ and $\sigma_i$, $1 \leq i \leq k$, with
-$|\pi| = \sum_{i=1}^k |\sigma_i|$,
-decide the question
-$\pi \in \sigma_1 \bullet \sigma_2 \bullet \dots \bullet \sigma_k$.
+Given a permutation $\pi$, deciding whether $\pi$ is the shuffle of 
+two order-isomorphic patterns is \NP-complete \cite{DBLP:journals/tcs/GiraudoV18}.
+In other words, given a permutation $\pi$, deciding whether 
+there exists a permutations $\sigma$ such that $\pi$ is 
+$(\sigma, \sigma)$-colorable is \NP-complete,
+even if $\pi$ is $(213, 231)$-avoiding.
 
-\input{figures/example}
+The main question is: 
+given permutations $\pi$ and $\sigma$, is $\pi$ $(\sigma, \sigma)$-colorable?

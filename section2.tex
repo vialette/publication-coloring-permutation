@@ -1,20 +1,10 @@
 \section{Definitions}
 \label{section:Definitions}
 
-\subsection*{\textbf{Permutation}}
-
 For any non-negative integer $n$, we let $[n]$ stand for
 the set $\{1, 2, \dots, n\}$.
-% We follow the usual terminology on words~\cite{ChoffrutKarhumaki1997}.
-% Let us recall here the most important ones. Let $u$ be a word. The
-% length of $u$ is denoted by $|u|$. The {\em empty word}, the only word
-% of null length, is denoted by $\epsilon$. For any $i \in [|u|]$, the
-% $i$-th letter of $u$ is denoted by $u(i)$. If $I$ is a subset of
-% $[|u|]$, $u_{|I}$ is the subword of $u$ consisting in the letters of $u$
-% at the positions specified by the elements of $I$.
-% A \emph{permutation} of size $n$ is a word $\pi$ of length $n$ on the alphabet $[n]$ such
-% that each letter admits exactly one occurrence. The set of all
-% permutations of size $n$ is denoted by $S_n$.
+
+\subsection*{\textbf{Permutation}}
 
 \begin{definition}[Direct sum and skew sum]
   Given a permutation $\pi$ of length $m$ and the permutation $\sigma$
@@ -80,21 +70,15 @@ the set $\{1, 2, \dots, n\}$.
 \end{definition}
 
 \begin{definition}[permutation coloring]
-  Let $\pi$ be a permutation of $X$.
-  A \emph{$k$-coloring} of $\pi$ is a mapping $f : X \to [k]$.
-  For every $i \in [k]$, the \emph{pattern induced} by color $i$ in $\pi$
-  is the permutation obtained from $\pi$ by deleting all elements but
-  those colored with color $i$.
+  Given permutations $\pi$ and $\sigma_1, \sigma_2, \dots, \sigma_k$,
+  the permutation $\pi$ is said to be
+  \emph{$(\sigma_1, \sigma_2, \ldots, \sigma_k)$-colorable}
+  if there exists a
+  $k$-coloring of $\pi$ such that, for every $1 \leq i \leq k$, the
+  pattern of $\pi$ induced by color $i$ is order-isomorphic to $\sigma_i$.
+  The \textsc{$k$-Permutation Coloring} problem is to decide the existence of
+  such a $k$-coloring of $\pi$.
 \end{definition}
-
-Given permutations $\pi$ and $\sigma_1, \sigma_2, \dots, \sigma_k$,
-the permutation $\pi$ is said to be
-\emph{$(\sigma_1, \sigma_2, \ldots, \sigma_k)$-colorable}
-if there exists a
-$k$-coloring of $\pi$ such that, for every $1 \leq i \leq k$, the
-pattern of $\pi$ induced by color $i$ is order-isomorphic to $\sigma_i$.
-The \textsc{$k$-Permutation Coloring} problem is to decide the existence of
-such a $k$-coloring of $\pi$.
 
 \begin{example}
 The permutation $\pi = 483125679$ is $(123, 3214, 12)$-colorable
@@ -116,6 +100,10 @@ $8329 \simeq 3214$ and
 $15 \simeq 12$.
 \end{example}
 
+Given permutations $\pi$ and $\sigma^1, \sigma^2, \ldots, \sigma^k$,
+the \textsc{$k$-Permutation Coloring} problem is to decide whether $\pi0$
+is $(\sigma^1, \sigma^2, \ldots, \sigma^k)$ -colorable.
+
 A \emph{separable permutation} is a permutation that has a \emph{separating tree}:
 a rooted binary tree in which the elements
 of the permutation appear (in permutation order) at the leaves of the tree,
@@ -129,65 +117,22 @@ Separable permutations may be characterized by the forbidden permutation
 patterns $2413$ and $3142$.
 The separable permutations are enumerated by the Schröder numbers.
 
-\subsection*{\textbf{Linear graphs}}
+\subsection*{\textbf{Matchings}}
 
-A \emph{graph} is an ordered pair $G = (V, E)$ comprising a set $V$ of
-vertices together with a set $E$ of edges which are 2-element subsets of $V$.
-The \emph{order} and the \emph{size} of the graph $G$ stand for
-$|V|$ and $|E|$, respectively.
-A \emph{linear graph} is a graph equipped with a total order $<_G$
-(or simply $<$ if the name of the graph is clear in the context).
-In case of linear graphs, we write an edge between vertices $i$ and $j$ of
-$G$, $i <_G j$, as the pair $(i, j)$.
-Two edges of a graph are \emph{disjoint} if they do not share a common
-vertex and a \emph{matching} is a set $\mathcal{M} \subseteq E$ of
-pairwise independent edges.
-A \emph{perfect matching} is a matching which matches all vertices of the
-graph.
-A \emph{connected component} of a graph is a subgraph in which any
-two vertices are connected to each other by paths, and which is connected
-to no additional vertices in the supergraph.
-Let $G = (V, E)$ be a graph and $S \subseteq V$ be any subset of
-vertices of $G$. Then the \emph{induced subgraph} $G[S]$ is the graph whose
-vertex set is $S$ and whose edge set consists of all of the edges in $E$
-that have both endpoints in $S$.
-The above definitions do apply to linear graphs.
-
-For a linear graph $G = (V,E)$, we shall usually write the vertices as a
-word $w_G$, where the order $<_G$ is understood to be the left-to-right order
-in $w_G$,
-so that $w_G = u_1 u_2 \dots u_n$ stands for
-$V = \{u_1, u_2, \dots, u_n\}$ with
-$u_1 <_G u_2 <_G \cdots <_G u_n$.
-This naturally extends to subsets $V' \subseteq V$ of $G$:
-if $V'$ and $V''$ are two disjoint subsets of $V$, we let $V' <_G V''$
-stand for $v' <_G v''$ for every $v' \in V'$ and every $v'' \in V''$.
-
-Two linear graphs $G$ and $H$ are isomorphic,
-denoted by $G \simeq H$,
-if there exists an one-to-one mapping
-$\varphi : V_G \to V_H$ such that
-(i)
-$i <_G j$ if and only if $\varphi(i) <_H \varphi(j)$ and
-(ii)
-$(i, j) \in E_G$ if and only if $(\varphi(i), \varphi(j)) \in E_H$.
-\todo{Do we really need this definition?}
-
-Given linear graphs $G^0$, and $G^1, G^2, \dots, G^k$,
-the linear graph $G^0$ is said to be
-\emph{$(G^1, G^2, \ldots, G^k)$-colorable}
-if there exists a $k$-coloring of the connected components of $H$ such that
-the linear subgraph $G^0[i]$ induced by the subset of all vertices with the
-same color $i$, $1 \leq i \leq k$, is isomorphic to $G^i$.
-Notice that the definition does not require the linear graphs
-$G^1, G^2, \ldots, G^k$ to be necessarily connected
-and hence that distinct connected components of $G^0$ may receive the
-same color in the $k$-vertex coloring.
-
-Given linear graphs $G^0$ and $G^1, G^2, \ldots, G^k$,
-the \textsc{$k$-Linear Graph Coloring} problem is to decide whether $G^0$
-is $(G^1, G^2, \ldots, G^k)$ -colorable.
+A \emph{matching} $\mathcal{M}$ of $[2n]$ is a partition of $[2n]$ into size-$2$ parts,
+and we refer to every size-$2$ part of $\mathcal{M}$ as an \emph{edge}.
+Given linear matchings $\mathcal{M}^0$, and $\mathcal{M}^1, \mathcal{M}^2, \dots, \mathcal{M}^k$,
+the matching $\mathcal{M}^0$ is said to be
+\emph{$(\mathcal{M}^1, \mathcal{M}^2, \ldots, \mathcal{M}^k)$-colorable}
+if there exists a $k$-coloring of the edges $\mathcal{M}^0$ such that
+the sub-matching $\mathcal{M}^0[i]$ induced by the subset of all edges with the
+same color $i$, $1 \leq i \leq k$, is isomorphic to $\mathcal{M}^i$.
 An illustration of this definition is given in
-Figure~\ref{fig:example decomposition}.
+Figure~\ref{fig:example 3-matching colorable}.
 
-\input{figures/linear-graph-split-example}
+Given matchings $G\mathcal{M}^0$ and $\mathcal{M}^1, \mathcal{M}^2, \ldots, \mathcal{M}^k$,
+the \textsc{$k$-Matching Coloring} problem is to decide whether $\mathcal{M}^0$
+is $(\mathcal{M}^1, \mathcal{M}^2, \ldots, \mathcal{M}^k)$ -colorable.
+
+
+\input{figures/example-3-matching-coloring}
