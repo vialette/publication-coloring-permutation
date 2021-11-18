@@ -1,20 +1,10 @@
 \section{Definitions}
 \label{section:Definitions}
 
-\subsection*{\textbf{Permutation}}
-
 For any non-negative integer $n$, we let $[n]$ stand for
 the set $\{1, 2, \dots, n\}$.
-% We follow the usual terminology on words~\cite{ChoffrutKarhumaki1997}.
-% Let us recall here the most important ones. Let $u$ be a word. The
-% length of $u$ is denoted by $|u|$. The {\em empty word}, the only word
-% of null length, is denoted by $\epsilon$. For any $i \in [|u|]$, the
-% $i$-th letter of $u$ is denoted by $u(i)$. If $I$ is a subset of
-% $[|u|]$, $u_{|I}$ is the subword of $u$ consisting in the letters of $u$
-% at the positions specified by the elements of $I$.
-% A \emph{permutation} of size $n$ is a word $\pi$ of length $n$ on the alphabet $[n]$ such
-% that each letter admits exactly one occurrence. The set of all
-% permutations of size $n$ is denoted by $S_n$.
+
+\subsection*{\textbf{Permutation}}
 
 \begin{definition}[Direct sum and skew sum]
   Given a permutation $\pi$ of length $m$ and the permutation $\sigma$
@@ -80,21 +70,15 @@ the set $\{1, 2, \dots, n\}$.
 \end{definition}
 
 \begin{definition}[permutation coloring]
-  Let $\pi$ be a permutation of $X$.
-  A \emph{$k$-coloring} of $\pi$ is a mapping $f : X \to [k]$.
-  For every $i \in [k]$, the \emph{pattern induced} by color $i$ in $\pi$
-  is the permutation obtained from $\pi$ by deleting all elements but
-  those colored with color $i$.
+  Given permutations $\pi$ and $\sigma_1, \sigma_2, \dots, \sigma_k$,
+  the permutation $\pi$ is said to be
+  \emph{$(\sigma_1, \sigma_2, \ldots, \sigma_k)$-colorable}
+  if there exists a
+  $k$-coloring of $\pi$ such that, for every $1 \leq i \leq k$, the
+  pattern of $\pi$ induced by color $i$ is order-isomorphic to $\sigma_i$.
+  The \textsc{$k$-Permutation Coloring} problem is to decide the existence of
+  such a $k$-coloring of $\pi$.
 \end{definition}
-
-Given permutations $\pi$ and $\sigma_1, \sigma_2, \dots, \sigma_k$,
-the permutation $\pi$ is said to be
-\emph{$(\sigma_1, \sigma_2, \ldots, \sigma_k)$-colorable}
-if there exists a
-$k$-coloring of $\pi$ such that, for every $1 \leq i \leq k$, the
-pattern of $\pi$ induced by color $i$ is order-isomorphic to $\sigma_i$.
-The \textsc{$k$-Permutation Coloring} problem is to decide the existence of
-such a $k$-coloring of $\pi$.
 
 \begin{example}
 The permutation $\pi = 483125679$ is $(123, 3214, 12)$-colorable
@@ -116,6 +100,10 @@ $8329 \simeq 3214$ and
 $15 \simeq 12$.
 \end{example}
 
+Given permutations $\pi$ and $\sigma^1, \sigma^2, \ldots, \sigma^k$,
+the \textsc{$k$-Permutation Coloring} problem is to decide whether $\pi0$
+is $(\sigma^1, \sigma^2, \ldots, \sigma^k)$ -colorable.
+
 A \emph{separable permutation} is a permutation that has a \emph{separating tree}:
 a rooted binary tree in which the elements
 of the permutation appear (in permutation order) at the leaves of the tree,
@@ -129,6 +117,7 @@ Separable permutations may be characterized by the forbidden permutation
 patterns $2413$ and $3142$.
 The separable permutations are enumerated by the Schröder numbers.
 
+<<<<<<< HEAD
 \subsection*{\textbf{Linear graphs}}
 
 A \emph{matching} $\mathcal{M}$ of size $m$, written $|\mathcal{M}| = m$, 
@@ -157,3 +146,24 @@ $\mathcal{M}^0$ is a merge of matchings $\mathcal{M}^1, \dots, \mathcal{M}^k$.
 An illustration of this definition is given in Figure~\ref{fig:matching-merge-example}.
 
 \input{figures/matching-merge-example}
+=======
+\subsection*{\textbf{Matchings}}
+
+A \emph{matching} $\mathcal{M}$ of $[2n]$ is a partition of $[2n]$ into size-$2$ parts,
+and we refer to every size-$2$ part of $\mathcal{M}$ as an \emph{edge}.
+Given linear matchings $\mathcal{M}^0$, and $\mathcal{M}^1, \mathcal{M}^2, \dots, \mathcal{M}^k$,
+the matching $\mathcal{M}^0$ is said to be
+\emph{$(\mathcal{M}^1, \mathcal{M}^2, \ldots, \mathcal{M}^k)$-colorable}
+if there exists a $k$-coloring of the edges $\mathcal{M}^0$ such that
+the sub-matching $\mathcal{M}^0[i]$ induced by the subset of all edges with the
+same color $i$, $1 \leq i \leq k$, is isomorphic to $\mathcal{M}^i$.
+An illustration of this definition is given in
+Figure~\ref{fig:example 3-matching colorable}.
+
+Given matchings $G\mathcal{M}^0$ and $\mathcal{M}^1, \mathcal{M}^2, \ldots, \mathcal{M}^k$,
+the \textsc{$k$-Matching Coloring} problem is to decide whether $\mathcal{M}^0$
+is $(\mathcal{M}^1, \mathcal{M}^2, \ldots, \mathcal{M}^k)$ -colorable.
+
+
+\input{figures/example-3-matching-coloring}
+>>>>>>> fa71033edefafa3f3a1a458af386c80dc8565f59

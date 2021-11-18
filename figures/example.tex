@@ -5,41 +5,115 @@
     scale=.425,
     box/.style={
       shade,
-      %blur shadow={shadow blur steps=5,shadow blur extra rounding=1.3pt},
+      blur shadow={shadow blur steps=2,shadow blur extra rounding=1.5pt},
       top color=black!5,
-      bottom color=black!40
-    },
-    gadget/.style={
-      box,
-      rounded corners
-    },
-    r/.style={
-      box,
-      draw,
-      ultra thick,
+      bottom color=black!50,
+      ultra thick
     }
   ]
 
-  % vertices
+  % vertices gadgets
   \foreach \v in {1,2,...,16} {
     \draw [box] (\v - 1, 7 + 1.5*\v - .5) rectangle (\v, 7 + 1.5*\v + 1);
     \draw [very thin,step=0.5cm] (\v - 1, 7 + 1.5*\v - .5) grid (\v, 7 + 1.5*\v + 1);
     \draw [fill=black] (\v - 1 + .25, 7 + 1.5*\v + .75) circle (0.15);
     \draw [fill=black] (\v - .25, 7 + 1.5*\v - .25) circle (0.15);
+    \draw [] (33, 7 + 1.5*\v + .25) node {$v_{\v}$};
   }
 
-  % edges
+  % edges gadgets
   \foreach \e in {1,2,...,8} {
-      %\draw [box] (16 + \e*2, -1 + \e) rectangle (16 + \e*2, \e);
-      %\draw [very thin,step=0.5cm] (16 + \e*2, -1 + \e) grid (17 + \e*2, \e);
+      \draw [box] (14.25 + \e*2 - .25, -1 + \e) rectangle (15.75 + \e*2 + .25,  \e);
+      \draw [very thin,step=0.5cm] (14.25 + \e*2 - .25, -1 + \e) grid (15.75 + \e*2 + .25,  \e);
       \draw [fill=black] (14.25 + \e*2, -.25 + \e) circle (0.15);
       \draw [fill=black] (15.75 + \e*2, -.75 + \e) circle (0.15);
+      \draw [] (15 + \e*2, 33) node {$e_{\e}$};
   }
 
+  % edges 1-4
+  \draw [box] (16, 8) rectangle (18, 9.5);
+  \draw [very thin,step=0.5cm] (16, 8) grid (18, 9.5);
+  \draw [fill=black] (16.75, 8.75) circle (0.15);
+  \draw [box] (16, 12.5) rectangle (18, 14);
+  \draw [very thin,step=0.5cm] (16, 12.5) grid (18, 14);
+  \draw [fill=black] (17.25, 13.25) circle (0.15);
+
+  % edges 2-9
+  \draw [box] (18, 9.5) rectangle (20, 11);
+  \draw [very thin,step=0.5cm] (18, 9.5) grid (20, 11);
+  \draw [fill=black] (18.75, 10.25) circle (0.15);
+  \draw [box] (18, 20) rectangle (20, 21.5);
+  \draw [very thin,step=0.5cm] (18, 20) grid (20, 21.5);
+  \draw [fill=black] (19.25, 20.75) circle (0.15);
+
+  % edges 3-12
+  \draw [fill=black] (20.75, 11.75) circle (0.15);
+  \draw [fill=black] (21.25, 25.25) circle (0.15);
+
+  % edges 5-8
+  \draw [fill=black] (22.75, 14.75) circle (0.15);
+  \draw [fill=black] (23.25, 19.25) circle (0.15);
+
+  % edges 6-15
+  \draw [fill=black] (24.75, 16.25) circle (0.15);
+  \draw [fill=black] (25.25, 29.75) circle (0.15);
+
+  % edges 7-10
+  \draw [fill=black] (26.75, 17.75) circle (0.15);
+  \draw [fill=black] (27.25, 22.25) circle (0.15);
+
+  % edges 11-13
+  \draw [fill=black] (28.75, 23.75) circle (0.15);
+  \draw [fill=black] (29.25, 26.75) circle (0.15);
+
+  % edges 14-16
+  \draw [fill=black] (30.75, 28.25) circle (0.15);
+  \draw [fill=black] (31.25, 31.25) circle (0.15);
+
+  % x-labels
+  \node [anchor=west,rotate=-90] at (.25, -.25) {${\scriptstyle 1}$};
+  \node [anchor=west,rotate=-90] at (15.75, -.25) {${\scriptstyle 2n}$};
+  \node [anchor=west,rotate=-90] at (16.25, -.25) {${\scriptstyle 2n + (4 \times 0) + 1}$};
+  \node [anchor=west,rotate=-90] at (18.25, -.25) {${\scriptstyle 2n + (4 \times 1) + 1}$};
+  \node [anchor=west,rotate=-90] at (20.25, -.25) {${\scriptstyle 2n + (4 \times 2) + 1}$};
+  \node [anchor=west,rotate=-90] at (22.25, -.25) {${\scriptstyle 2n + (4 \times 3) + 1}$};
+  \node [anchor=west,rotate=-90] at (24.25, -.25) {${\scriptstyle 2n + (4 \times 4) + 1}$};
+  \node [anchor=west,rotate=-90] at (26.25, -.25) {${\scriptstyle 2n + (4 \times 5) + 1}$};
+  \node [anchor=west,rotate=-90] at (28.25, -.25) {${\scriptstyle 2n + (4 \times 6) + 1}$};
+  \node [anchor=west,rotate=-90] at (30.25, -.25) {${\scriptstyle 2n + (4 \times 7) + 1}$};
+  \node [anchor=west,rotate=-90] at (31.75, -.25) {${\scriptstyle 4n}$};
+
+  % y-labels
+  \node [anchor=east] at (-.25, .25) {${\scriptstyle 1}$};
+  \node [anchor=east] at (-.25, 7.55) {${\scriptstyle n}$};
+  \node [anchor=east] at (-.25, 8.25) {${\scriptstyle n + (3 \times 0) + 1}$};
+  \node [anchor=east] at (-.25, 9.75) {${\scriptstyle n + (3 \times 1) + 1}$};
+  \node [anchor=east] at (-.25, 11.25) {${\scriptstyle n + (3 \times 2) + 1}$};
+  \node [anchor=east] at (-.25, 12.75) {${\scriptstyle n + (3 \times 3) + 1}$};
+  \node [anchor=east] at (-.25, 14.25) {${\scriptstyle n + (3 \times 4) + 1}$};
+  \node [anchor=east] at (-.25, 15.75) {${\scriptstyle n + (3 \times 5) + 1}$};
+  \node [anchor=east] at (-.25, 17.25) {${\scriptstyle n + (3 \times 6) + 1}$};
+  \node [anchor=east] at (-.25, 18.75) {${\scriptstyle n + (3 \times 7) + 1}$};
+  \node [anchor=east] at (-.25, 20.25) {${\scriptstyle n + (3 \times 8) + 1}$};
+  \node [anchor=east] at (-.25, 21.75) {${\scriptstyle n + (3 \times 9) + 1}$};
+  \node [anchor=east] at (-.25, 23.25) {${\scriptstyle n + (3 \times 10) + 1}$};
+  \node [anchor=east] at (-.25, 24.75) {${\scriptstyle n + (3 \times 11) + 1}$};
+  \node [anchor=east] at (-.25, 26.25) {${\scriptstyle n + (3 \times 12) + 1}$};
+  \node [anchor=east] at (-.25, 27.75) {${\scriptstyle n + (3 \times 13) + 1}$};
+  \node [anchor=east] at (-.25, 29.25) {${\scriptstyle n + (3 \times 14) + 1}$};
+  \node [anchor=east] at (-.25, 30.75) {${\scriptstyle n + (3 \times 15) + 1}$};
+  \node [anchor=east] at (-.25, 31.75) {${\scriptstyle 4n}$};
+
+  % whole grid
   \draw [ultra thick] (0,0) rectangle (32,32);
   \draw [very thin,step=0.5cm] (0,0) grid (32,32);
 
-  \draw [ultra thick] (0,8) -- (32,8);
-  \draw [ultra thick] (16,0) -- (16,32);
+  % separators
+  \foreach \v in {0,1,2,...,16} {
+    \draw [ultra thick] (0, 8 + 1.5*\v) -- (32, 8 + 1.5*\v);
+  }
+  \foreach \e in {0,1,2,...,8} {
+    \draw [ultra thick] (16 + 2*\e, 0) -- (16 + 2*\e, 32);
+  }
   \end{tikzpicture}
 \end{figure}
