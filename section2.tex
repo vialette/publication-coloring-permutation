@@ -131,63 +131,29 @@ The separable permutations are enumerated by the Schröder numbers.
 
 \subsection*{\textbf{Linear graphs}}
 
-A \emph{graph} is an ordered pair $G = (V, E)$ comprising a set $V$ of
-vertices together with a set $E$ of edges which are 2-element subsets of $V$.
-The \emph{order} and the \emph{size} of the graph $G$ stand for
-$|V|$ and $|E|$, respectively.
-A \emph{linear graph} is a graph equipped with a total order $<_G$
-(or simply $<$ if the name of the graph is clear in the context).
-In case of linear graphs, we write an edge between vertices $i$ and $j$ of
-$G$, $i <_G j$, as the pair $(i, j)$.
-Two edges of a graph are \emph{disjoint} if they do not share a common
-vertex and a \emph{matching} is a set $\mathcal{M} \subseteq E$ of
-pairwise independent edges.
-A \emph{perfect matching} is a matching which matches all vertices of the
-graph.
-A \emph{connected component} of a graph is a subgraph in which any
-two vertices are connected to each other by paths, and which is connected
-to no additional vertices in the supergraph.
-Let $G = (V, E)$ be a graph and $S \subseteq V$ be any subset of
-vertices of $G$. Then the \emph{induced subgraph} $G[S]$ is the graph whose
-vertex set is $S$ and whose edge set consists of all of the edges in $E$
-that have both endpoints in $S$.
-The above definitions do apply to linear graphs.
+A \emph{matching} $\mathcal{M}$ of size $m$, written $|\mathcal{M}| = m$, 
+is a graph on the vertex set $[2m]$ whose very vertex has degree one.
+For an edge of a matching, we write $(i, j)$ with $i < j$ instead of the usual $\{i, j\}$.
+A matching $\mathcal{M}^0 = (V_0, E_0)$ \emph{contains} a matching 
+$\mathcal{M}^1 = (V_1, E_1)$ if there exists a monotonic edge-preserving injection from $V_1$ to $V_0$.
+In other words, $\mathcal{M}^0$ contains $\mathcal{M}^1$ if there exists a function 
+$f : V_1 \to V_0$ such that 
+(i) $1 \leq u < v \leq |\mathcal{M}|$ implies $f(u) < f(v)$ and  
+(ii) $\{u, v\} \in E_1$ implies $\{f(u), f(v)\} \in E_0$.
 
-For a linear graph $G = (V,E)$, we shall usually write the vertices as a
-word $w_G$, where the order $<_G$ is understood to be the left-to-right order
-in $w_G$,
-so that $w_G = u_1 u_2 \dots u_n$ stands for
-$V = \{u_1, u_2, \dots, u_n\}$ with
-$u_1 <_G u_2 <_G \cdots <_G u_n$.
-This naturally extends to subsets $V' \subseteq V$ of $G$:
-if $V'$ and $V''$ are two disjoint subsets of $V$, we let $V' <_G V''$
-stand for $v' <_G v''$ for every $v' \in V'$ and every $v'' \in V''$.
+Let $\mathcal{M}^0, \mathcal{M}^1, \dots, \mathcal{M}^k$ be $k+1$ matchings.
+The matchings $\mathcal{M}^0$ is a \emph{merge} of the matchings 
+$\mathcal{M}^1, \dots, \mathcal{M}^k$ 
+if 
+(i) $\mathcal{M}^0$ contains $\mathcal{M}^i$ for every $1 \leq i \leq k$ 
+and (ii) $\left|\mathcal{M}^0\right| = \sum_{i=1}^{k} \left|\mathcal{M}^i\right|$.
+In other words,  $\mathcal{M}^0 = (V_0, E_0)$ is a \emph{merge} of the matchings 
+$\mathcal{M}^1, \dots, \mathcal{M}^k$ is there exist a function (\emph{i.e.} coloring)
+$c : V_0 \to [k]$  and functions $f_i : V_i \to V_0$ such that, for every $1 \leq i \leq k$,
+(i) $u < v$ implies $f_i(u) < f_(v)$ and  
+(ii) $\{u, v\} \in E_i$ implies $\{f(u), f(v)\} \in E_0$ and $(c \circ f)(u) = (c \circ f)(v) = i$.
+\textsc{$k$-Merge matching} is the problem to decide whether some matching 
+$\mathcal{M}^0$ is a merge of matchings $\mathcal{M}^1, \dots, \mathcal{M}^k$.
+An illustration of this definition is given in Figure~\ref{fig:matching-merge-example}.
 
-Two linear graphs $G$ and $H$ are isomorphic,
-denoted by $G \simeq H$,
-if there exists an one-to-one mapping
-$\varphi : V_G \to V_H$ such that
-(i)
-$i <_G j$ if and only if $\varphi(i) <_H \varphi(j)$ and
-(ii)
-$(i, j) \in E_G$ if and only if $(\varphi(i), \varphi(j)) \in E_H$.
-\todo{Do we really need this definition?}
-
-Given linear graphs $G^0$, and $G^1, G^2, \dots, G^k$,
-the linear graph $G^0$ is said to be
-\emph{$(G^1, G^2, \ldots, G^k)$-colorable}
-if there exists a $k$-coloring of the connected components of $H$ such that
-the linear subgraph $G^0[i]$ induced by the subset of all vertices with the
-same color $i$, $1 \leq i \leq k$, is isomorphic to $G^i$.
-Notice that the definition does not require the linear graphs
-$G^1, G^2, \ldots, G^k$ to be necessarily connected
-and hence that distinct connected components of $G^0$ may receive the
-same color in the $k$-vertex coloring.
-
-Given linear graphs $G^0$ and $G^1, G^2, \ldots, G^k$,
-the \textsc{$k$-Linear Graph Coloring} problem is to decide whether $G^0$
-is $(G^1, G^2, \ldots, G^k)$ -colorable.
-An illustration of this definition is given in
-Figure~\ref{fig:example decomposition}.
-
-\input{figures/linear-graph-split-example}
+\input{figures/matching-merge-example}
