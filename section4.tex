@@ -1,8 +1,8 @@
-\section{Permutation coloring}
-\label{section:Permutation coloring}
+\section{Merging permutations}
+\label{section:Merging permutations}
 
-We are back to coloring permutations. We show how to transform
-linear graph colorings to permutation colorings.
+We are back to merging permutations. 
+We show how to transform matching merges to permutation merges.
 We need a new definition.
 Let $G = (V, E)$ be a linear graph. For any two connected vertices
 $v_i, v_j \in V$, $i < j$ or $j < i$,
@@ -15,28 +15,29 @@ $v_{i_1}, v_{i_2}, \dots, v_{i_k} \in N(v_i)$
 with $\max \{i_1, i_2, \dots, i_k\} < j$.
 
 \begin{proposition}
-  \label{proposition:3-permutation coloring is NP-complete}
-  \textsc{$3$-permutation coloring} is \NP-complete.
+  \label{proposition:3-merge permutation is NP-complete}
+  \textsc{$3$-Merge Permutation} is \NP-complete.
 \end{proposition}
 
 \begin{proof}
-  We reduce from \textsc{$k$-Linear Graph Coloring} (Proposition~\ref{proposition:3-Linear Graph Coloring is NP-complete}).
-  Let $(G^{0} \,|\, G^{1}, G^{2}, \dots, G^{k})$ be an arbitrary instance of \textsc{$k$-Linear Graph Coloring}.
-  Write $G^{i} = (V^i, E^i)$,
-  $n_i = |V^i|$ $m_i = |E^i|$ for $0 \leq i \leq k$.
-  We show how to construct an instance
-  $(\pi | \sigma_1, \sigma_2, \dots, \sigma_k)$ of
-  \textsc{$k$-permutation coloring}.
+  We reduce from \textsc{$3$-Merge Matching} (Proposition~\ref{proposition:3-Linear Graph Coloring is NP-complete}).
+  Let $\mathcal{M}^{0}$, $\mathcal{M}^{1}$, $\mathcal{M}^{2}$, $\mathcal{M}^{3}$ be four matchings. 
+  Write $\mathcal{M}^{i} = (V^i, E^i)$,
+  $n_i = |V^i|$ and $m_i = |E^i|$ for $0 \leq i \leq 3$.
+  We show how to construct permutations $\pi^0$, $\pi^1$, $\pi^2$ and $\pi^3$ such that
+  the matching $\mathcal{M}^{0}$ is a merge of the matchings $\mathcal{M}^{1}$, $\mathcal{M}^{2}$ and $\mathcal{M}^{3}$
+  if and only if
+  the permutation $\pi^0$ is a merge of the permutations $\pi^0$, $\pi^2$ and $\pi^3$.
 
-  Define $N_i = 2n_i + 4m_i + 1$ for $0 \leq i \leq k$.
-  We first associate the permutation $\pi$ to the linear graph $G^{0}$.
+  Define $N = 8m_0 + 1$.
+  We first associate the permutation $\pi^0$ to the matching $\mathcal{M}^{0}$.
   Write $V^0 = \{v^0_i : 1 \leq i \leq n_0\}$ and
-  $E^0 = \{e^0_i : 1 \leq i \leq m_0\}$.
+  $E^0 = \{e^0_i : 1 \leq i \leq m_0\}$, where the edges are sorted according to their minimum vertex.
   Define the permutations
   \begin{align*}
     \pi(V)
     &=
-    \left(\bigoplus_{i=1}^{n_0} (d(v^0_i)+2) \; 1\right) [2m_0+2kN_0]
+    \left(\bigoplus_{i=1}^{2m_0} 4i \; (4i-3)\right) [6N_0 + 2m_0]
     \\
     \pi(E)
     &=

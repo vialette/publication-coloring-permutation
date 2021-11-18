@@ -117,6 +117,36 @@ Separable permutations may be characterized by the forbidden permutation
 patterns $2413$ and $3142$.
 The separable permutations are enumerated by the Schröder numbers.
 
+<<<<<<< HEAD
+\subsection*{\textbf{Linear graphs}}
+
+A \emph{matching} $\mathcal{M}$ of size $m$, written $|\mathcal{M}| = m$, 
+is a graph on the vertex set $[2m]$ whose very vertex has degree one.
+For an edge of a matching, we write $(i, j)$ with $i < j$ instead of the usual $\{i, j\}$.
+A matching $\mathcal{M}^0 = (V_0, E_0)$ \emph{contains} a matching 
+$\mathcal{M}^1 = (V_1, E_1)$ if there exists a monotonic edge-preserving injection from $V_1$ to $V_0$.
+In other words, $\mathcal{M}^0$ contains $\mathcal{M}^1$ if there exists a function 
+$f : V_1 \to V_0$ such that 
+(i) $1 \leq u < v \leq |\mathcal{M}|$ implies $f(u) < f(v)$ and  
+(ii) $\{u, v\} \in E_1$ implies $\{f(u), f(v)\} \in E_0$.
+
+Let $\mathcal{M}^0, \mathcal{M}^1, \dots, \mathcal{M}^k$ be $k+1$ matchings.
+The matchings $\mathcal{M}^0$ is a \emph{merge} of the matchings 
+$\mathcal{M}^1, \dots, \mathcal{M}^k$ 
+if 
+(i) $\mathcal{M}^0$ contains $\mathcal{M}^i$ for every $1 \leq i \leq k$ 
+and (ii) $\left|\mathcal{M}^0\right| = \sum_{i=1}^{k} \left|\mathcal{M}^i\right|$.
+In other words,  $\mathcal{M}^0 = (V_0, E_0)$ is a \emph{merge} of the matchings 
+$\mathcal{M}^1, \dots, \mathcal{M}^k$ is there exist a function (\emph{i.e.} coloring)
+$c : V_0 \to [k]$  and functions $f_i : V_i \to V_0$ such that, for every $1 \leq i \leq k$,
+(i) $u < v$ implies $f_i(u) < f_(v)$ and  
+(ii) $\{u, v\} \in E_i$ implies $\{f(u), f(v)\} \in E_0$ and $(c \circ f)(u) = (c \circ f)(v) = i$.
+\textsc{$k$-Merge matching} is the problem to decide whether some matching 
+$\mathcal{M}^0$ is a merge of matchings $\mathcal{M}^1, \dots, \mathcal{M}^k$.
+An illustration of this definition is given in Figure~\ref{fig:matching-merge-example}.
+
+\input{figures/matching-merge-example}
+=======
 \subsection*{\textbf{Matchings}}
 
 A \emph{matching} $\mathcal{M}$ of $[2n]$ is a partition of $[2n]$ into size-$2$ parts,
@@ -136,3 +166,4 @@ is $(\mathcal{M}^1, \mathcal{M}^2, \ldots, \mathcal{M}^k)$ -colorable.
 
 
 \input{figures/example-3-matching-coloring}
+>>>>>>> fa71033edefafa3f3a1a458af386c80dc8565f59
