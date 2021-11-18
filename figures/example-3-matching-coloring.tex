@@ -1,0 +1,117 @@
+\begin{figure}
+  \centering
+  \begin{tikzpicture}
+    [
+      scale=.65,
+      vertex/.style = {circle, fill, minimum size=6pt,inner sep=0pt, outer sep=0pt},
+      red vertex/.style = {vertex, ball color=red!80},
+      green vertex/.style = {vertex, ball color=teal!80},
+      blue vertex/.style = {vertex, ball color=blue!80},
+      edge/.style = {ultra thick},
+      red edge/.style = {edge, red},
+      green edge/.style = {edge, teal},
+      blue edge/.style = {edge, blue},
+    ]
+    %\draw[xstep=1,ystep=.5,black,ultra thin,black!5] (-0.5,-12.25) grid (12.5,3.25);
+
+    % graph G^0
+    \draw (-.5,0) node {$\mathcal{M}^0$};
+
+    % red vertices
+    \foreach \x in {3, 6, 8, 12, 14, 16}
+      \node [red vertex,label=below:$\x$] (VG0\x) at (\x,0) {};
+    
+    % green edges
+    \foreach \x in {7, 9, 10, 13, 15, 17}
+      \node [green vertex,label=below:$\x$] (VG0\x) at (\x,0) {};
+    
+    % blue edges
+    \foreach \x in {1, 2, 4, 5, 11, 18, 19, 20}
+      \node [blue vertex,label=below:$\x$] (VG0\x) at (\x,0) {};
+
+    % red edges
+    \draw [red edge]
+      (VG03) ..controls ($(VG03.north) + (0,2)$) and ($(VG08.north) + (0,2)$) .. (VG08.north);
+    \draw [red edge]
+      (VG06) ..controls ($(VG06.north) + (0,2)$) and ($(VG014.north) + (0,2)$) .. (VG014.north);
+    \draw [red edge]
+      (VG012) ..controls ($(VG012.north) + (0,1.5)$) and ($(VG016.north) + (0,1.5)$) .. (VG016.north);
+
+    % green edges
+    \draw [edge, white, ultra thick]
+      (VG010) ..controls ($(VG010.north) + (0,1)$) and ($(VG013.north) + (0,1)$) .. (VG013.north);
+    \draw [green edge]
+      (VG010) ..controls ($(VG010.north) + (0,1)$) and ($(VG013.north) + (0,1)$) .. (VG013.north);
+    \draw [green edge]
+      (VG09) ..controls ($(VG09.north) + (0,2)$) and ($(VG015.north) + (0,2)$) .. (VG015.north);
+    \draw [green edge]
+      (VG07) ..controls ($(VG07.north) + (0,3)$) and ($(VG017.north) + (0,3)$) .. (VG017.north);
+
+    % blue edges
+    \draw [blue edge]
+      (VG01) ..controls ($(VG01.north) + (0,2)$) and ($(VG05.north) + (0,2)$) .. (VG05.north);
+    \draw [blue edge]
+      (VG02) ..controls ($(VG02.north) + (0,1)$) and ($(VG04.north) + (0,1)$) .. (VG04.north);
+    \draw [blue edge]
+      (VG011) ..controls ($(VG011.north) + (0,2)$) and ($(VG019.north) + (0,2)$) .. (VG019.north);
+    \draw [blue edge]
+      (VG018) ..controls ($(VG018.north) + (0,1)$) and ($(VG020.north) + (0,1)$) .. (VG020.north);
+
+    % graph G_1 (red)
+    \begin{scope}[yshift=-3cm]
+      \draw (-.5,0) node {$\mathcal{M}^1$};
+
+      % red vertices
+      \foreach \x in {1,...,6}
+        \node [red vertex,label=below:$\x$] (VG1\x) at (\x,0) {};
+
+      % red edges
+      \draw [red edge]
+        (VG11) ..controls ($(VG11.north) + (0,1)$) and ($(VG13.north) + (0,1)$) .. (VG13.north);
+      \draw [red edge]
+        (VG12) ..controls ($(VG12.north) + (0,1.5)$) and ($(VG15.north) + (0,1.5)$) .. (VG15.north);
+      \draw [red edge]
+        (VG14) ..controls ($(VG14.north) + (0,1)$) and ($(VG16.north) + (0,1)$) .. (VG16.north);
+    \end{scope}
+
+    % graph G_2 (green)
+    \begin{scope}[yshift=-6cm]
+      \draw (-.5,0) node {$\mathcal{M}^2$};
+
+      % red vertices
+      \foreach \x in {1,...,6}
+        \node [green vertex,label=below:$\x$] (VG2\x) at (\x,0) {};
+
+      % red edges
+      \draw [green edge]
+        (VG21) ..controls ($(VG21.north) + (0,2)$) and ($(VG26.north) + (0,2)$) .. (VG26.north);
+      \draw [green edge]
+        (VG22) ..controls ($(VG22.north) + (0,1.5)$) and ($(VG25.north) + (0,1.5)$) .. (VG25.north);
+      \draw [green edge]
+        (VG23) ..controls ($(VG23.north) + (0,1)$) and ($(VG24.north) + (0,1)$) .. (VG24.north);
+    \end{scope}
+
+    % graph G_3 (blue)
+    \begin{scope}[yshift=-9cm]
+      \draw (-.5,0) node {$\mathcal{M}^3$};
+
+      % red vertices
+      \foreach \x in {1,...,8}
+        \node [blue vertex,label=below:$\x$] (VG3\x) at (\x,0) {};
+
+      % red edges
+      \draw [blue edge]
+        (VG31) ..controls ($(VG31.north) + (0,1.5)$) and ($(VG34.north) + (0,1.5)$) .. (VG34.north);
+      \draw [blue edge]
+        (VG32) ..controls ($(VG32.north) + (0,1)$) and ($(VG33.north) + (0,1)$) .. (VG33.north);
+      \draw [blue edge]
+        (VG35) ..controls ($(VG35.north) + (0,1)$) and ($(VG37.north) + (0,1)$) .. (VG37.north);
+      \draw [blue edge]
+        (VG36) ..controls ($(VG36.north) + (0,1)$) and ($(VG38.north) + (0,1)$) .. (VG38.north);
+
+    \end{scope}
+
+  \end{tikzpicture}
+  \caption{\label{fig:example 3-matching colorable}%
+  A example instance of \textsc{$3$-Linear-Matching Coloring}.}
+\end{figure}
