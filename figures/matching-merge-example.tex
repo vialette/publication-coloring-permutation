@@ -1,0 +1,71 @@
+\begin{figure}
+  \centering
+  \begin{tikzpicture}
+    [
+      scale=.75,
+      vertex/.style = {circle, fill, minimum size=6pt,inner sep=0pt, outer sep=0pt},
+    ]
+    \draw[xstep=1,ystep=.5,black,ultra thin,black!5] (0.5,-9.25) grid (16.5,1.75);
+
+    % matching M^0
+    \draw (0,0) node {$\mathcal{M}^0$};
+
+    % vertices
+    \foreach \x in {1,...,16}
+      \node [vertex,label=below:${\x}$] (vM0\x) at (\x,0) {};
+
+    % M^1 occurrence
+    \draw [edge] (vM01.north)  ..controls ($(vM01.north) + (0,1.5)$)  and ($(vM06.north) + (0,1.5)$) .. (vM06.north);
+    \draw [edge] (vM02.north)  ..controls ($(vM02.north) + (0,0.5)$)  and ($(vM03.north) + (0,0.5)$)  .. (vM03.north);
+    \draw [edge] (vM015.north) ..controls ($(vM015.north) + (0,0.5)$) and ($(vM016.north) + (0,0.5)$) .. (vM016.north);
+
+    % M^2 occurrence
+    \draw [edge] (vM04.north)  ..controls ($(vM04.north) + (0,1.5)$)   and ($(vM08.north) + (0,1.5)$) .. (vM08.north);
+    \draw [edge] (vM010.north) ..controls ($(vM010.north) + (0,0.5)$) and ($(vM011.north) + (0,0.5)$)  .. (vM011.north);
+    \draw [edge] (vM013.north) ..controls ($(vM013.north) + (0,0.5)$) and ($(vM014.north) + (0,0.5)$)  .. (vM014.north);
+
+    % M^3 occurrence
+    \draw [edge] (vM05.north)  ..controls ($(vM05.north) + (0,1.5)$)   and ($(vM09.north) + (0,1.5)$) .. (vM09.north);
+    \draw [edge] (vM07.north)  ..controls ($(vM07.north) + (0,1.5)$)   and ($(vM012.north) + (0,1.5)$)  .. (vM012.north);
+
+    % matching M^1
+    \begin{scope}[yshift=-3cm]
+      \draw (0,0) node {$\mathcal{M}^1$};
+
+      \foreach \x/\l in {1/1,2/2,3/3,6/4,15/5,16/6}
+        \node [vertex,fill=black,label=below:${\l}$] (vM1\l) at (\x,0) {};
+
+      \draw [edge] (vM11.north) ..controls ($(vM11.north) + (0,1.5)$) and ($(vM14.north) + (0,1.5)$) .. (vM14.north);
+      \draw [edge] (vM12.north) ..controls ($(vM12.north) + (0,0.5)$) and ($(vM13.north) + (0,0.5)$) .. (vM13.north);
+      \draw [edge] (vM15.north) ..controls ($(vM15.north) + (0,0.5)$) and ($(vM16.north) + (0,0.5)$) .. (vM16.north);    
+    \end{scope}
+
+    % matching M^2
+    \begin{scope}[yshift=-6cm]
+      \draw (0,0) node {$\mathcal{M}^2$};
+
+      \foreach \x/\l in {4/1,8/2,10/3,11/4,13/5,14/6}
+        \node [vertex,fill=black,label=below:${\l}$] (vM2\l) at (\x,0) {};
+
+      \draw [edge] (vM21.north) ..controls ($(vM21.north) + (0,1.5)$) and ($(vM22.north) + (0,1.5)$) .. (vM22.north);
+      \draw [edge] (vM23.north) ..controls ($(vM23.north) + (0,0.5)$) and ($(vM24.north) + (0,0.5)$) .. (vM24.north);
+      \draw [edge] (vM25.north) ..controls ($(vM25.north) + (0,0.5)$) and ($(vM26.north) + (0,0.5)$) .. (vM26.north);    
+    \end{scope}
+
+    % matching M^3
+    \begin{scope}[yshift=-9cm]
+      \draw (0,0) node {$\mathcal{M}^3$};
+
+      \foreach \x/\l in {5/1,7/2,9/3,12/4}
+        \node [vertex,fill=black,label=below:${\l}$] (vM3\l) at (\x,0) {};
+
+      \draw [edge] (vM31.north) ..controls ($(vM31.north) + (0,1.5)$) and ($(vM33.north) + (0,1.5)$) .. (vM33.north);
+      \draw [edge] (vM32.north) ..controls ($(vM32.north) + (0,1.5)$) and ($(vM34.north) + (0,1.5)$) .. (vM34.north);
+    \end{scope}
+
+  \end{tikzpicture}
+  \caption{\label{fig:matching-merge-example}%
+    A positive instance of \textsc{$3$-Merge matching} together with an alignment
+    describing a solution.
+  }% end caption
+\end{figure}
