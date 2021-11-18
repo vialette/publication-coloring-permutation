@@ -3,16 +3,6 @@
 
 We are back to merging permutations. 
 We show how to transform matching merges to permutation merges.
-We need a new definition.
-Let $G = (V, E)$ be a linear graph. For any two connected vertices
-$v_i, v_j \in V$, $i < j$ or $j < i$,
-we define
-$$
-\RANK(v_i, v_j) = \left|\left\{v_k \in V : \{v_i, v_k\} \in E \text{ and } k \leq j\right\}\right|.
-$$
-In other words, $\RANK(v_i, v_j) = k+1$ if there exist exactly $k$ vertices
-$v_{i_1}, v_{i_2}, \dots, v_{i_k} \in N(v_i)$
-with $\max \{i_1, i_2, \dots, i_k\} < j$.
 
 \begin{proposition}
   \label{proposition:3-merge permutation is NP-complete}
@@ -32,58 +22,61 @@ with $\max \{i_1, i_2, \dots, i_k\} < j$.
   Define $N = 8m_0 + 1$.
   We first associate the permutation $\pi^0$ to the matching $\mathcal{M}^{0}$.
   Write $V^0 = \{v^0_i : 1 \leq i \leq n_0\}$ and
-  $E^0 = \{e^0_i : 1 \leq i \leq m_0\}$, where the edges are sorted according to their minimum vertex.
-  Define the permutations
-  \begin{align*}
-    \pi(V)
-    &=
-    \left(\bigoplus_{i=1}^{2m_0} 4i \; (4i-3)\right) [6N_0 + 2m_0]
-    \\
-    \pi(E)
-    &=
-    \bigoplus_{j=1}^{m_0} 2 \; f^0(e^0_j) \; g^0(e^0_j) \; 1
-    \\
-    \pi(\text{Sep}_1)
-    &=
-    \left(\bigominus_{i=1}^{k} \mathbf{\nearrow}_{N_0}\right) [2n]
-    \\
-    \pi(\text{Sep}_2)
-    &=
-    \left(\bigominus_{i=1}^{k} \mathbf{\nearrow}_{N_0}\right) [2n+kN]
-    \\
-    \intertext{where $f : E^0 \to \mathbb{N}$ and $g : E^0 \to \mathbb{N}$
-    are defined as follows}
-    \forall e^0_j = (v^0_p, v^0_q) \in E_0,\quad f^0(e^0_j)
-    &=
-    2m_0 + 2kN_0 + \sum_{j=1}^{p-1}\left(2+d(v^0_j)\right) + \RANK\left(v^0_p, v^0_q\right)
-    \\
-    \forall e^0_j = (v^0_p, v^0_q) \in E_0,\quad g^0(e^0_j)
-    &=
-    2m_0 + 2kN_0 + \sum_{j=1}^{q-1}\left(2+d(v^0_j)\right) + \RANK\left(v^0_q, v^0_p\right)\text{.}
-    \end{align*}
+  $E^0 = \{e^0_k : 1 \leq k \leq m_0\}$, where the edges are sorted according to their minimum vertex.
+  \begin{alignat*}{3}
+    &\forall i \in V_0,
+    &\quad&
+    \pi[i] &=&\; \BOXED{i fst}{4i} \quad \BOXED{i snd}{4i-3} \\ 
+    &\forall e^0_k = (i,j) \in E_0,
+    &\quad&
+    \pi[e^0_k] &=&\; \BOXED{e fst}{2i} \quad \BOXED{e i}{3N_0 + 2m_0 + 4(i-1) + 2} \quad \BOXED{e j}{3N_0 + 2m_0 +4(j-1) + 3} \quad \BOXED{e snd}{2i - 1} \\
+    \intertext{We have two groups of three separators 
+    ($\text{sep}^{k}_{l}$, $1 \leq k \leq 2$ and $1 \leq l \leq 3$) that are defined as follows:}
+    &&\quad&
+    \pi[\text{sep}^{1}_{1}] &=&\; \BOXED{sep 1 1 1}{2N_0 + 2m_0 + 1} \quad \BOXED{sep 1 1 2}{2N_0 + 2m_0 + 2} \quad \dots \quad \BOXED{sep 1 1 N0}{2N_0 + 2m_0 + N_0} \\ 
+    &&\quad&
+    \pi[\text{sep}^{1}_{2}] &=&\; \BOXED{sep 1 2 1}{N_0 + 2m_0 + 1} \quad \BOXED{sep 1 2 2}{N_0 + 2m_0 + 2} \quad \dots \quad \BOXED{sep 1 2 N0}{N_0 + 2m_0 + N_0} \\ 
+    &&\quad&
+    \pi[\text{sep}^{1}_{3}] &=&\; \BOXED{sep 1 3 1}{2m_0 + 1} \quad \BOXED{sep 1 3 2}{2m_0 + 2} \quad \dots \quad \BOXED{sep 1 3 N0}{2m_0 + N_0} \\ 
+    &&\quad&
+    \pi[\text{sep}^{2}_{1}] &=&\; \BOXED{sep 2 1 1}{5N_0 + 2m_0 + 1} \quad \BOXED{sep 2 1 2}{5N_0 + 2m_0 + 2} \quad \dots \quad \BOXED{sep 2 1 N0}{5N_0 + 2m_0 + N_0} \\ 
+    &&\quad&
+    \pi[\text{sep}^{2}_{2}] &=&\; \BOXED{sep 2 2 1}{4N_0 + 2m_0 + 1} \quad \BOXED{sep 2 2 2}{4N_0 + 2m_0 + 2} \quad \dots \quad \BOXED{sep 2 2 N0}{4N_0 + 2m_0 + N_0} \\ 
+    &&\quad&
+    \pi[\text{sep}^{2}_{3}] &=&\; \BOXED{sep 2 3 1}{3N_0 + 2m_0 + 1} \quad \BOXED{sep 2 3 2}{3N_0 + 2m_0 + 2} \quad \dots \quad \BOXED{sep 2 3 N0}{3N_0 + 2m_0 + N_0}\text{.}
+    \intertext{Define}
+    &&\quad&
+    \pi[V_0] &=&\; \pi[1] \; \pi[2] \; \dots \; \pi[|V_0|] \\
+    &&\quad&
+    \pi[E_0] &=&\; \pi[e^0_1] \; \pi[e^0_2] \; \dots \; \pi[e^0_{|E_0|}] \\
+    &&\quad&
+    \pi[\text{sep}^{1}] &=&\; \pi[\text{sep}^{1}_{1}] \; \pi[\text{sep}^{1}_{2}] \; \pi[\text{sep}^{1}_{3}] \\
+    &&\quad&
+    \pi_[\text{sep}^{2}] &=&\; \pi[\text{sep}^{2}_{1}] \; \pi[\text{sep}^{2}_{2}] \; \pi[\text{sep}^{2}_{3}]\text{.}
+  \end{alignat*}
+  The permutations $\pi^0$ is defined as follows:
+  $$
+  \pi^0 = \pi[V_0] \; \pi[\text{sep}^{1}] \; \pi[E_0] \; \pi[\text{sep}^{2}]\text{.}
+  $$
+  In other words,
+  $\pi[V_0]$ is the direct sum of $2m_0$ decreasing permutations
+  that are all order-isomorphic to $21$,
+  $\pi[E_0]$ is the direct sum of $m_0$ permutations that are all
+  order-isomorphic to $2341$, and
+  both $\pi[\text{sep}^{1}]$ and $\pi[\text{sep}^{2}]$ are the skew sums
+  of $k$ permutations that are all order isomorphic to $12 \dots k$.
+  Viewed as a permutation matrix, the permutation $\pi^0$ has the following general shape:
+  $$
+    A(\pi^0) = 
+    \begin{pmatrix}
+      \pi[V_0] & 0                    & \pi[E_0] & 0 \\
+      0        & 0                    & 0        & \pi[\text{sep}^{2}] \\
+      0        & \pi[\text{sep}^{1}]  & 0        & 0  \\
+      0        & 0                    & \pi[E_0] & 0 
+    \end{pmatrix}\text{.}
+  $$
 
-    In other words,
-    $\pi(V)$ is the direct sum of $n_0$ decreasing permutations
-    that are all order-isomorphic to $21$,
-    $\pi(E)$ is the direct sum of $m_0$ permutations that are all
-    order-isomorphic to $2341$ (since $2 < f(e^0_i) < g(e^0_i)$
-    for $1 \leq i \leq m_0$), and
-    both $\pi(\text{Sep}_1)$ and $\pi(\text{Sep}_2)$ are the skew sums
-    of $k$ permutations that are all order isomorphic to $12 \dots k$.
-    Finally, we obtain the target permutation $\pi$ by gathering the parts
-    $\pi(V)$, $\pi(\text{Sep}_1)$, $\pi(E)$ and $\pi(\text{Sep}_2)$:
-    $$
-      \pi =
-      \pi(V)   \;
-      \pi(\text{Sep}_1) \;
-      \pi(E)   \;
-      \pi(\text{Sep}_2)\text{.}
-    $$
-
-
-  \input{figures/NP2-bird-eye-view-pi}
-  \input{figures/NP2-separators}
-  \input{figures/NP2-connection-zoom}
+  \input{figures/example-merge-permutation-pi0}
 
   A simplified representation of the permutation $\pi$ is given in
   Figure~\ref{fig:NP2:bird eye view pi}.
@@ -152,7 +145,6 @@ with $\max \{i_1, i_2, \dots, i_k\} < j$.
   %   \sigma_i\left(\text{Sep}_1\right)\text{.}
   % \end{align*}
 
-  \input{figures/NP2-bird-eye-view-sigma-i}
 
   A schematic representation of the permutation $\sigma_i$ is given in
   Figure~\ref{fig:NP2:bird eye view sigma_i}.

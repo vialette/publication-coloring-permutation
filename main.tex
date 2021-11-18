@@ -22,6 +22,7 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\usepackage{hf-tikz}
 \usepackage{tikz}
 \usetikzlibrary{arrows}
 \usetikzlibrary{backgrounds}
@@ -40,6 +41,24 @@
 \usetikzlibrary{shapes.symbols}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newsavebox\qrrTikzmarkBox
+
+\RenewDocumentCommand{\tikzmarkin}{O{} m D(){0.1,-0.14} D(){-0.1,0.34} G{}}{%
+\if\relax\detokenize{#5}\relax
+    \dp\qrrTikzmarkBox=0pt\relax
+    \ht\qrrTikzmarkBox=0pt\relax
+\else
+    \sbox\qrrTikzmarkBox{$\displaystyle#5$}
+\fi
+\tikz[remember picture,overlay]
+\draw[line width=1pt,rectangle,fill=white,#1,draw=black!50]
+(pic cs:#2) ++([yshift=-\the\dp\qrrTikzmarkBox]#3) rectangle ([yshift=\the\ht\qrrTikzmarkBox]#4) node [anchor=text] (#2) {}
+;
+#5
+}
+
+\newcommand{\BOXED}[2]{\tikzmarkin{#1}#2\tikzmarkend{#1}}
 
 % INCREASING
 \newcommand{\INCREASING}[1]{%
@@ -215,7 +234,6 @@
 % Definitions
 \input{section2}
 
-<<<<<<< HEAD
 % Merging matchings
 %\input{section3}
 
@@ -223,15 +241,6 @@
 \input{section4}
 
 % Merging monotonic patterns
-=======
-% Matching coloring
-\input{section3}
-
-% Permutation coloring
-\input{section4}
-
-% Monotonic patterns
->>>>>>> fa71033edefafa3f3a1a458af386c80dc8565f59
 \input{section5}
 
 % Concluding remarks
