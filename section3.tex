@@ -5,7 +5,7 @@ This section is devoted to proving that the
 \textsc{$3$-Merge Matchings} is \NP-complete.
 
 \begin{proposition}
-  \label{proposition:3-Linear Graph Coloring is NP-complete}
+  \label{proposition:3-merge matching is NP-complete}
   \textsc{$3$-Merge Matching} is \NP-complete.
 \end{proposition}
 
@@ -23,24 +23,24 @@ This section is devoted to proving that the
   For any clause $c$, we let $c[i]$ stand for
   $i$-th literal of $c$.
 
-  We define an instance of the \textsc{$3$-Linear Graph Coloring} problem by defining a
-  target linear graph $G^{0} = (V^{0}, E^{0})$
-  and three linear graphs
-  $G^{1} = (V^{1}, E^{1})$, $G^{2} = (V^{2}, E^{2})$ and $G^{3} = (V^{3}, E^{3})$.
-  All linear graphs $G^{0}$, $G^{1}$, $G^{2}$ and $G^{3}$ are actually composed
+  We define an instance of the \textsc{$3$-matching Coloring} problem by defining a
+  target matching $\mathcal{M}{0} = (V^{0}, E^{0})$
+  and three matchings
+  $\mathcal{M}{1} = (V^{1}, E^{1})$, $\mathcal{M}{2} = (V^{2}, E^{2})$ and $\mathcal{M}{3} = (V^{3}, E^{3})$.
+  All matchings $\mathcal{M}{0}$, $\mathcal{M}{1}$, $\mathcal{M}{2}$ and $\mathcal{M}{3}$ are actually composed
   of independent edges so that any connected component is composed of two vertices only.
   The general idea of the reduction is as follows:
-  the target linear graph $G^{0}$ encodes the whole instance
-  and $G^{1}$ encodes an assignment of the variable that satisfies all clauses of $\phi$;
-  both $G^{2}$ and $G^{3}$ act as garbage collectors by focusing of those edges of $G^{0}$
+  the target matching $\mathcal{M}{0}$ encodes the whole instance
+  and $\mathcal{M}{1}$ encodes an assignment of the variable that satisfies all clauses of $\phi$;
+  both $\mathcal{M}{2}$ and $\mathcal{M}{3}$ act as garbage collectors by focusing of those edges of $\mathcal{M}{0}$
   that are not part of the satisfying assignment or are structure edges.
 
   Set $N=m^2$.
-  We have divided the presentation of the linear graphs $G^{0}, G^{1}, G^{2}$ and $G^{3}$.
+  We have divided the presentation of the matchings $\mathcal{M}{0}, \mathcal{M}{1}, \mathcal{M}{2}$ and $\mathcal{M}{3}$.
 
-  % linear graph G^0
+  % matching \mathcal{M}0
   \medskip
-  \textbf{Defining the target linear graph $G^{0} = (V^{0}, E^{0})$}
+  \textbf{Defining the target matching $\mathcal{M}{0} = (V^{0}, E^{0})$}
   \medskip
 
   % \begin{mdframed}
@@ -199,7 +199,7 @@ This section is devoted to proving that the
     \texttt{l}^{0}_{j,3,\TRUE}
     $.
 
-    We now turn to defining the edges $E^{0}$ of the linear graph $G^{0}$.
+    We now turn to defining the edges $E^{0}$ of the matching $\mathcal{M}{0}$.
     Define
     \begin{alignat*}{2}
       E^{0} &=&& E^{0}_{\texttt{Var}} \cup E^{0}_{\texttt{Var},\texttt{Cls}} \cup E^{0}_{\texttt{Cls}},
@@ -295,7 +295,7 @@ This section is devoted to proving that the
   
   \medskip
 
-  The construction of the linear Graph $G^{0}$ is illustrated
+  The construction of the matching $\mathcal{M}{0}$ is illustrated
   in Figure~\ref{fig-3-linear-graph-splitting-variable-gadget-0} and
   Figure~\ref{fig-3-linear-graph-splitting-clause-gadget-0}.
 
@@ -303,9 +303,9 @@ This section is devoted to proving that the
 
   \input{figures/3-linear-graph-splitting-clause-gadget-0}
 
-  % linear graph G^1
+  % matching \mathcal{M}1
   \medskip
-  \textbf{Defining the target linear graph $G^{1} = (V^{1}, E^{1})$}
+  \textbf{Defining the target matching $\mathcal{M}{1} = (V^{1}, E^{1})$}
   \medskip
   % \begin{mdframed}
     Define
@@ -366,7 +366,7 @@ This section is devoted to proving that the
     The vertices in $\texttt{Var}^{1}_{i}$ are ordered according to their second coordinate
     (always written $j$ in the above definitions).
 
-    We now turn to defining the edges $E^{1}$ of the linear graph $G^{1}$.
+    We now turn to defining the edges $E^{1}$ of the matching $\mathcal{M}{1}$.
     Define
     \begin{align*}
       E^{1} &= E^{1}_{\texttt{Var}} \cup E^{1}_{\texttt{Var},\texttt{Cls}} \cup E^{1}_{\texttt{Cls}},
@@ -398,7 +398,7 @@ This section is devoted to proving that the
     is the positive or the negative literal $x_{i}$.
   % \end{mdframed}
 
-  The construction of the linear Graph $G^{0}$ is illustrated
+  The construction of the matching $\mathcal{M}{0}$ is illustrated
   in Figure~\ref{fig-3-linear-graph-splitting-variable-gadget-1} and
   Figure~\ref{fig-3-linear-graph-splitting-clause-gadget-1}.
 
@@ -406,13 +406,13 @@ This section is devoted to proving that the
 
   \input{figures/3-linear-graph-splitting-clause-gadget-1}
 
-  % linear graph G^2
+  % matching \mathcal{M}2
   \medskip
-  \textbf{Defining the target linear graph $G^{2} = (V^{2}, E^{2})$}
+  \textbf{Defining the target matching $\mathcal{M}{2} = (V^{2}, E^{2})$}
   \medskip
 
   % \begin{mdframed}
-    The linear graph $G^{2}$ is identical to $G^{1}$ except that it does not
+    The matching $\mathcal{M}{2}$ is identical to $\mathcal{M}{1}$ except that it does not
     contain any edge in $E^{2}_{\texttt{Cls}}$.
     More formally,
     define
@@ -456,7 +456,7 @@ This section is devoted to proving that the
     The vertices in $\texttt{Var}^{2}_{i}$ are ordered according to their second coordinate
     (always written $j$ in the above definitions).
 
-    We now turn to defining the edges $E^{2}$ of the linear graph $G^{2}$.
+    We now turn to defining the edges $E^{2}$ of the matching $\mathcal{M}{2}$.
     Define
     \begin{align*}
       E^{2} &= E^{2}_{\texttt{Var}} \cup E^{2}_{\texttt{Var},\texttt{Cls}},
@@ -489,14 +489,14 @@ This section is devoted to proving that the
     \end{itemize}
   % \end{mdframed}
 
-  The construction of the linear graph $G^{2}$ is illustrated
+  The construction of the matching $\mathcal{M}{2}$ is illustrated
   in Figure~\ref{fig-3-linear-graph-splitting-variable-gadget-2}.
 
   \input{figures/3-linear-graph-splitting-variable-gadget-2}
 
-  % linear graph G^3
+  % matching \mathcal{M}3
   \medskip
-  \textbf{Defining the target linear graph $G^{3} = (V^{3}, E^{3})$}
+  \textbf{Defining the target matching $\mathcal{M}{3} = (V^{3}, E^{3})$}
   \medskip
 
   % \begin{mdframed}
@@ -563,7 +563,7 @@ This section is devoted to proving that the
     are ordered according to the second coordinate index of the vertices
     (always written $j$ in the above definitions).
 
-    For the edges $E^{3}$ of the linear graph $G^{3}$,
+    For the edges $E^{3}$ of the matching $\mathcal{M}{3}$,
     define
     \begin{alignat*}{2}
       &&
@@ -595,7 +595,7 @@ This section is devoted to proving that the
 
   We now claim that the $3$-CNF formula $\phi$ is satisfiable
   if and only if
-  $G^{0}$ is $(G^{1}, G^{2}, G^{3})$-colorable.
+  $\mathcal{M}{0}$ is $(\mathcal{M}{1}, \mathcal{M}{2}, \mathcal{M}{3})$-colorable.
 
   $(\Rightarrow)$
   Suppose that the $3$-CNF formula $\phi$ is satisfiable, and
@@ -652,17 +652,17 @@ This section is devoted to proving that the
   It can be checked that
   \begin{itemize}
     \item
-    every vertex of $G^{0}$ is assigned exactly one color,
+    every vertex of $\mathcal{M}{0}$ is assigned exactly one color,
     \item
-    every edge of $G^{0}$ connect two vertices with the same color,
+    every edge of $\mathcal{M}{0}$ connect two vertices with the same color,
     \item
-    the subgraph of $G^{0}$ induced by color $\COLOR_1$
-    (resp. $\COLOR_2$ and $\COLOR_3$) is isomorphic to $G^{1}$
-    (resp. $G^{2}$ and $G^{3}$).
+    the subgraph of $\mathcal{M}{0}$ induced by color $\COLOR_1$
+    (resp. $\COLOR_2$ and $\COLOR_3$) is isomorphic to $\mathcal{M}{1}$
+    (resp. $\mathcal{M}{2}$ and $\mathcal{M}{3}$).
   \end{itemize}
 
   $(\Leftarrow)$
-  Suppose now that $G^{0}$ is $(G^{1}, G^{2}, G^{3})$-colorable.
+  Suppose now that $\mathcal{M}{0}$ is $(\mathcal{M}{1}, \mathcal{M}{2}, \mathcal{M}{3})$-colorable.
   We show how to construct a satifsying assignment
   $\gamma : X \to \{\FALSE, \TRUE\}$ for $\phi$.
 
