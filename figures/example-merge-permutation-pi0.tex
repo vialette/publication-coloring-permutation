@@ -15,23 +15,23 @@
 
     % vertices
     \def\y{36}
-    \foreach \i in {1,2,...,6} {
+    \foreach \i/\c in {1/blue,2/black!60!green,3/black!60!green,4/red,5/blue,6/red} {
       \draw [step=1.0, black] (2*\i - 2, \y + 3*\i - 3) grid (2*\i, \y + 3*\i);
       \draw [black, very thick] (2*\i - 2, \y + 3*\i - 3) rectangle (2*\i, \y + 3*\i);
-      \draw [fill=black] (2*\i - 1.5, \y + 3*\i - .5) circle (0.3);
-      \draw [fill=black] (2*\i - .5, \y - 2 + 3*\i - .5) circle (0.3);
+      \draw [\c,fill=\c] (2*\i - 1.5, \y + 3*\i - .5) circle (0.35);
+      \draw [\c,fill=\c] (2*\i - .5, \y - 2 + 3*\i - .5) circle (0.35);
     }
     
     % edges
     \draw [step=1.0, black] (27,36) grid (39, 54);
     \draw [black, very thick] (27,36) rectangle (39, 54);
-    \foreach \k/\i/\j in {1/1/5,2/2/3,3/4/6} {
+    \foreach \k/\i/\j/\c in {1/1/5/blue,2/2/3/black!60!green,3/4/6/red} {
       \draw [step=1.0, black] (4*\k + 23, 2*\k - 2) grid (4*\k + 27, 2*\k);
       \draw [black, very thick] (4*\k + 23, 2*\k - 2) rectangle (4*\k + 27, 2*\k);
-      \draw [fill=black] (4*\k + 23 + 1 - .5, 2*\k - .5) circle (0.3);
-      \draw [fill=black] (4*\k + 23 + 4 - .5, 2*\k - 1 - .5) circle (0.3);
-      \draw [fill=black] (4*\k + 23 + 2 - .5, 36 + 3*\i - 1 - .5) circle (0.3);
-      \draw [fill=black] (4*\k + 23 + 3 - .5, 36 + 3*\j - 1 - .5) circle (0.3);
+      \draw [\c,fill=\c] (4*\k + 23 + 1 - .5, 2*\k - .5) circle (0.35);
+      \draw [\c,fill=\c] (4*\k + 23 + 4 - .5, 2*\k - 1 - .5) circle (0.35);
+      \draw [\c,fill=\c] (4*\k + 23 + 2 - .5, 36 + 3*\i - 1 - .5) circle (0.35);
+      \draw [\c,fill=\c] (4*\k + 23 + 3 - .5, 36 + 3*\j - 1 - .5) circle (0.35);
     }
     % horizontal
     \draw [black, very thick] (31, 36) -- (31, 54);
@@ -47,31 +47,31 @@
     % separators 2
     \def\x{39}
     \def\y{31}
-    \foreach \i in {1,2,3} {
+    \foreach \i/\c in {1/blue,2/black!60!green,3/red} {
       \def\xs2{\x + 5*\i - 5}
       \def\ys2{\y - 5*\i + 5}
       \draw [black, very thick] (\xs2, \ys2) rectangle (\xs2 + 5, \ys2 + 5);
       \draw [step=1.0, black] (\xs2, \ys2) grid (\xs2 + 2, \ys2 + 2);
       \draw [dotted] (\xs2 + 2, \ys2 + 2) -- (\xs2 + 4, \ys2 + 4);
-      \draw [black, very thick] (\xs2 + 4, \ys2 + 4) rectangle (\xs2 + 5, \ys2 + 5);
-      \draw [fill=black] (\xs2 + .5, \ys2 + .5) circle (0.3);
-      \draw [fill=black] (\xs2 + 1.5, \ys2 + 1.5) circle (0.3);
-      \draw [fill=black] (\xs2 + 4.5, \ys2 + 4.5) circle (0.3);
+      \draw [black] (\xs2 + 4, \ys2 + 4) rectangle (\xs2 + 5, \ys2 + 5);
+      \draw [\c,fill=\c] (\xs2 + .5, \ys2 + .5) circle (0.35);
+      \draw [\c,fill=\c] (\xs2 + 1.5, \ys2 + 1.5) circle (0.35);
+      \draw [\c,fill=\c] (\xs2 + 4.5, \ys2 + 4.5) circle (0.35);
     }
 
     % separators 1
     \def\x{12}
     \def\y{16}
-    \foreach \i in {1,2,3} {
+    \foreach \i/\c in {1/blue,2/black!60!green,3/red} {
       \def\xs2{\x + 5*\i - 5}
       \def\ys2{\y - 5*\i + 5}
       \draw [black, very thick] (\xs2, \ys2) rectangle (\xs2 + 5, \ys2 + 5);
       \draw [step=1.0, black] (\xs2, \ys2) grid (\xs2 + 2, \ys2 + 2);
       \draw [dotted] (\xs2 + 2, \ys2 + 2) -- (\xs2 + 4, \ys2 + 4);
-      \draw [black, very thick] (\xs2 + 4, \ys2 + 4) rectangle (\xs2 + 5, \ys2 + 5);
-      \draw [fill=black] (\xs2 + .5, \ys2 + .5) circle (0.3);
-      \draw [fill=black] (\xs2 + 1.5, \ys2 + 1.5) circle (0.3);
-      \draw [fill=black] (\xs2 + 4.5, \ys2 + 4.5) circle (0.3);
+      \draw [black] (\xs2 + 4, \ys2 + 4) rectangle (\xs2 + 5, \ys2 + 5);
+      \draw [\c,fill=\c] (\xs2 + .5, \ys2 + .5) circle (0.35);
+      \draw [\c,fill=\c] (\xs2 + 1.5, \ys2 + 1.5) circle (0.35);
+      \draw [\c,fill=\c] (\xs2 + 4.5, \ys2 + 4.5) circle (0.35);
     }
   \end{tikzpicture}
   \caption{\label{fig:example-merge-permutation-pi0}

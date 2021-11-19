@@ -72,13 +72,13 @@
       vertex/.style = {circle, fill, minimum size=6pt,inner sep=0pt, outer sep=0pt},
     ]
     % vertices
-    \foreach \x in {1,...,6}
-      \node [vertex,label=below:${\x}$] (vM0\x) at (\x,0) {};
+    \foreach \x/\c in {1/blue,2/black!60!green,3/black!60!green,4/red,5/blue,6/red}
+      \node [vertex,label=below:${\x}$,\c,fill=\c] (vM0\x) at (\x,0) {};
 
     % esges
-    \draw [edge] (vM01.north) ..controls ($(vM01.north) + (0,1.5)$) and ($(vM05.north) + (0,1.5)$) .. (vM05.north);
-    \draw [edge] (vM02.north) ..controls ($(vM02.north) + (0,0.5)$) and ($(vM03.north) + (0,0.5)$) .. (vM03.north);
-    \draw [edge] (vM04.north) ..controls ($(vM04.north) + (0,1.0)$) and ($(vM06.north) + (0,1.0)$) .. (vM06.north);
+    \draw [edge, blue] (vM01.north) ..controls ($(vM01.north) + (0,1.5)$) and ($(vM05.north) + (0,1.5)$) .. (vM05.north);
+    \draw [edge, black!60!green] (vM02.north) ..controls ($(vM02.north) + (0,0.5)$) and ($(vM03.north) + (0,0.5)$) .. (vM03.north);
+    \draw [edge, red] (vM04.north) ..controls ($(vM04.north) + (0,1.0)$) and ($(vM06.north) + (0,1.0)$) .. (vM06.north);
   \end{tikzpicture}
 }
 

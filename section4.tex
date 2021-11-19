@@ -10,27 +10,28 @@ We show how to transform matching merges to permutation merges.
 \end{proposition}
 
 \begin{proof}
-  We reduce from \textsc{$3$-Merge Matching} (Proposition~\ref{proposition:3-Linear Graph Coloring is NP-complete}).
+  We reduce from \textsc{$3$-Merge Matching} (Proposition~\ref{proposition:3-merge matching is NP-complete}).
   Let $\mathcal{M}^{0}$, $\mathcal{M}^{1}$, $\mathcal{M}^{2}$, $\mathcal{M}^{3}$ be four matchings. 
   Write $\mathcal{M}^{i} = (V^i, E^i)$,
   $n_i = |V^i|$ and $m_i = |E^i|$ for $0 \leq i \leq 3$.
-  We show how to construct permutations $\pi^0$, $\pi^1$, $\pi^2$ and $\pi^3$ such that
+  We show how to construct four permutations $\pi^0$, $\pi^1$, $\pi^2$ and $\pi^3$ such that
   the matching $\mathcal{M}^{0}$ is a merge of the matchings $\mathcal{M}^{1}$, $\mathcal{M}^{2}$ and $\mathcal{M}^{3}$
   if and only if
-  the permutation $\pi^0$ is a merge of the permutations $\pi^0$, $\pi^2$ and $\pi^3$.
+  the permutation $\pi^0$ is a merge of the permutations $\pi^1$, $\pi^2$ and $\pi^3$.
 
   Define $N_0 = 8m_0 + 1$.
-  We first associate the permutation $\pi^0$ to the matching $\mathcal{M}^{0}$.
+  We first associate a permutation $\pi^0$ to the matching $\mathcal{M}^{0}$.
   Write $V^0 = \{v^0_1, v^0_2, \dots v^0_{n_0}\}$ and
   $E^0 = \{e^0_1, e^0_2, \dots, e^0_{m_0} \}$, where the edges are sorted according to their minimum vertex.
+  The permutation $\pi^0$ is defined piecewise and boxes are used to facilitate the reading of the elements.
   Define
   \begin{alignat*}{3}
-    &\forall i \in V_0,
+    &\forall i \in V^0,
     &\quad&
-    \pi^0[i] &=&\; \BOXED{i fst}{4i} \quad \BOXED{i snd}{4i-3} \\ 
-    &\forall e^0_k = (i,j) \in E_0,
+    \pi^0[i] &=&\; \BOXED{i fst}{6N_0 + 2m_0 + 3i} \quad \BOXED{i snd}{6N_0 + 2m_0 + 3i - 2} \\ 
+    &\forall e^0_k = (i,j) \in E^0,
     &\quad&
-    \pi^0[e^0_k] &=&\; \BOXED{e fst}{2i} \quad \BOXED{e i}{3N_0 + 2m_0 + 4(i-1) + 2} \quad \BOXED{e j}{3N_0 + 2m_0 +4(j-1) + 3} \quad \BOXED{e snd}{2i - 1} \\
+    \pi^0[e^0_k] &=&\; \BOXED{e fst}{2k} \quad \BOXED{e i}{6N_0 + 2m_0 + 3i - 1} \quad \BOXED{e j}{6N_0 + 2m_0 + 3j - 1} \quad \BOXED{e snd}{2k - 1} \\
     \intertext{We have two groups of three separators 
     ($\text{sep}^{k}_{l}$, $1 \leq k \leq 2$ and $1 \leq l \leq 3$) that are defined as follows:}
     &&\quad&
@@ -47,31 +48,31 @@ We show how to transform matching merges to permutation merges.
     \pi^0[\text{sep}^{2}_{3}] &=&\; \BOXED{sep 2 3 1}{3N_0 + 2m_0 + 1} \quad \BOXED{sep 2 3 2}{3N_0 + 2m_0 + 2} \quad \dots \quad \BOXED{sep 2 3 N0}{3N_0 + 2m_0 + N_0}\text{.}
     \intertext{Define}
     &&\quad&
-    \pi^0[V_0] &=&\; \pi^0[1] \;\; \pi^0[2] \;\; \dots \;\; \pi^0[|V_0|] \\
+    \pi^0[V^0] &=&\; \pi^0[1] \;\; \pi^0[2] \;\; \dots \;\; \pi^0[|V^0|] \\
     &&\quad&
-    \pi^0[E_0] &=&\; \pi^0[e^0_1] \;\; \pi^0[e^0_2] \; \dots \;\; \pi^0[e^0_{|E_0|}] \\
+    \pi^0[E^0] &=&\; \pi^0[e^0_1] \;\; \pi^0[e^0_2] \; \dots \;\; \pi^0[e^0_{|E^0|}] \\
     &&\quad&
     \pi^0[\text{sep}^{1}] &=&\; \pi^0[\text{sep}^{1}_{1}] \;\; \pi^0[\text{sep}^{1}_{2}] \;\; \pi^0[\text{sep}^{1}_{3}] \\
     &&\quad&
     \pi^0[\text{sep}^{2}] &=&\; \pi^0[\text{sep}^{2}_{1}] \;\; \pi^0[\text{sep}^{2}_{2}] \;\; \pi^0[\text{sep}^{2}_{3}]\text{.}
   \end{alignat*}
+  In other words,
+  $\pi^0[V^0]$ is the direct sum of $2m_0$ decreasing permutations
+  that are all order-isomorphic to $21$,
+  $\pi^0[E^0]$ is the direct sum of $m_0$ permutations that are all
+  order-isomorphic to $2341$, and
+  both $\pi^0[\text{sep}^{1}]$ and $\pi^0[\text{sep}^{2}]$ are the skew sums
+  of $3$ permutations that are all order-isomorphic to $12 \dots N_0$.
   The permutations $\pi^0$ is defined as follows:
   $$
-  \pi^0 = \pi^0[V_0] \;\; \pi^0[\text{sep}^{1}] \;\; \pi^0[E_0] \;\; \pi^0[\text{sep}^{2}]\text{.}
+  \pi^0 = \pi^0[V^0] \;\; \pi^0[\text{sep}^{1}] \;\; \pi^0[E^0] \;\; \pi^0[\text{sep}^{2}]\text{.}
   $$
-  In other words,
-  $\pi[V_0]$ is the direct sum of $2m_0$ decreasing permutations
-  that are all order-isomorphic to $21$,
-  $\pi[E_0]$ is the direct sum of $m_0$ permutations that are all
-  order-isomorphic to $2341$, and
-  both $\pi[\text{sep}^{1}]$ and $\pi[\text{sep}^{2}]$ are the skew sums
-  of $k$ permutations that are all order isomorphic to $12 \dots k$.
   See Fig.\ref{fig:example-merge-permutation-pi0} for an example.
 
   \input{figures/example-merge-permutation-pi0}
 
-  We now turn to associating a permutation $\pi^l$, $1 \leq l \leq 3$,
-  to the matching $\mathcal{M}^l = (V^l, E^l)$.
+  We now turn to associating a permutation $\pi^l$
+  to the matching $\mathcal{M}^l = (V^l, E^l)$, $1 \leq l \leq 3$.
   The construction, as a whole, follows the same line as of $\pi^0$,
   the main difference being the \emph{separators}
   $\pi^l[\text{sep}^{1}]$ and
@@ -80,100 +81,76 @@ We show how to transform matching merges to permutation merges.
   $E^0 = \{e^l_1, e^l_2, \dots, e^l_{m_l} \}$, where the edges are sorted according to their minimum vertex.
   Define
   \begin{alignat*}{3}
-    &\forall i \in V_l,
+    &\forall i \in V^l,
     &\quad&
-    \pi^0[i] &=&\; \BOXED{l i fst}{3i} \quad \BOXED{l i snd}{3j-3} \\ 
+    \pi^l[i] &=&\; \BOXED{l i fst}{2N_0 + 2m_l + 3i} \quad \BOXED{l i snd}{2N_0 + 2m_l + 3i - 2} \\ 
     &\forall e^0_k = (i,j) \in E^l,
     &\quad&
-    \pi^l[e^l_k] &=&\; \BOXED{l e fst}{2i} \quad \BOXED{l e i}{3N_0 + 2m_0 + 4(i-1) + 2} \quad \BOXED{l e j}{3N_0 + 2m_0 +4(j-1) + 3} \quad \BOXED{l e snd}{2i - 1} \\
+    \pi^l[e^l_k] &=&\; \BOXED{l e fst}{2k} \quad \BOXED{l e i}{2N_0 + 2m_l + 3i - 1} \quad \BOXED{l e j}{2N_0 + 2m_l + 3j - 1} \quad \BOXED{l e snd}{2k - 1} \\
     \intertext{We have two groups of three separators 
     ($\text{sep}^{k}_{l}$, $1 \leq k \leq 2$ and $1 \leq l \leq 3$) that are defined as follows:}
     &&\quad&
-    \pi^l[\text{sep}^{1}_{1}] &=&\; \BOXED{l sep 1 1 1}{2N_0 + 2m_0 + 1} \quad \BOXED{l sep 1 1 2}{2N_0 + 2m_0 + 2} \quad \dots \quad \BOXED{l sep 1 1 N0}{2N_0 + 2m_0 + N_0} \\ 
+    \pi^l[\text{sep}^{1}] &=&\; \BOXED{l sep 1 1}{2m_0 + 1} \quad \BOXED{l sep 1 2}{2m_0 + 2} \quad \dots \quad \BOXED{l sep 1 N0}{2m_0 + N_0} \\ 
     &&\quad&
-    \pi^l[\text{sep}^{1}_{2}] &=&\; \BOXED{l sep 1 2 1}{N_0 + 2m_0 + 1} \quad \BOXED{l sep 1 2 2}{N_0 + 2m_0 + 2} \quad \dots \quad \BOXED{l sep 1 2 N0}{N_0 + 2m_0 + N_0} \\ 
-    &&\quad&
-    \pi^l[\text{sep}^{1}_{3}] &=&\; \BOXED{l sep 1 3 1}{2m_0 + 1} \quad \BOXED{l sep 1 3 2}{2m_0 + 2} \quad \dots \quad \BOXED{l sep 1 3 N0}{2m_0 + N_0} \\ 
-    &&\quad&
-    \pi^l[\text{sep}^{2}_{1}] &=&\; \BOXED{l sep 2 1 1}{5N_0 + 2m_0 + 1} \quad \BOXED{l sep 2 1 2}{5N_0 + 2m_0 + 2} \quad \dots \quad \BOXED{l sep 2 1 N0}{5N_0 + 2m_0 + N_0} \\ 
-    &&\quad&
-    \pi^l[\text{sep}^{2}_{2}] &=&\; \BOXED{l sep 2 2 1}{4N_0 + 2m_0 + 1} \quad \BOXED{l sep 2 2 2}{4N_0 + 2m_0 + 2} \quad \dots \quad \BOXED{l sep 2 2 N0}{4N_0 + 2m_0 + N_0} \\ 
-    &&\quad&
-    \pi^l[\text{sep}^{2}_{3}] &=&\; \BOXED{l sep 2 3 1}{3N_0 + 2m_0 + 1} \quad \BOXED{l sep 2 3 2}{3N_0 + 2m_0 + 2} \quad \dots \quad \BOXED{l sep 2 3 N0}{3N_0 + 2m_0 + N_0}\text{.}
+    \pi^l[\text{sep}^{2}] &=&\; \BOXED{l sep 2 1}{N_0 + 2m_0 + 1} \quad \BOXED{l sep 2 2}{N_0 + 2m_0 + 2} \quad \dots \quad \BOXED{l sep 2 N0}{N_0 + 2m_0 + N_0}\text{.} \\ 
     \intertext{Define}
     &&\quad&
-    \pi^l[V_0] &=&\; \pi^0[1] \;\; \pi^0[2] \;\; \dots \;\; \pi^0[|V_0|] \\
+    \pi^l[V^0] &=&\; \pi^0[1] \;\; \pi^0[2] \;\; \dots \;\; \pi^0[|V^0|] \\
     &&\quad&
-    \pi^l[E_0] &=&\; \pi^0[e^0_1] \;\; \pi^0[e^0_2] \; \dots \;\; \pi^0[e^0_{|E_0|}] \\
-    &&\quad&
-    \pi^l[\text{sep}^{1}] &=&\; \pi^0[\text{sep}^{1}_{1}] \;\; \pi^0[\text{sep}^{1}_{2}] \;\; \pi^0[\text{sep}^{1}_{3}] \\
-    &&\quad&
-    \pi^l[\text{sep}^{2}] &=&\; \pi^0[\text{sep}^{2}_{1}] \;\; \pi^0[\text{sep}^{2}_{2}] \;\; \pi^0[\text{sep}^{2}_{3}]\text{.}
+    \pi^l[E^0] &=&\; \pi^0[e^0_1] \;\; \pi^0[e^0_2] \; \dots \;\; \pi^0[e^0_{|E^0|}]\text{.}
   \end{alignat*}
+  In other words,
+  $\pi^l[V^l]$ is the direct sum of $2m_l$ decreasing permutations
+  that are all order-isomorphic to $21$,
+  $\pi^l[E^l]$ is the direct sum of $m_l$ permutations that are all
+  order-isomorphic to $2341$, and
+  both $\pi^l[\text{sep}^{1}]$ and $\pi^l[\text{sep}^{2}]$ are order-isomorphic to $12 \dots N_0$.
+  See Fig.\ref{fig:example-merge-permutation-pi1} for an example.
   The permutations $\pi^l$ is defined as follows:
   $$
-  \pi^0 = \pi^l[V_l] \;\; \pi^l[\text{sep}^{1}] \;\; \pi^l[E_l] \;\; \pi^l[\text{sep}^{2}]\text{.}
+  \pi^l = \pi^l[V^l] \;\; \pi^l[\text{sep}^{1}] \;\; \pi^l[E^l] \;\; \pi^l[\text{sep}^{2}]\text{.}
   $$
-  In other words,
-  $\pi[V_0]$ is the direct sum of $2m_0$ decreasing permutations
-  that are all order-isomorphic to $21$,
-  $\pi[E_0]$ is the direct sum of $m_0$ permutations that are all
-  order-isomorphic to $2341$, and
-  both $\pi[\text{sep}^{1}]$ and $\pi[\text{sep}^{2}]$ are the skew sums
-  of $k$ permutations that are all order isomorphic to $12 \dots k$.
-  See Fig.\ref{fig:example-merge-permutation-pi1} for an example.
 
   \input{figures/example-merge-permutation-pi1}
 
-
   Clearly our construction can be carried on in polynomial time.
   Indeed, we have
-  $|\pi| = 2n + 4m + 2kN = 2n + 4m + 2k(2n+4m+1)$
+  $|\pi^0| = 6N_0 + 8m_0 = 56m_0 + 1$
   and
-  $|\sigma_i| = 2n_i + 4m_i + 2N = 2n_i + 4m_i + 2(2n+4m+1)$,
-  $1 \leq i \leq k$.
-  We claim that the linear graph $G^0$ is
-  $(G^1, G^2, \dots, G^k)$-colorable
+  $|\pi^l| = 2N_0 + 8m_l = 16m_0 + 8m_l$,
+  $1 \leq l \leq 3$.
+  We claim that the matching $\mathcal{M}^0$ is a merge of the matchings
+  $\mathcal{M}^1$, $\mathcal{M}^2$ and $\mathcal{M}^3$
   if and only if the permutation
-  $\pi$ is $(\sigma_1, \sigma_2, \dots, \sigma_k)$-colorable.
+  $\pi^0$ is a merge of the permutations $\pi^1$, $\pi^2$ and $\pi^3$.
 
-  Suppose first that $G^0$ is $(G^1, G^2, \dots, G^k)$-colorable.
-  Therefore, there exists a $k$-coloring such that
-  every connected component of $G^0$ is monochromatic and,
-  for every $1 \leq i \leq k$, colour $i$ induces a linear graph that is
-  isomorphic to $G^i$.
-  For every $1 \leq i \leq k$,
-  let $v_{i_1}< v_{i_2} < \dots < v_{i_{n_i}}$ be the vertices of $G^0$ with color $i$.
-  Let us now define a $k$-colouring $\varphi: [|\pi|] \to [k]$ of $\pi$ as follows.
+  Suppose first 
+  that the matching $\mathcal{M}^0$ is a merge of the matchings
+  $\mathcal{M}^1$, $\mathcal{M}^2$ and $\mathcal{M}^3$.
+  Therefore, there exists a $3$-coloring $c : V^0 \to [3]$
+  and functions $f_l : V^l \to V^0$ such that, for every $1 \leq l \leq 3$,
+  (i) $i < j$ implies $f_l(i) < f_l(j)$ and  
+  (ii) $(i, j) \in E^l$ implies $(f(i), f(j)) \in E^0$ and $(c \circ f)(i) = (c \circ f)(j) = l$.
+  Let us now define a $3$-colouring of $\pi^0$ as follows.
   \begin{itemize}
-    \item \textbf{Gadget $\pi(V)$}.
-    For every $1 \leq j \leq n_i$,
-    $\varphi(2i_j-2) = \varphi(2i_j-1) = i$
-    \item \textbf{Gadget $\pi(\text{Sep}_1)$}.
-    Colour the $i$-th increasing sequence $\nearrow_{N_0}$ with colour $i$.
-    More formally,
-    for every $2n + N_0(i-1) + 1 \leq j \leq 2n + iN_0$,
-    $\varphi(j) = i$.
-    \item \textbf{Gadget $\pi(E)$}.
-    Let $e_{i_1} < e_{i_2} < \ldots < ae{i_{m_i}}$ be the edges of $G^0$ that connect
-    vertices coloured with colour $i$.
-    For every $1 \leq j \leq m_i$,
-    $\varphi(2n + kN_0 + 4(i_j-1) + 1) = \varphi(2n + kN_0 + 4(i_j-1) + 2) =
-    \varphi(2n + kN_0 + 4(i_j-1) + 3) = \varphi(2n + kN_0 + 4(i_j-1) + 4) = i$.
-    \item \textbf{Gadget $\pi(\text{Sep}_2)$}.
-    Colour the $i$-th increasing sequence $\nearrow_{N_0}$ with colour $i$.
-    More formally,
-    for every $2n + kN_0 + 4m + N_0(i-1) + 1 \leq j \leq 2n + kN_0 + 4m + iN_0$,
-    $\varphi(j) = i$.
+    \item \textbf{Sequences $\pi^0[1], \pi^0[2], \dots, \pi^0[|V^0|]$}.
+    For every $1 \leq i \leq |V^0|$, color the two integers of $\pi^0[i]$ with color $c(i)$.
+    \item \textbf{Sequences $\pi^0[\text{sep}^{1}_{l}]$, $1 \leq l \leq 3$}.
+    Color the integers of $\pi^0[\text{sep}^{1}_{l}]$ with colour $l$.
+    \item \textbf{Sequences $\pi^0[e^0_1], \pi^0[e^0_2], \dots, \pi^0[e^0_{|E^0|}]$}.
+    For every $1 \leq k \leq |E^0|$, color the four integers of $\pi^0[e^0_k = (i, j)]$ with color $c(i) = c(j)$.
+    \item \textbf{Sequences $\pi^0[\text{sep}^{2}_{l}]$, $1 \leq l \leq 3$}.
+    Color the integers of $\pi^0[\text{sep}^{2}_{l}]$ with colour $l$.
   \end{itemize}
-  The reader is invited to check that, for every $1 \leq i \leq k$,
-  the $i$-coloured pattern of $\pi$ is order-isomorphic to $\sigma_i$.
+  The reader is invited to check that, for every $1 \leq l \leq 3$,
+  the $l$-coloured pattern of $\pi^0$ is order-isomorphic to $\pi^l$.
 
-  Conversely, suppose that $\pi$ is $(\sigma_1, \sigma_2, \dots, \sigma_k)$-colorable.
-  Therefore, there exists a $k$-coloring $\varphi: [2n_0 + 4m_0 + 2kN_0] \to [k]$
-  such that, for every $1 \leq i \leq k$,
-  the $i$-coloured pattern of $\pi$ is order-isomorphic to $\sigma_i$.
-  Let us focus on $\sigma_i$ for some $1 \leq i \leq k$.
+  Conversely, suppose that 
+  $\pi^0$ is a merge of the permutations $\pi^1$, $\pi^2$ and $\pi^3$.
+  Therefore, there exists a $3$-coloring $\c': [56m_0 + 1] \to [3]$
+  such that, for every $1 \leq l \leq 3$,
+  the $l$-coloured pattern of $\pi^0$ is order-isomorphic to $\pi^l$.
+  Let us focus on $\pi^l$ for some $1 \leq i \leq k$.
   Recall that
   $\sigma_i =
   \sigma_i(V)   \;
@@ -225,22 +202,12 @@ We show how to transform matching merges to permutation merges.
   of $\pi(E)$ are coloured with colour $i$.
   Hence, \todo{Ok I'm lazy (or tired), this is not formal!}referring to
   Figure~\ref{fig:NP2:connection zoom} and considering every $1 \leq i \leq k$,
-  we conclude that $G$ can be splitted by linear graphs $H_1, H_2, \ldots, H_k$.
+  we conclude that the matching $\mathcal{M}^0$ is a merge 
+  of the matchings $\mathcal{M}^1$, $\mathcal{M}^2$ and $\mathcal{M}^3$.
   \qed
 \end{proof}
 
-\begin{corollary}
-  \label{corollary:5-permutation coloring is NP-complete}
-  \textsc{$3$-permutation coloring} is \NPC.
-\end{corollary}
-
-\begin{proof}
-  Combine Proposition~\ref{proposition:3-Linear Graph Coloring}
-  with Proposition~\ref{proposition:k-linear-graph coloring < k-permutation coloring}.
-  \qed
-\end{proof}
-
-It is worth noticing that, according to
-Proposition~\ref{proposition:k-linear-graph coloring < k-permutation coloring},
-any improvement on Proposition~\ref{proposition:5-linear-graph coloring is NP-complete}
+It is worth noticing that, according to the proof
+Proposition~\ref{proposition:3-merge permutation is NP-complete},
+any improvement on Proposition~\ref{proposition:3-merge matching is NP-complete}
 would immediately propagate to \textsc{$k$-permutation coloring}.
