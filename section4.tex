@@ -48,9 +48,9 @@ We show how to transform matching merges to permutation merges.
     \pi^0[\text{sep}^{2}_{3}] &=&\; \BOXED{sep 2 3 1}{3N_0 + 2m_0 + 1} \quad \BOXED{sep 2 3 2}{3N_0 + 2m_0 + 2} \quad \dots \quad \BOXED{sep 2 3 N0}{3N_0 + 2m_0 + N_0}\text{.}
     \intertext{Define}
     &&\quad&
-    \pi^0[V^0] &=&\; \pi^0[1] \;\; \pi^0[2] \;\; \dots \;\; \pi^0[|V^0|] \\
+    \pi^0[V^0] &=&\; \pi^0[1] \;\; \pi^0[2] \;\; \dots \;\; \pi^0[2m_0] \\
     &&\quad&
-    \pi^0[E^0] &=&\; \pi^0[e^0_1] \;\; \pi^0[e^0_2] \; \dots \;\; \pi^0[e^0_{|E^0|}] \\
+    \pi^0[E^0] &=&\; \pi^0[e^0_1] \;\; \pi^0[e^0_2] \; \dots \;\; \pi^0[e^0_{m_0}] \\
     &&\quad&
     \pi^0[\text{sep}^{1}] &=&\; \pi^0[\text{sep}^{1}_{1}] \;\; \pi^0[\text{sep}^{1}_{2}] \;\; \pi^0[\text{sep}^{1}_{3}] \\
     &&\quad&
@@ -95,9 +95,9 @@ We show how to transform matching merges to permutation merges.
     \pi^l[\text{sep}^{2}] &=&\; \BOXED{l sep 2 1}{N_0 + 2m_0 + 1} \quad \BOXED{l sep 2 2}{N_0 + 2m_0 + 2} \quad \dots \quad \BOXED{l sep 2 N0}{N_0 + 2m_0 + N_0}\text{.} \\ 
     \intertext{Define}
     &&\quad&
-    \pi^l[V^0] &=&\; \pi^0[1] \;\; \pi^0[2] \;\; \dots \;\; \pi^0[|V^0|] \\
+    \pi^l[V^0] &=&\; \pi^0[1] \;\; \pi^0[2] \;\; \dots \;\; \pi^0[2m_0] \\
     &&\quad&
-    \pi^l[E^0] &=&\; \pi^0[e^0_1] \;\; \pi^0[e^0_2] \; \dots \;\; \pi^0[e^0_{|E^0|}]\text{.}
+    \pi^l[E^0] &=&\; \pi^0[e^0_1] \;\; \pi^0[e^0_2] \; \dots \;\; \pi^0[e^0_{m_0}]\text{.}
   \end{alignat*}
   In other words,
   $\pi^l[V^l]$ is the direct sum of $2m_l$ decreasing permutations
@@ -133,12 +133,12 @@ We show how to transform matching merges to permutation merges.
   (ii) $(i, j) \in E^l$ implies $(f(i), f(j)) \in E^0$ and $(c \circ f)(i) = (c \circ f)(j) = l$.
   Let us now define a $3$-colouring of $\pi^0$ as follows.
   \begin{itemize}
-    \item \textbf{Sequences $\pi^0[1], \pi^0[2], \dots, \pi^0[|V^0|]$}.
-    For every $1 \leq i \leq |V^0|$, color the two integers of $\pi^0[i]$ with color $c(i)$.
+    \item \textbf{Sequences $\pi^0[1], \pi^0[2], \dots, \pi^0[2m_0]$}.
+    For every $1 \leq i \leq 2m_0$, color the two integers of $\pi^0[i]$ with color $c(i)$.
     \item \textbf{Sequences $\pi^0[\text{sep}^{1}_{l}]$, $1 \leq l \leq 3$}.
     Color the integers of $\pi^0[\text{sep}^{1}_{l}]$ with colour $l$.
-    \item \textbf{Sequences $\pi^0[e^0_1], \pi^0[e^0_2], \dots, \pi^0[e^0_{|E^0|}]$}.
-    For every $1 \leq k \leq |E^0|$, color the four integers of $\pi^0[e^0_k = (i, j)]$ with color $c(i) = c(j)$.
+    \item \textbf{Sequences $\pi^0[e^0_1], \pi^0[e^0_2], \dots, \pi^0[e^0_{m_0}]$}.
+    For every $1 \leq k \leq m_0$, color the four integers of $\pi^0[e^0_k = (i, j)]$ with color $c(i) = c(j)$.
     \item \textbf{Sequences $\pi^0[\text{sep}^{2}_{l}]$, $1 \leq l \leq 3$}.
     Color the integers of $\pi^0[\text{sep}^{2}_{l}]$ with colour $l$.
   \end{itemize}
@@ -147,61 +147,32 @@ We show how to transform matching merges to permutation merges.
 
   Conversely, suppose that 
   $\pi^0$ is a merge of the permutations $\pi^1$, $\pi^2$ and $\pi^3$.
-  Therefore, there exists a $3$-coloring $\c': [56m_0 + 1] \to [3]$
+  Therefore, there exists a $3$-coloring $c': [56m_0 + 1] \to [3]$
   such that, for every $1 \leq l \leq 3$,
   the $l$-coloured pattern of $\pi^0$ is order-isomorphic to $\pi^l$.
   Let us focus on $\pi^l$ for some $1 \leq i \leq k$.
   Recall that
-  $\sigma_i =
-  \sigma_i(V)   \;
-  \sigma_i\left(\text{Sep}_1\right) \;
-  \sigma_i\left(E\right)   \;
-  \sigma_i\left(\text{Sep}_1\right)$,
+  $\pi^l = \pi^l[V^l] \;\; \pi^l[\text{sep}^{1}] \;\; \pi^l[E^l] \;\; \pi^l[\text{sep}^{2}]$
   where both
-  $\sigma_i\left(\text{Sep}_1\right)$ and $\sigma_i\left(\text{Sep}_2\right)$
+  $\pi^l[\text{sep}^{1}]$ and $\pi^l[\text{sep}^{2}]$
   are increasing sequence of length $N_0$.
   We now oberve that
-  $N_0 > |\pi(V)| + |\pi(E)|$.
-  Then it follows that
-  (i) at least one element of $\pi(\text{Sep}_1)$ is coloured with
-  colour $i$,
-  and
-  (ii) at least of element of $\pi(\text{Sep}_2)$ is coloured with
-  colour $i$.
-  But
-  $\pi(\text{Sep}_1) \; \pi(\text{Sep}_2)$ and
-  $\sigma_i\left(\text{Sep}_1\right) \; \sigma_i\left(\text{Sep}_2\right)$
-  are both order-isomorphic to
-  $\left(\bigominus_{\ell=1}^{k} \nearrow_N\right) \oplus \left(\bigominus_{\ell=1}^{k} \nearrow_N\right)$,
-  and hence
-  (i) $N$ vertices of $\pi(\text{Sep}_1)$ are coloured with
-  colour $i$,
-  and
-  (ii) $N$ vertices of $\pi(\text{Sep}_1)$ are coloured with
-  colour $i$.
-  Therefore,
-  (i) $|\sigma_i(V)| = 2n_i$ elements of
-  $\pi(V)$ are coloured with colour $i$ and the induced
-  $i$-coloured pattern is order-isomorphic to $\sigma_i(V)$,
-  and
-  (ii) $|\sigma_i\left(E\right)| = 4m_i$ elements of
-  $\pi(E)$ are coloured with colour $i$ and the induced
-  $i$-coloured pattern is order-isomorphic to $\sigma_i\left(E\right)$.
-  But $\pi(V)$ is order-isomorphic to $\bigoplus_{\ell=1}^{n} 21$
-  and
-  $\sigma_i(V)$ is order-isomorphic to $\bigoplus_{\ell=1}^{n_i} 21$.
-  Therefore, $n_i$ patterns $21$ are coloured with colour $i$ thereby identifying
-  $n_i$ vertices of $G$.
-  Finally,
-  combining
-  $\pi(E) = \bigoplus_{\ell=1}^{m} 2 \; x_\ell^1 \; x_\ell^2 \; 1$ and
-  $\sigma_i\left(E\right) = \bigoplus_{\ell=1}^{m_i} 2 \; x_{i,\ell^1} \; x_{i,\ell^2} \; 1$,
-  together with the fact that $x_{i,\ell^1}$ and $x_{i,\ell^2}$ have to be sandwiched in
-  $i$-coloured pattern $21$ of $\pi(V)$,
-  we conclude that $m_i$ consecutive patterns $2 \; x_{i,\ell^1} \; x_{i,\ell^2} \; 1$
-  of $\pi(E)$ are coloured with colour $i$.
-  Hence, \todo{Ok I'm lazy (or tired), this is not formal!}referring to
-  Figure~\ref{fig:NP2:connection zoom} and considering every $1 \leq i \leq k$,
+  $\pi^l[\text{sep}^{1}] \;\; \pi^l[\text{sep}^{2}]$ is an increasing sequence of length $2N_0$.
+  Combining this observation with  
+  $N_0 > |\pi^0[V^0]| + |\pi^0[E^0]|$,
+  we obtain that the 
+  (i)  and that each increasing sequence of $\pi^0[\text{sep}^{1}]$
+  (\emph{i.e.}, $\pi^0[\text{sep}^{1}_{1}]$, $\pi^0[\text{sep}^{1}_{2}]$ and $\pi^0[\text{sep}^{1}_{3}]$)
+  is coloured with a distinct color, and that
+  (ii) each increasing sequence of $\pi^0[\text{sep}^{2}]$
+  (\emph{i.e.}, $\pi^0[\text{sep}^{2}_{1}]$, $\pi^0[\text{sep}^{2}_{2}]$ and $\pi^0[\text{sep}^{2}_{3}]$)
+  is coloured with a distinct color.
+  Then it folows that 
+  $2m_l$ sequences of $\pi^0[V^0] = \pi^0[1] \;\; \pi^0[2] \;\; \dots \;\; \pi^0[2m_0]$ are colored with color $l$ 
+  and that 
+  $m_l$ sequences of $\pi^0[E^0] = \pi^0[e^0_1] \;\; \pi^0[e^0_2] \; \dots \;\; \pi^0[e^0_{m_0}]$
+  are colored with color $l$.
+  Therefore, 
   we conclude that the matching $\mathcal{M}^0$ is a merge 
   of the matchings $\mathcal{M}^1$, $\mathcal{M}^2$ and $\mathcal{M}^3$.
   \qed
