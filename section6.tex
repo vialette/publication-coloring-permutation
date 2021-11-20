@@ -1,13 +1,21 @@
 \section{Concluding remarks}
 \label{section:Concluding remarks}
 
-The rationale for introducing \textsc{$k$-Permutation Coloring} stems
-from square permutations (\emph{i.e.} those permutations $\pi$ that are
-$(\sigma, \sigma)$-colorable for some $\sigma$).
-Given a permutation $\pi$, it is \NP-complete to decide
-whether there exists some permutations $\sigma$ such that
-$\pi \in \sigma \bullet \sigma$ \cite{DBLP:journals/tcs/GiraudoV18}.
-How hard becomes the problem if $\sigma$ is part of the input ?
-In other words, given permutation $\pi$ and $\sigma$, how hard is the problem
-to deciding whether $\sigma$ is a square root
-of $\pi$?
+The rationale for introducing \textsc{$k$-Merge Permutation} stems
+from square permutations (\emph{i.e.} those permutations $\pi^0$ that are the merge 
+of two copies of some permutation $\pi^1$).
+Given a permutation $\pi^0$, it is \NP-complete to decide
+whether there exists some permutations $\pi^1$ such that
+$\pi$ is a merge of $\pi^1$ and $\pi^1$ \cite{DBLP:journals/tcs/GiraudoV18}.
+The problem is still hard if $\pi^0$ is $(213,231)$-avoiding \cite{DBLP:journals/tcs/GiraudoV18,DBLP:journals/tcs/BulteauV20}.
+How hard becomes the problem if $\pi^1$ is part of the input ?
+In other words, given permutations $\pi^0$ and $\pi^1$, how hard is the problem
+to deciding whether $\pi^0$ is a merge of $\pi^1$ and $\pi^1$?
+It is instructive to consider related problems for strings.
+Indeed, deciding wether a string is a merge of two copies of some srings 
+(\emph{i.e.} does there exist $v$ such that $u \in v \shuffle v$?) is \NP-complete
+\cite{DBLP:journals/jcss/BussS14,RIZZI2017}, whereas
+deciding wether a string $u$ is a merge of two copies of some given string $v$ 
+(\emph{i.e.}, $u \in v \shuffle v$?) is 
+polynomial-time solvable \cite{skienna08} (exercice 8.2).
+
