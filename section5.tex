@@ -3,26 +3,25 @@
 
 \begin{proposition}
   \label{proposition:Monotonic Permutation Coloring}
-  \textsc{$k$-Permutation Coloring} for monotonic permutations
-  $\sigma_1, \sigma_2, \dots, \sigma_k$, $1 \leq i \leq k$, is
+  \textsc{$k$-Merge Permutation} for monotonic permutations
+  $\pi^1, \pi^2, \dots, \pi^k$, $1 \leq i \leq k$, is
   solvable in $O(n^{2k+1})$ time.
 \end{proposition}
 
 \begin{proof}
-  Let $(\pi \;\mid\; \sigma_1, \sigma_2, \dots, \sigma_k)$ be an instance
-  of \textsc{$k$-Permutation Coloring} where every permutation
-  $\sigma_1, \sigma_2, \dots, \sigma_k$, $1 \leq i \leq k$, is
+  Let $\pi^0, \pi^1, \pi^2, \dots, \pi^k)$ be $k+1$ permutations, where every permutation
+  $\pi^l$, $1 \leq l \leq k$, is
   monotonic (\emph{i.e.}, either an increasing or a decreasing permutation).
-  Write $n = |\pi|$.
+  Write $n_0 = |\pi^0|$.
   For every $1 \leq i \leq n$, define $T[i]$ to be set of all sequences of
   integer coordinates $2$-dimensional points
   $(p_1=(x_1, y_1), p_2=(x_2, y_2), \dots, p_k=(x_k, y_k))$,
-  $\sum_{j=1}^{k} y_j = i$ and $0 \leq y_j \leq |\sigma_j|$ for $1 \leq j \leq k$,
+  $\sum_{j=1}^{k} y_j = i$ and $0 \leq y_j \leq |\pi^j|$ for $1 \leq j \leq k$,
   such that
   $\pi(1) \, \pi(2) \, \dots \, \pi(i)$ can be colored with at most $k$
   distinct colors
   with the property that every color $1 \leq j \leq k$ induces a patterns of length $y_j$
-  order-isomorphic to $\sigma_j$ ($\sigma_j$ is either increasing ir decreasing)
+  order-isomorphic to $\pi^j$ ($\pi^j$ is either increasing ir decreasing)
   with rightmost element $x_j$.
 
   The table $T$ can be computed as follows.
@@ -37,11 +36,11 @@
     $T[i]$.
     For every $1 \leq j \leq k$,
     \begin{itemize}
-      \item \textbf{$\sigma_j$ is increasing}:
-      if $\pi(i) > x_j$ and $y_j < |\sigma_j|$,
+      \item \textbf{$\pi^j$ is increasing}:
+      if $\pi(i) > x_j$ and $y_j < |\pi^j|$,
       $$(p_1=(y_1, y_1), \dots, p_j=(\pi(i), y_j+1), \dots, p_k=(y_k, y_k)) \in T[i+1]\text{.}$$
-      \item \textbf{$\sigma_j$ is decreasing}:
-      if $\pi(i) < x_j$ and $y_j < |\sigma_j|$,
+      \item \textbf{$\pi^j$ is decreasing}:
+      if $\pi(i) < x_j$ and $y_j < |\pi^j|$,
       $$(p_1=(y_1, y_1), \dots, p_j=(\pi(i), y_j+1), \dots, p_k=(y_k, y_k)) \in T[i+1]\text{.}$$
     \end{itemize}
   \end{itemize}
@@ -64,7 +63,7 @@ encoding.
 \begin{proposition}
   \label{proposition:Monotonic Permutation Coloring}
   \textsc{$k$-Permutation Coloring} for increasing permutations
-  $\sigma_1, \sigma_2, \dots, \sigma_k$ is
+  $\pi^1, \pi^2, \dots, \pi^k$ is
   $\W[1]$-hard parameterized by $k$.
 \end{proposition}
 
@@ -98,7 +97,7 @@ encoding.
   $1 \leq i \leq n$,
   as the $i$-th pattern of $\pi$.
   As for the monotonic patterns,
-  define $\sigma_i = {\nearrow}_{B+n}$
+  define $\pi^i = {\nearrow}_{B+n}$
   for $1 \leq i \leq k$.
   Notice that all monotonic patterns are identical;
   see Fig.~\ref{fig:bin-packing} for an illustration.
