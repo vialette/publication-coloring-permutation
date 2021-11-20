@@ -1,7 +1,10 @@
 \section{Concluding remarks}
 \label{section:Concluding remarks}
 
-The rationale for introducing \textsc{$k$-Merge Permutation} stems
+Given permutations, $\pi^0$, $\pi^1$ and $\pi^2$, 
+a challenging problem is to pin down the computational complexity of deciding 
+if $\pi^0$ is a merge of $\pi^1$ and $\pi^2$.
+Actually, our rationale for studying \textsc{$k$-Merge Permutation} stems
 from square permutations (\emph{i.e.} those permutations $\pi^0$ that are the merge 
 of two copies of some permutation $\pi^1$).
 Given a permutation $\pi^0$, it is \NP-complete to decide
@@ -10,7 +13,8 @@ $\pi$ is a merge of $\pi^1$ and $\pi^1$ \cite{DBLP:journals/tcs/GiraudoV18}.
 The problem is still hard if $\pi^0$ is $(213,231)$-avoiding \cite{DBLP:journals/tcs/GiraudoV18,DBLP:journals/tcs/BulteauV20}.
 How hard becomes the problem if $\pi^1$ is part of the input ?
 In other words, given permutations $\pi^0$ and $\pi^1$, how hard is the problem
-to deciding whether $\pi^0$ is a merge of $\pi^1$ and $\pi^1$?
+of deciding whether $\pi^0$ is a merge of $\pi^1$ and $\pi^1$?
+The problem is known to be polynomial-time solvable for separable permutations \cite{DBLP:conf/spire/NeouRV16}.
 It is instructive to consider related problems for strings.
 Indeed, deciding wether a string is a merge of two copies of some srings 
 (\emph{i.e.} does there exist $v$ such that $u \in v \shuffle v$?) is \NP-complete
