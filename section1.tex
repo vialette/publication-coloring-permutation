@@ -1,16 +1,14 @@
 \section{Introduction}
 \label{section:Introduction}
 
-Given permutations $\pi$ and $\sigma_1, \sigma_2, \ldots, \sigma_k$,
-the permutation $\pi$ is said to be
-\emph{$(\sigma_1, \sigma_2, \ldots, \sigma_k)$-colorable},
-denoted $\pi \in \sigma_1 \bullet \sigma_2 \bullet \dots \bullet \sigma_k$,
-if there exists a $k$-coloring of $\pi$ (\emph{i.e.}, assign one color
-among $k$ available colors to each element of $\pi$) such that the
+A permutation $\pi^0$ is a merge of permutations 
+$\pi^1, \pi^2, \dots, \pi^k$, 
+if there exists a $k$-coloring of $\pi^0$ (\emph{i.e.}, assign one color
+among $k$ available colors to each element of $\pi^0$) such that the
 pattern induced by each color $i$, $1 \leq i \leq k$, is order-isomorphic
-to $\sigma_i$.
-For example, $\pi = 192854367$ is 
-$({\color{red}12}, {\color{teal}312}, {\color{blue}4213})$-colorable
+to $\pi^i$.
+For example, $\pi^0 = 192854367$ is a merge of  
+${\color{red}12}$, ${\color{teal}312}$ and ${\color{blue}4213})$
 as shown by 
 $\pi = 
 \raisebox{2pt}{{\color{red}1}}
@@ -23,9 +21,9 @@ $\pi =
 ${\color{red}15} \simeq 12$,
 ${\color{teal}926} \simeq 312$ and
 ${\color{blue}8437} \simeq 4213$.
-Given permutations $\pi$ and $\sigma_1, \sigma_2, \ldots, \sigma_k$,
-the \textsc{$k$-Permutation Coloring} problem is to decide whether $\pi$
-is $(\sigma_1,, \sigma_2, \ldots, \sigma_k)$ -colorable.
+Given permutations $\pi^0$ and $\pi^1, \pi^2, \dots, \pi^k$,
+\textsc{$k$-Merge Permutation} is the problem to decide whether $\pi$
+is a merge of $\pi^1, \pi^2, \dots, \pi^k$.
 
 Given a permutation $\pi$, deciding whether $\pi$ is the shuffle of 
 two order-isomorphic patterns is \NP-complete \cite{DBLP:journals/tcs/GiraudoV18}.
@@ -34,5 +32,11 @@ there exists a permutations $\sigma$ such that $\pi$ is
 $(\sigma, \sigma)$-colorable is \NP-complete,
 even if $\pi$ is $(213, 231)$-avoiding.
 
-The main question is: 
-given permutations $\pi$ and $\sigma$, is $\pi$ $(\sigma, \sigma)$-colorable?
+
+For fixed hereditary permutation classes $\mathcal{C}$ and $\mathcal{D}$,
+the complexity of determining whether a given permutation $\pi^0$ is a merge of an element of
+$\mathcal{C}$ with an element of $\mathcal{D}$ is considered in
+\cite{DBLP:conf/esa/JelinekOV18}.
+In particular, it shown that it is \NP-complete to recognize permutations that can \begin{enumerate}
+  \item merged from two permutations avoiding a simple pattern of length at least $4$.
+\end{enumerate}
