@@ -115,26 +115,28 @@ The separable permutations are enumerated by the Schröder numbers.
 \subsection*{\textbf{Linear graphs}}
 
 A \emph{matching} $\mathcal{M}$ of size $m$, written $|\mathcal{M}| = m$, 
-is a graph on the vertex set $[2m]$ whose very vertex has degree one.
-For an edge of a matching, we write $(i, j)$ with $i < j$ instead of the usual $\{i, j\}$.
+is a graph on the vertex set $[2m]$ in wich every vertex has degree one.
+For an edge of a matching, we write $(i, j)$ with $i < j$ instead of the usual $\{i, j\}$ 
+notation.
 A matching $\mathcal{M}^0 = (V^0, E^0)$ \emph{contains} a matching 
 $\mathcal{M}^1 = (V^1, E^1)$ if there exists a monotonic edge-preserving injection from $V^1$ to $V^0$.
 In other words, $\mathcal{M}^0$ contains $\mathcal{M}^1$ if there exists a function 
 $f : V^1 \to V^0$ such that 
-(i) $1 \leq u < v \leq |\mathcal{M}|$ implies $f(u) < f(v)$ and  
-(ii) $\{u, v\} \in E^1$ implies $\{f(u), f(v)\} \in E^0$.
+(i) $1 \leq i < j \leq 2|\mathcal{M}|$ implies $f(i) < f(j)$ and  
+(ii) $\{i,j\} \in E^1$ implies $\{f(i), f(j)\} \in E^0$.
 
 Let $\mathcal{M}^0, \mathcal{M}^1, \dots, \mathcal{M}^k$ be $k+1$ matchings.
 The matchings $\mathcal{M}^0$ is a \emph{merge} of the matchings 
 $\mathcal{M}^1, \dots, \mathcal{M}^k$ 
 if 
 (i) $\mathcal{M}^0$ contains $\mathcal{M}^l$ for every $1 \leq l \leq k$ 
-and (ii) $\left|\mathcal{M}^0\right| = \sum_{i=1}^{k} \left|\mathcal{M}^l\right|$.
-In other words,  $\mathcal{M}^0 = (V^0, E^0)$ is a \emph{merge} of the matchings 
-$\mathcal{M}^1, \dots, \mathcal{M}^k$ is there exist a function (\emph{i.e.} coloring)
-$c : V^0 \to [k]$  and functions $f_l : V^l \to V^0$ such that, for every $1 \leq l \leq k$,
-(i) $i < j$ implies $f_l(i) < f_l(j)$ and  
-(ii) $(i, j) \in E^l$ implies $(f(i), f(j)) \in E^0$ and $(c \circ f)(i) = (c \circ f)(j) = l$.
+and 
+(ii) $\left|\mathcal{M}^0\right| = \sum_{i=1}^{k} \left|\mathcal{M}^l\right|$.
+In other words,  $\mathcal{M}^0 = (V^0, E^0)$ is a merge of the matchings 
+$\mathcal{M}^1, \dots, \mathcal{M}^k$ is there exist a coloring function
+$c : V^0 \to [k]$  and monotonic edge-preserving injection $f_l : V^l \to V^0$ 
+such that, for every $1 \leq l \leq k$,
+$(i, j) \in E^l$ implies $(c \circ f)(i) = (c \circ f)(j) = l$.
 \textsc{$k$-Merge matching} is the problem to decide whether some matching 
 $\mathcal{M}^0$ is a merge of matchings $\mathcal{M}^1, \dots, \mathcal{M}^k$.
 An illustration of this definition for $k = 3$ is given in Figure~\ref{fig:matching-merge-example}.
