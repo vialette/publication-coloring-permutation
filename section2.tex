@@ -71,19 +71,12 @@ $\DPERM(n) = n\,(n-1)\,\dots\,1$ (\emph{decreasing permutation}).
     $\sigma$.
 \end{definition}
 
-\begin{definition}[permutation coloring]
-  Given permutations $\pi$ and $\sigma_1, \sigma_2, \dots, \sigma_k$,
-  the permutation $\pi$ is said to be
-  \emph{$(\sigma_1, \sigma_2, \ldots, \sigma_k)$-colorable}
-  if there exists a
-  $k$-coloring of $\pi$ such that, for every $1 \leq i \leq k$, the
-  pattern of $\pi$ induced by color $i$ is order-isomorphic to $\sigma_i$.
-  The \textsc{$k$-Permutation Coloring} problem is to decide the existence of
-  such a $k$-coloring of $\pi$.
-\end{definition}
 
 \begin{example}
-The permutation $\pi = 483125679$ is $(123, 3214, 12)$-colorable
+The permutation $\pi^0 = 483125679$ is a merge of permutations 
+$\pi^1 = 123$, 
+$\pi^2 = 3214$ and 
+$\pi^3 = 12$
 as shown in
 $
 \raisebox{1.5pt}{$4$}
@@ -97,14 +90,14 @@ $
 \raisebox{0pt}{$9$}
 $
 where
-$467 \simeq 123$,
-$8329 \simeq 3214$ and
-$15 \simeq 12$.
+$467 \simeq 123 = \pi^1$,
+$8329 \simeq 3214 = \pi^2$ and
+$15 \simeq 12 = \pi^3$.
 \end{example}
 
-Given permutations $\pi$ and $\sigma^1, \sigma^2, \ldots, \sigma^k$,
-the \textsc{$k$-Permutation Coloring} problem is to decide whether $\pi0$
-is $(\sigma^1, \sigma^2, \ldots, \sigma^k)$ -colorable.
+Given permutations $\pi^0$ and $\pi^1, \pi^2, \dots, \pi^k$,
+\textsc{$k$-Merge Permutation} is the problem to decide whether $\pi0$
+is a merge of $\pi^1, \pi^2, \dots, \pi^k$.
 
 A \emph{separable permutation} is a permutation that has a \emph{separating tree}:
 a rooted binary tree in which the elements
